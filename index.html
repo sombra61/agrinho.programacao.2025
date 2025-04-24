@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reserva - PR | Agricultura e Inovação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <h1>Reserva - Paraná</h1>
+    <p>Projeto desenvolvido por Vitor José</p>
+    <nav>
+      <ul>
+        <li><a href="#cultivo">Cultivo</a></li>
+        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#solo">Solo</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#abas">Explorar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="banner">
+    <div class="banner-texto">
+      <h2>Terra rica, cultura viva</h2>
+      <p>Conheça o campo de Reserva-PR, sua força, tradição e futuro tecnológico.</p>
+    </div>
+  </section>
+
+  <section id="cultivo" class="secao">
+    <h2>Cultivo em Reserva</h2>
+    <p>Reserva é forte na produção de milho, feijão e soja. A agricultura familiar ainda domina a paisagem, com práticas que misturam tradição e inovação. O cuidado com a terra e a rotação de culturas são parte do dia a dia do produtor reservense.</p>
+    <button onclick="abrirModal()">Ver mais detalhes</button>
+  </section>
+
+  <section id="curiosidades" class="secao verde-claro">
+    <h2>Curiosidades</h2>
+    <ul>
+      <li>Reserva tem mais de 100 anos de história ligada ao campo.</li>
+      <li>Tradições religiosas e festas juninas são celebradas nas comunidades rurais.</li>
+      <li>O nome "Reserva" vem da antiga reserva indígena Guarani da região.</li>
+    </ul>
+  </section>
+
+  <section id="solo" class="secao">
+    <h2>Sobre o Solo</h2>
+    <p>O solo reservense é um Latossolo fértil, profundo e com ótima drenagem. Ideal para grãos, esse solo é mantido com adubação orgânica, análise constante e práticas como terraceamento e cobertura vegetal.</p>
+  </section>
+
+  <section id="galeria" class="secao verde-escuro">
+    <h2>Galeria</h2>
+    <div class="carrossel">
+      <img src="img/campo1.jpg" alt="Plantação em Reserva" />
+      <img src="img/campo2.jpg" alt="Paisagem Rural" />
+      <img src="img/reserva-centro.jpg" alt="Centro da cidade de Reserva" />
+    </div>
+  </section>
+
+  <section id="abas" class="secao destaque">
+    <h2>Explore mais sobre Reserva</h2>
+    <div class="botoes-abas">
+      <a href="historia.html" class="botao-aba">História da Agricultura</a>
+      <a href="solo.html" class="botao-aba">Desempenho do Solo</a>
+      <a href="calculadora.html" class="botao-aba">Calculadora Agrícola</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 - Projeto Agrinho | Desenvolvido por Vitor José</p>
+  </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="fechar" onclick="fecharModal()">&times;</span>
+      <h3>Mais sobre o cultivo</h3>
+      <p>Além dos grãos principais, produtores têm investido em hortaliças e frutas nativas, valorizando a diversidade agrícola da cidade e promovendo práticas sustentáveis que respeitam o meio ambiente.</p>
+    </div>
+  </div>
+
+  <script>
+    function abrirModal() {
+      document.getElementById("modal").style.display = "block";
+    }
+
+    function fecharModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
