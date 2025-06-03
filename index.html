@@ -4,19 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reserva - PR | Agricultura e Inovação</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
-    /* Estilo base rápido para visualização */
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
+      background: #f8fafc;
+      color: #1e293b;
       scroll-behavior: smooth;
-      background-color: #f9f9f9;
     }
-    .header {
+    header, footer {
       background: #14532d;
-      color: #fff;
+      color: white;
       padding: 1rem;
       text-align: center;
     }
@@ -24,199 +22,95 @@
       list-style: none;
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 2rem;
       padding: 0;
     }
     nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #bbf7d0;
     }
     .banner {
-      background: url('img/banner.jpg') center/cover no-repeat;
-      color: #fff;
-      padding: 4rem 2rem;
+      background: #dcfce7;
+      padding: 3rem 1rem;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
     }
-    .secao {
-      padding: 3rem 2rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.6s ease-out;
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1000px;
+      margin: auto;
     }
-    .secao.visible {
-      opacity: 1;
-      transform: translateY(0);
+    h2 {
+      color: #166534;
+      margin-bottom: 1rem;
     }
-    .verde-claro { background: #dcfce7; }
-    .verde-escuro { background: #166534; color: white; }
-    .carrossel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .carrossel img {
-      flex: 0 0 auto;
-      max-width: 300px;
-      border-radius: 10px;
-    }
-    .botao-aba {
-      background: #14532d;
-      color: #fff;
-      padding: 1rem;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-    .botao-aba:hover {
-      background: #166534;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0; top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 500px;
-      text-align: center;
-      position: relative;
-    }
-    .fechar {
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
+    .verde {
+      background: #ecfdf5;
     }
     footer {
-      background: #14532d;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
 
-  <header class="header">
+  <header>
     <h1>Reserva - Paraná</h1>
-    <p>Projeto desenvolvido por Vitor José</p>
+    <p>Projeto educacional desenvolvido por Vitor José para o Agrinho 2025</p>
     <nav>
       <ul>
-        <li><a href="#cultivo">Cultivo</a></li>
-        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#historia">História</a></li>
+        <li><a href="#agricultura">Agricultura</a></li>
         <li><a href="#solo">Solo</a></li>
-        <li><a href="#galeria">Galeria</a></li>
-        <li><a href="#abas">Explorar</a></li>
+        <li><a href="#cultura">Cultura</a></li>
+        <li><a href="#tecnologia">Tecnologia</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="banner">
-      <h2>Terra rica, cultura viva</h2>
-      <p>Conheça o campo de Reserva-PR, sua força, tradição e futuro tecnológico.</p>
-    </section>
+  <section class="banner">
+    <h2>Reserva - Uma terra de histórias, plantações e inovação</h2>
+    <p>Conheça a riqueza natural, cultural e produtiva de uma das cidades mais importantes da região central do Paraná.</p>
+  </section>
 
-    <section id="cultivo" class="secao">
-      <h2>Cultivo em Reserva</h2>
-      <p>Reserva é forte na produção de milho, feijão e soja. A agricultura familiar ainda domina a paisagem.</p>
-      <button onclick="abrirModal()">Ver mais detalhes</button>
-    </section>
+  <section id="historia">
+    <h2>História de Reserva</h2>
+    <p>O município de Reserva, localizado na região dos Campos Gerais do Paraná, tem uma história marcada pela força do povo e pelas raízes indígenas e tropeiras. O nome "Reserva" surgiu em razão da antiga reserva indígena que ocupava parte do território da cidade, especialmente de tribos Guarani que habitavam as matas da região.</p>
+    <p>A cidade foi oficialmente emancipada em 1908, e desde então se desenvolveu com base na agricultura familiar, pecuária e comércio local. Os primeiros moradores enfrentaram muitos desafios, como o acesso a saúde e transporte, mas com o tempo, a cidade foi crescendo e se consolidando como um polo agrícola importante.</p>
+  </section>
 
-    <section id="curiosidades" class="secao verde-claro">
-      <h2>Curiosidades</h2>
-      <ul>
-        <li>Mais de 100 anos de história ligada ao campo.</li>
-        <li>Festas juninas e tradições religiosas são fortes.</li>
-        <li>O nome vem de uma antiga reserva indígena Guarani.</li>
-      </ul>
-    </section>
+  <section id="agricultura" class="verde">
+    <h2>Agricultura em Reserva</h2>
+    <p>A base econômica de Reserva está profundamente ligada à agricultura. A produção de milho, feijão e soja é destaque, movimentando o mercado local e regional. A cidade é conhecida pela força do pequeno produtor, que com dedicação e conhecimento passado de geração em geração, mantém vivo o sustento do campo.</p>
+    <p>Além dos grãos, também são cultivadas hortaliças, frutas nativas e café em menor escala. Em épocas de colheita, muitas famílias se reúnem para auxiliar no trabalho, o que fortalece os laços comunitários e mantém viva a tradição da agricultura colaborativa.</p>
+    <p>Programas de incentivo à produção sustentável vêm sendo aplicados, promovendo o uso consciente da terra, rotação de culturas, adubação natural e preservação das nascentes e matas ciliares.</p>
+  </section>
 
-    <section id="solo" class="secao">
-      <h2>Sobre o Solo</h2>
-      <p>Latossolo fértil, profundo e com ótima drenagem. Ideal para grãos e práticas sustentáveis.</p>
-    </section>
+  <section id="solo">
+    <h2>Características do Solo</h2>
+    <p>O solo da região de Reserva é predominantemente do tipo Latossolo Vermelho, conhecido por sua profundidade, boa drenagem e fertilidade natural. Essa característica permite o cultivo de diversas culturas agrícolas ao longo do ano.</p>
+    <p>Com o avanço da tecnologia no campo, os agricultores locais passaram a fazer análises químicas do solo para aplicar a adubação correta e evitar o desgaste. Isso garante uma produção mais eficiente, ecológica e econômica, respeitando os limites do ecossistema.</p>
+    <p>Outro fator relevante é o clima subtropical da região, com chuvas bem distribuídas ao longo do ano, o que favorece a produção e a sustentabilidade da atividade agrícola.</p>
+  </section>
 
-    <section id="galeria" class="secao verde-escuro">
-      <h2>Galeria</h2>
-      <div class="carrossel">
-        <img src="img/campo1.jpg" alt="Plantação em Reserva" />
-        <img src="img/campo2.jpg" alt="Paisagem Rural" />
-        <img src="img/reserva-centro.jpg" alt="Centro da cidade de Reserva" />
-      </div>
-    </section>
+  <section id="cultura" class="verde">
+    <h2>Cultura e Tradições</h2>
+    <p>Reserva é uma cidade que valoriza profundamente sua cultura. Festas religiosas, como a Festa da Padroeira, e eventos como a Festa do Agricultor são momentos importantes para a comunidade se reunir, celebrar e preservar os costumes locais.</p>
+    <p>A tradição do fandango, da dança e da culinária típica, como a polenta, o porco no tacho e o arroz carreteiro, também são marcos culturais da cidade. Além disso, a religiosidade é muito presente, com capelas rurais e procissões que fazem parte do calendário anual da cidade.</p>
+    <p>Os jovens participam ativamente de grupos de dança, teatro e projetos escolares que visam manter viva a identidade do município. A cultura de Reserva é uma mistura rica de influências indígenas, tropeiras e europeias, refletidas no modo de viver do povo.</p>
+  </section>
 
-    <section id="abas" class="secao destaque">
-      <h2>Explore mais sobre Reserva</h2>
-      <div class="botoes-abas">
-        <a href="historia.html" class="botao-aba">História da Agricultura</a>
-        <a href="solo.html" class="botao-aba">Desempenho do Solo</a>
-        <a href="calculadora.html" class="botao-aba">Calculadora Agrícola</a>
-      </div>
-    </section>
-  </main>
+  <section id="tecnologia">
+    <h2>Tecnologia no Campo</h2>
+    <p>Nos últimos anos, a tecnologia tem transformado o campo em Reserva. Muitos agricultores adotaram o uso de drones para mapeamento de áreas, sensores de umidade no solo, e aplicativos que ajudam no controle de pragas, na previsão do tempo e na gestão da produção.</p>
+    <p>Projetos escolares como o "C.I.A – Central de Informação Agrícola", desenvolvido por alunos como Vitor José, têm colaborado para inserir a juventude no mundo da tecnologia rural, conectando tradição com inovação.</p>
+    <p>Essa modernização permite que pequenos produtores tenham acesso a dados que antes eram restritos a grandes fazendas, tornando o trabalho no campo mais justo, produtivo e sustentável.</p>
+  </section>
 
   <footer>
     <p>© 2025 - Projeto Agrinho | Desenvolvido por Vitor José</p>
+    <p>Todos os direitos reservados. Cidade de Reserva - Paraná</p>
   </footer>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <button class="fechar" onclick="fecharModal()" aria-label="Fechar modal">&times;</button>
-      <h3>Mais sobre o cultivo</h3>
-      <p>Além dos grãos, produtores investem em hortaliças e frutas nativas, promovendo sustentabilidade.</p>
-    </div>
-  </div>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    });
-
-    document.querySelectorAll(".secao").forEach(secao => {
-      observer.observe(secao);
-    });
-
-    function abrirModal() {
-      document.getElementById("modal").style.display = "flex";
-      document.addEventListener("keydown", escClose);
-    }
-
-    function fecharModal() {
-      document.getElementById("modal").style.display = "none";
-      document.removeEventListener("keydown", escClose);
-    }
-
-    function escClose(e) {
-      if (e.key === "Escape") fecharModal();
-    }
-  </script>
 
 </body>
 </html>
+
