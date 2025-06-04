@@ -2,89 +2,95 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="Reserva - Paraná | Agricultura e Inovação - Projeto educacional sobre a cidade e sua agricultura sustentável e tecnológica." />
+  <meta name="author" content="Vitor José" />
   <title>Reserva - PR | Agricultura e Inovação</title>
+  
+  <!-- Link externo para CSS -->
   <link rel="stylesheet" href="style.css" />
-  <script>
-    // Script para menu móvel (hambúrguer)
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navUl = document.querySelector('nav ul');
-
-      menuToggle.addEventListener('click', () => {
-        navUl.classList.toggle('active');
-      });
-    });
-  </script>
+  
+  <!-- Fonte Google Fonts (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  
+  <!-- Ícone do site -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
-<body>
 
-  <header>
+<body>
+  <header role="banner" class="site-header">
     <div class="container">
-      <h1>Reserva - Paraná</h1>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav>
-        <ul>
-          <li><a href="#historia">História</a></li>
-          <li><a href="#agricultura">Agricultura</a></li>
-          <li><a href="#solo">Solo</a></li>
-          <li><a href="#cultura">Cultura</a></li>
-          <li><a href="#tecnologia">Tecnologia</a></li>
+      <h1 class="site-title">Reserva - Paraná</h1>
+      <p class="site-description">Projeto educacional desenvolvido por Vitor José para o Agrinho 2025</p>
+      <nav role="navigation" aria-label="Menu principal" class="main-nav">
+        <ul class="nav-list">
+          <li><a href="#historia" class="nav-link">História</a></li>
+          <li><a href="#agricultura" class="nav-link">Agricultura</a></li>
+          <li><a href="#solo" class="nav-link">Solo</a></li>
+          <li><a href="#cultura" class="nav-link">Cultura</a></li>
+          <li><a href="#tecnologia" class="nav-link">Tecnologia</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section class="banner">
-    <div class="container">
-      <h2>Reserva - Uma terra de histórias, plantações e inovação</h2>
-      <p>Conheça a riqueza natural, cultural e produtiva de uma das cidades mais importantes da região central do Paraná.</p>
-    </div>
-  </section>
-
-  <main class="container">
-
-    <section id="historia">
-      <h2>História de Reserva</h2>
-      <p>O município de Reserva, localizado na região dos Campos Gerais do Paraná, tem uma história marcada pela força do povo e pelas raízes indígenas e tropeiras. O nome "Reserva" surgiu em razão da antiga reserva indígena que ocupava parte do território da cidade, especialmente de tribos Guarani que habitavam as matas da região.</p>
-      <p>A cidade foi oficialmente emancipada em 1908, e desde então se desenvolveu com base na agricultura familiar, pecuária e comércio local. Os primeiros moradores enfrentaram muitos desafios, como o acesso a saúde e transporte, mas com o tempo, a cidade foi crescendo e se consolidando como um polo agrícola importante.</p>
+  <main role="main" class="site-main">
+    <section class="banner" aria-label="Banner principal">
+      <div class="container">
+        <h2 class="banner-title">Reserva - Uma terra de histórias, plantações e inovação</h2>
+        <p class="banner-description">Conheça a riqueza natural, cultural e produtiva de uma das cidades mais importantes da região central do Paraná.</p>
+      </div>
     </section>
 
-    <section id="agricultura" class="verde">
-      <h2>Agricultura em Reserva</h2>
-      <p>A base econômica de Reserva está profundamente ligada à agricultura. A produção de milho, feijão e soja é destaque, movimentando o mercado local e regional. A cidade é conhecida pela força do pequeno produtor, que com dedicação e conhecimento passado de geração em geração, mantém vivo o sustento do campo.</p>
-      <p>Além dos grãos, também são cultivadas hortaliças, frutas nativas e café em menor escala. Em épocas de colheita, muitas famílias se reúnem para auxiliar no trabalho, o que fortalece os laços comunitários e mantém viva a tradição da agricultura colaborativa.</p>
-      <p>Programas de incentivo à produção sustentável vêm sendo aplicados, promovendo o uso consciente da terra, rotação de culturas, adubação natural e preservação das nascentes e matas ciliares.</p>
+    <section id="historia" class="content-section" tabindex="0" aria-labelledby="historia-title">
+      <div class="container">
+        <h2 id="historia-title" class="section-title">História de Reserva</h2>
+        <p>O município de Reserva, localizado na região dos Campos Gerais do Paraná, tem uma história marcada pela força do povo e pelas raízes indígenas e tropeiras. O nome "Reserva" surgiu em razão da antiga reserva indígena que ocupava parte do território da cidade, especialmente de tribos Guarani que habitavam as matas da região.</p>
+        <p>A cidade foi oficialmente emancipada em 1908, e desde então se desenvolveu com base na agricultura familiar, pecuária e comércio local. Os primeiros moradores enfrentaram muitos desafios, como o acesso a saúde e transporte, mas com o tempo, a cidade foi crescendo e se consolidando como um polo agrícola importante.</p>
+      </div>
     </section>
 
-    <section id="solo">
-      <h2>Características do Solo</h2>
-      <p>O solo da região de Reserva é predominantemente do tipo Latossolo Vermelho, conhecido por sua profundidade, boa drenagem e fertilidade natural. Essa característica permite o cultivo de diversas culturas agrícolas ao longo do ano.</p>
-      <p>Com o avanço da tecnologia no campo, os agricultores locais passaram a fazer análises químicas do solo para aplicar a adubação correta e evitar o desgaste. Isso garante uma produção mais eficiente, ecológica e econômica, respeitando os limites do ecossistema.</p>
-      <p>Outro fator relevante é o clima subtropical da região, com chuvas bem distribuídas ao longo do ano, o que favorece a produção e a sustentabilidade da atividade agrícola.</p>
+    <section id="agricultura" class="content-section alternate-bg" tabindex="0" aria-labelledby="agricultura-title">
+      <div class="container">
+        <h2 id="agricultura-title" class="section-title">Agricultura em Reserva</h2>
+        <p>A base econômica de Reserva está profundamente ligada à agricultura. A produção de milho, feijão e soja é destaque, movimentando o mercado local e regional. A cidade é conhecida pela força do pequeno produtor, que com dedicação e conhecimento passado de geração em geração, mantém vivo o sustento do campo.</p>
+        <p>Além dos grãos, também são cultivadas hortaliças, frutas nativas e café em menor escala. Em épocas de colheita, muitas famílias se reúnem para auxiliar no trabalho, o que fortalece os laços comunitários e mantém viva a tradição da agricultura colaborativa.</p>
+        <p>Programas de incentivo à produção sustentável vêm sendo aplicados, promovendo o uso consciente da terra, rotação de culturas, adubação natural e preservação das nascentes e matas ciliares.</p>
+      </div>
     </section>
 
-    <section id="cultura" class="verde">
-      <h2>Cultura e Tradições</h2>
-      <p>Reserva é uma cidade que valoriza profundamente sua cultura. Festas religiosas, como a Festa da Padroeira, e eventos como a Festa do Agricultor são momentos importantes para a comunidade se reunir, celebrar e preservar os costumes locais.</p>
-      <p>A tradição do fandango, da dança e da culinária típica, como a polenta, o porco no tacho e o arroz carreteiro, também são marcos culturais da cidade. Além disso, a religiosidade é muito presente, com capelas rurais e procissões que fazem parte do calendário anual da cidade.</p>
-      <p>Os jovens participam ativamente de grupos de dança, teatro e projetos escolares que visam manter viva a identidade do município. A cultura de Reserva é uma mistura rica de influências indígenas, tropeiras e europeias, refletidas no modo de viver do povo.</p>
+    <section id="solo" class="content-section" tabindex="0" aria-labelledby="solo-title">
+      <div class="container">
+        <h2 id="solo-title" class="section-title">Características do Solo</h2>
+        <p>O solo da região de Reserva é predominantemente do tipo Latossolo Vermelho, conhecido por sua profundidade, boa drenagem e fertilidade natural. Essa característica permite o cultivo de diversas culturas agrícolas ao longo do ano.</p>
+        <p>Com o avanço da tecnologia no campo, os agricultores locais passaram a fazer análises químicas do solo para aplicar a adubação correta e evitar o desgaste. Isso garante uma produção mais eficiente, ecológica e econômica, respeitando os limites do ecossistema.</p>
+        <p>Outro fator relevante é o clima subtropical da região, com chuvas bem distribuídas ao longo do ano, o que favorece a produção e a sustentabilidade da atividade agrícola.</p>
+      </div>
     </section>
 
-    <section id="tecnologia">
-      <h2>Tecnologia no Campo</h2>
-      <p>Nos últimos anos, a tecnologia tem transformado o campo em Reserva. Muitos agricultores adotaram o uso de drones para mapeamento de áreas, sensores de umidade no solo, e aplicativos que ajudam no controle de pragas, na previsão do tempo e na gestão da produção.</p>
-      <p>Projetos escolares como o "C.I.A – Central de Informação Agrícola", desenvolvido por alunos como Vitor José, têm colaborado para inserir a juventude no mundo da tecnologia rural, conectando tradição com inovação.</p>
-      <p>Essa modernização permite que pequenos produtores tenham acesso a dados que antes eram restritos a grandes fazendas, tornando o trabalho no campo mais justo, produtivo e sustentável.</p>
+    <section id="cultura" class="content-section alternate-bg" tabindex="0" aria-labelledby="cultura-title">
+      <div class="container">
+        <h2 id="cultura-title" class="section-title">Cultura e Tradições</h2>
+        <p>Reserva é uma cidade que valoriza profundamente sua cultura. Festas religiosas, como a Festa da Padroeira, e eventos como a Festa do Agricultor são momentos importantes para a comunidade se reunir, celebrar e preservar os costumes locais.</p>
+        <p>A tradição do fandango, da dança e da culinária típica, como a polenta, o porco no tacho e o arroz carreteiro, também são marcos culturais da cidade. Além disso, a religiosidade é muito presente, com capelas rurais e procissões que fazem parte do calendário anual da cidade.</p>
+        <p>Os jovens participam ativamente de grupos de dança, teatro e projetos escolares que visam manter viva a identidade do município. A cultura de Reserva é uma mistura rica de influências indígenas, tropeiras e europeias, refletidas no modo de viver do povo.</p>
+      </div>
     </section>
 
+    <section id="tecnologia" class="content-section" tabindex="0" aria-labelledby="tecnologia-title">
+      <div class="container">
+        <h2 id="tecnologia-title" class="section-title">Tecnologia no Campo</h2>
+        <p>Nos últimos anos, a tecnologia tem transformado o campo em Reserva. Muitos agricultores adotaram o uso de drones para mapeamento de áreas, sensores de umidade no solo, e aplicativos que ajudam no controle de pragas, na previsão do tempo e na gestão da produção.</p>
+        <p>Projetos escolares como o "C.I.A – Central de Informação Agrícola", desenvolvido por alunos como Vitor José, têm colaborado para inserir a juventude no mundo da tecnologia rural, conectando tradição com inovação.</p>
+        <p>Essa modernização permite que pequenos produtores tenham acesso a dados que antes eram restritos a grandes fazendas, tornando o trabalho no campo mais justo, produtivo e sustentável.</p>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo" class="site-footer">
     <div class="container">
       <p>© 2025 - Projeto Agrinho | Desenvolvido por Vitor José</p>
       <p>Todos os direitos reservados. Cidade de Reserva - Paraná</p>
