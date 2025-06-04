@@ -1,262 +1,322 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="author" content="Vitor José" />
-  <meta name="description" content="Projeto Reserva Paraná - Plataforma para informação agrícola, cultural e tecnológica." />
-  <meta name="keywords" content="Reserva Paraná, agricultura, cultura, tecnologia, solo, história" />
-  <title>Reserva Paraná - Plataforma Integrada Agrícola e Cultural 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reserva Paraná</title>
+  <style>
+    /* RESET básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f9faf7;
+      color: #2c3e50;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    /* Container geral */
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
 
-  <!-- Link externo para o CSS -->
-  <link rel="stylesheet" href="style.css" />
+    /* Cabeçalho */
+    .site-header {
+      background: #2d6a4f;
+      color: #e9f1ef;
+      padding: 20px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-  <!-- Meta para redes sociais -->
-  <meta property="og:title" content="Reserva Paraná - Plataforma Integrada Agrícola e Cultural" />
-  <meta property="og:description" content="Conheça a riqueza agrícola e cultural de Reserva com dados e tecnologias atualizadas." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://seusite.com/reserva-parana" />
-  <meta property="og:image" content="https://seusite.com/imagens/banner-og.jpg" />
+    .site-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  <!-- Script para melhorar acessibilidade do menu -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
-      dropdownToggles.forEach(toggle => {
-        toggle.addEventListener("click", function (e) {
-          e.preventDefault();
-          const submenu = this.nextElementSibling;
-          submenu.classList.toggle("show");
-        });
-      });
+    .site-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
 
-      // Menu toggle para mobile
-      const menuToggle = document.getElementById('menu-toggle');
-      const navList = document.querySelector('.nav-list');
+    nav.site-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
 
-      menuToggle.addEventListener('click', function() {
-        navList.classList.toggle('open');
-      });
-    });
-  </script>
+    nav.site-nav a {
+      color: #e9f1ef;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav.site-nav a:hover,
+    nav.site-nav a:focus {
+      color: #d9f0e1;
+      outline: none;
+    }
+
+    /* Banner principal */
+    .banner-principal {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f9faf7;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .banner-principal h2 {
+      font-size: 2.8rem;
+      background-color: rgba(45, 106, 79, 0.75);
+      padding: 15px 30px;
+      border-radius: 8px;
+      max-width: 90%;
+      text-align: center;
+    }
+
+    /* Seções principais */
+    main section {
+      padding: 40px 0;
+      border-bottom: 1px solid #d7e3d4;
+    }
+
+    main section h2 {
+      color: #2d6a4f;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Produtos */
+    .produtos-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .produto {
+      background: #fff;
+      border: 1px solid #d7e3d4;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(45, 106, 79, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .produto:hover,
+    .produto:focus-within {
+      box-shadow: 0 4px 15px rgba(45, 106, 79, 0.3);
+    }
+
+    .produto img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .produto h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: #2d6a4f;
+    }
+
+    .produto p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    /* Formulário de contato */
+    .form-contato {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-contato label {
+      font-weight: 600;
+      color: #2d6a4f;
+    }
+
+    .form-contato input,
+    .form-contato textarea {
+      padding: 10px;
+      border: 1px solid #a7b9a3;
+      border-radius: 6px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-contato input:focus,
+    .form-contato textarea:focus {
+      outline: none;
+      border-color: #2d6a4f;
+      box-shadow: 0 0 5px rgba(45, 106, 79, 0.6);
+    }
+
+    .btn-primary {
+      background-color: #2d6a4f;
+      color: #f9faf7;
+      padding: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #1b4332;
+      outline: none;
+    }
+
+    /* Rodapé */
+    .site-footer {
+      background: #2d6a4f;
+      color: #e9f1ef;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .site-footer .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .site-footer p {
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      color: #e9f1ef;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover,
+    .social-links a:focus {
+      color: #d9f0e1;
+      outline: none;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav.site-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .site-header .container {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <div class="container header-container">
-
-      <a href="#" class="logo" aria-label="Reserva Paraná Logo">
-        <img src="logo.svg" alt="Reserva Paraná Logo" width="140" height="40" />
-      </a>
-
-      <!-- NAVIGAÇÃO PRINCIPAL -->
-      <nav class="main-nav" role="navigation" aria-label="Menu principal">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Sobre Reserva</a>
-            <ul class="dropdown-menu">
-              <li><a href="#historia" class="dropdown-link">História</a></li>
-              <li><a href="#geografia" class="dropdown-link">Geografia</a></li>
-              <li><a href="#populacao" class="dropdown-link">População</a></li>
-              <li><a href="#cultura" class="dropdown-link">Cultura Local</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Agricultura</a>
-            <ul class="dropdown-menu">
-              <li><a href="#culturas" class="dropdown-link">Culturas Principais</a></li>
-              <li><a href="#solo" class="dropdown-link">Tipos de Solo</a></li>
-              <li><a href="#tecnologia" class="dropdown-link">Tecnologia no Campo</a></li>
-              <li><a href="#sustentabilidade" class="dropdown-link">Sustentabilidade</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a href="#noticias" class="nav-link">Notícias</a></li>
-          <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
+  <header class="site-header">
+    <div class="container">
+      <h1>Reserva Paraná</h1>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
-
-      <!-- Botão hamburguer para mobile -->
-      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
-        <span class="hamburger"></span>
-      </button>
-
     </div>
   </header>
 
-  <!-- BANNER / HERO -->
-  <section id="home" class="hero-section" role="region" aria-label="Seção principal do site">
-    <div class="container hero-container">
-      <h1 class="hero-title">Reserva Paraná</h1>
-      <p class="hero-subtitle">Conectando tradição, agricultura e tecnologia para um futuro sustentável.</p>
-      <a href="#agricultura" class="btn btn-primary">Conheça a agricultura local</a>
-    </div>
+  <section class="banner-principal">
+    <h2>Conectando você com a natureza do Paraná</h2>
   </section>
 
-  <!-- SEÇÕES PRINCIPAIS -->
-
-  <main id="main-content" tabindex="-1" class="container main-content">
-
-    <!-- Sobre Reserva -->
-    <section id="sobre-reserva" class="section section-sobre" aria-labelledby="sobre-title">
-      <h2 id="sobre-title" class="section-title">Sobre Reserva</h2>
-
-      <article id="historia" class="article" aria-labelledby="historia-title">
-        <h3 id="historia-title" class="article-title">História</h3>
-        <p>Reserva é uma cidade que se desenvolveu a partir da colonização agrícola do Paraná, com raízes indígenas e influências dos tropeiros que cruzavam a região. A história local é marcada por lutas, tradições e a forte ligação com a terra.</p>
-      </article>
-
-      <article id="geografia" class="article" aria-labelledby="geografia-title">
-        <h3 id="geografia-title" class="article-title">Geografia</h3>
-        <p>Localizada nos Campos Gerais do Paraná, Reserva possui relevo acidentado com áreas de planície e serras, clima subtropical úmido e solos férteis que favorecem a agricultura.</p>
-      </article>
-
-      <article id="populacao" class="article" aria-labelledby="populacao-title">
-        <h3 id="populacao-title" class="article-title">População</h3>
-        <p>Com cerca de 10 mil habitantes, Reserva mantém uma comunidade unida, onde as tradições familiares e o trabalho rural predominam.</p>
-      </article>
-
-      <article id="cultura" class="article" aria-labelledby="cultura-title">
-        <h3 id="cultura-title" class="article-title">Cultura Local</h3>
-        <p>Festas típicas, música regional, gastronomia e artesanato são pilares culturais que fortalecem a identidade da cidade e atraem visitantes.</p>
-      </article>
+  <main class="container">
+    <section id="sobre">
+      <h2>Sobre a Reserva Paraná</h2>
+      <p>
+        A Reserva Paraná é um espaço dedicado à preservação ambiental e à
+        promoção de produtos naturais e sustentáveis da região.
+      </p>
     </section>
 
-    <!-- Agricultura -->
-    <section id="agricultura" class="section section-agricultura" aria-labelledby="agricultura-title">
-      <h2 id="agricultura-title" class="section-title">Agricultura</h2>
-
-      <article id="culturas" class="article" aria-labelledby="culturas-title">
-        <h3 id="culturas-title" class="article-title">Culturas Principais</h3>
-        <ul class="lista-culturas" aria-label="Lista das principais culturas agrícolas">
-          <li>Soja</li>
-          <li>Milho</li>
-          <li>Feijão</li>
-          <li>Trigo</li>
-          <li>Fumo</li>
-        </ul>
-      </article>
-
-      <article id="solo" class="article" aria-labelledby="solo-title">
-        <h3 id="solo-title" class="article-title">Tipos de Solo</h3>
-        <p>Os solos predominantes são Latossolos Vermelhos e Argissolos, conhecidos pela boa drenagem e fertilidade, ideais para as culturas citadas.</p>
-
-        <!-- Tabela de tipos de solo -->
-        <table class="tabela-solos" aria-describedby="solo-desc">
-          <caption id="solo-desc">Tabela de características dos solos predominantes em Reserva</caption>
-          <thead>
-            <tr>
-              <th>Tipo de Solo</th>
-              <th>Cor</th>
-              <th>Textura</th>
-              <th>Uso Principal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Latossolo Vermelho</td>
-              <td>Vermelho</td>
-              <td>Argiloso</td>
-              <td>Soja, Milho</td>
-            </tr>
-            <tr>
-              <td>Argissolo</td>
-              <td>Vermelho-amarelo</td>
-              <td>Textura Média</td>
-              <td>Feijão, Trigo</td>
-            </tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article id="tecnologia" class="article" aria-labelledby="tecnologia-title">
-        <h3 id="tecnologia-title" class="article-title">Tecnologia no Campo</h3>
-        <p>O avanço tecnológico possibilita o uso de drones, sensores de umidade, sistemas de irrigação inteligentes e softwares de gestão agrícola que aumentam a produtividade e reduzem impactos ambientais.</p>
-
-        <!-- Exemplo gráfico simples com SVG -->
-        <figure class="grafico-produtividade" role="img" aria-label="Gráfico de produtividade agrícola">
-          <svg width="400" height="200" viewBox="0 0 400 200" role="img" aria-labelledby="grafico-title grafico-desc" xmlns="http://www.w3.org/2000/svg">
-            <title id="grafico-title">Produtividade Anual</title>
-            <desc id="grafico-desc">Gráfico de barras mostrando a produtividade agrícola dos últimos cinco anos</desc>
-            <rect x="40" y="130" width="50" height="70" fill="#00796b" />
-            <rect x="110" y="100" width="50" height="100" fill="#004d40" />
-            <rect x="180" y="120" width="50" height="80" fill="#009688" />
-            <rect x="250" y="90" width="50" height="110" fill="#00695c" />
-            <rect x="320" y="110" width="50" height="90" fill="#004d40" />
-            <text x="40" y="195" font-size="12" fill="#333">2019</text>
-            <text x="110" y="195" font-size="12" fill="#333">2020</text>
-            <text x="180" y="195" font-size="12" fill="#333">2021</text>
-            <text x="250" y="195" font-size="12" fill="#333">2022</text>
-            <text x="320" y="195" font-size="12" fill="#333">2023</text>
-          </svg>
-        </figure>
-      </article>
-
-      <article id="sustentabilidade" class="article" aria-labelledby="sustentabilidade-title">
-        <h3 id="sustentabilidade-title" class="article-title">Sustentabilidade</h3>
-        <p>A prática sustentável na agricultura é fundamental para garantir a conservação dos recursos naturais, promovendo técnicas como rotação de culturas, uso responsável de insumos e preservação das matas ciliares.</p>
-      </article>
+    <section id="produtos">
+      <h2>Nossos Produtos</h2>
+      <div class="produtos-lista">
+        <article class="produto">
+          <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=600&q=80" alt="Produto 1" />
+          <h3>Mel Orgânico</h3>
+          <p>Mel puro extraído de colmeias preservadas na reserva.</p>
+        </article>
+        <article class="produto">
+          <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=600&q=80" alt="Produto 2" />
+          <h3>Ervas Medicinais</h3>
+          <p>Coletadas manualmente para garantir a qualidade e sustentabilidade.</p>
+        </article>
+        <article class="produto">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80" alt="Produto 3" />
+          <h3>Chás Naturais</h3>
+          <p>Mix de ervas para o bem-estar e saúde do corpo e mente.</p>
+        </article>
+      </div>
     </section>
 
-    <!-- Notícias -->
-    <section id="noticias" class="section section-noticias" aria-labelledby="noticias-title">
-      <h2 id="noticias-title" class="section-title">Notícias</h2>
-      <article class="article" aria-labelledby="noticia1-title">
-        <h3 id="noticia1-title" class="article-title">Inovações tecnológicas impulsionam a agricultura local</h3>
-        <p>Recentes avanços no uso de sensores e drones têm ajudado produtores de Reserva a aumentar a eficiência e sustentabilidade no campo.</p>
-      </article>
-      <article class="article" aria-labelledby="noticia2-title">
-        <h3 id="noticia2-title" class="article-title">Festival cultural celebra as tradições de Reserva</h3>
-        <p>O festival anual reuniu música, dança e gastronomia típica, fortalecendo os laços da comunidade local e atraindo visitantes da região.</p>
-      </article>
-    </section>
-
-    <!-- Contato -->
-    <section id="contato" class="section section-contato" aria-labelledby="contato-title">
-      <h2 id="contato-title" class="section-title">Contato</h2>
-      <form action="#" method="post" class="form-contato" aria-describedby="form-desc">
-        <p id="form-desc">Preencha o formulário para entrar em contato conosco.</p>
+    <section id="contato">
+      <h2>Contato</h2>
+      <form class="form-contato" action="#" method="post">
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required aria-required="true" />
+        <input type="text" id="nome" name="nome" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required aria-required="true" />
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required />
 
         <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true"></textarea>
+        <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button class="btn-primary" type="submit">Enviar</button>
       </form>
     </section>
-
   </main>
 
-  <!-- RODAPÉ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-container">
-      <p>&copy; 2025 Reserva Paraná - Todos os direitos reservados.</p>
-      <nav aria-label="Redes sociais">
-        <ul class="social-links">
-          <li><a href="#" aria-label="Facebook">Facebook</a></li>
-          <li><a href="#" aria-label="Twitter">Twitter</a></li>
-          <li><a href="#" aria-label="Instagram">Instagram</a></li>
-        </ul>
-      </nav>
+  <footer class="site-footer">
+    <div class="footer-container container">
+      <p>© 2025 Reserva Paraná. Todos os direitos reservados.</p>
+      <ul class="social-links">
+        <li><a href="#" aria-label="Facebook">Facebook</a></li>
+        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+      </ul>
     </div>
   </footer>
-
 </body>
 </html>
-html>
