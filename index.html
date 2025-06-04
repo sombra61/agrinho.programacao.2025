@@ -1,101 +1,320 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="Reserva - Paraná | Agricultura e Inovação - Projeto educacional sobre a cidade e sua agricultura sustentável e tecnológica." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="author" content="Vitor José" />
-  <title>Reserva - PR | Agricultura e Inovação</title>
-  
-  <!-- Link externo para CSS -->
-  <link rel="stylesheet" href="style.css" />
-  
-  <!-- Fonte Google Fonts (opcional) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  
-  <!-- Ícone do site -->
+  <meta name="description" content="Projeto Reserva Paraná - Plataforma para informação agrícola, cultural e tecnológica." />
+  <meta name="keywords" content="Reserva Paraná, agricultura, cultura, tecnologia, solo, história" />
+  <title>Reserva Paraná - Plataforma Integrada Agrícola e Cultural 2025</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Link externo para o CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Meta para redes sociais -->
+  <meta property="og:title" content="Reserva Paraná - Plataforma Integrada Agrícola e Cultural" />
+  <meta property="og:description" content="Conheça a riqueza agrícola e cultural de Reserva com dados e tecnologias atualizadas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seusite.com/reserva-parana" />
+  <meta property="og:image" content="https://seusite.com/imagens/banner-og.jpg" />
+
+  <!-- Script para melhorar acessibilidade do menu -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+      dropdownToggles.forEach(toggle => {
+        toggle.addEventListener("click", function (e) {
+          e.preventDefault();
+          const submenu = this.nextElementSibling;
+          submenu.classList.toggle("show");
+        });
+      });
+    });
+  </script>
 </head>
 
 <body>
-  <header role="banner" class="site-header">
-    <div class="container">
-      <h1 class="site-title">Reserva - Paraná</h1>
-      <p class="site-description">Projeto educacional desenvolvido por Vitor José para o Agrinho 2025</p>
-      <nav role="navigation" aria-label="Menu principal" class="main-nav">
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container header-container">
+
+      <a href="#" class="logo" aria-label="Reserva Paraná Logo">
+        <img src="logo.svg" alt="Reserva Paraná Logo" width="140" height="40" />
+      </a>
+
+      <!-- NAVIGAÇÃO PRINCIPAL -->
+      <nav class="main-nav" role="navigation" aria-label="Menu principal">
         <ul class="nav-list">
-          <li><a href="#historia" class="nav-link">História</a></li>
-          <li><a href="#agricultura" class="nav-link">Agricultura</a></li>
-          <li><a href="#solo" class="nav-link">Solo</a></li>
-          <li><a href="#cultura" class="nav-link">Cultura</a></li>
-          <li><a href="#tecnologia" class="nav-link">Tecnologia</a></li>
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Sobre Reserva</a>
+            <ul class="dropdown-menu">
+              <li><a href="#historia" class="dropdown-link">História</a></li>
+              <li><a href="#geografia" class="dropdown-link">Geografia</a></li>
+              <li><a href="#populacao" class="dropdown-link">População</a></li>
+              <li><a href="#cultura" class="dropdown-link">Cultura Local</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">Agricultura</a>
+            <ul class="dropdown-menu">
+              <li><a href="#culturas" class="dropdown-link">Culturas Principais</a></li>
+              <li><a href="#solo" class="dropdown-link">Tipos de Solo</a></li>
+              <li><a href="#tecnologia" class="dropdown-link">Tecnologia no Campo</a></li>
+              <li><a href="#sustentabilidade" class="dropdown-link">Sustentabilidade</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a href="#noticias" class="nav-link">Notícias</a></li>
+          <li class="nav-item"><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
       </nav>
+
+      <!-- Botão hamburguer para mobile -->
+      <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+        <span class="hamburger"></span>
+      </button>
+
     </div>
   </header>
 
-  <main role="main" class="site-main">
-    <section class="banner" aria-label="Banner principal">
-      <div class="container">
-        <h2 class="banner-title">Reserva - Uma terra de histórias, plantações e inovação</h2>
-        <p class="banner-description">Conheça a riqueza natural, cultural e produtiva de uma das cidades mais importantes da região central do Paraná.</p>
-      </div>
+  <!-- BANNER / HERO -->
+  <section id="home" class="hero-section" role="region" aria-label="Seção principal do site">
+    <div class="container hero-container">
+      <h1 class="hero-title">Reserva Paraná</h1>
+      <p class="hero-subtitle">Conectando tradição, agricultura e tecnologia para um futuro sustentável.</p>
+      <a href="#agricultura" class="btn btn-primary">Conheça a agricultura local</a>
+    </div>
+  </section>
+
+  <!-- SEÇÕES PRINCIPAIS -->
+
+  <main id="main-content" tabindex="-1" class="container main-content">
+
+    <!-- Sobre Reserva -->
+    <section id="sobre-reserva" class="section section-sobre" aria-labelledby="sobre-title">
+      <h2 id="sobre-title" class="section-title">Sobre Reserva</h2>
+
+      <article id="historia" class="article" aria-labelledby="historia-title">
+        <h3 id="historia-title" class="article-title">História</h3>
+        <p>Reserva é uma cidade que se desenvolveu a partir da colonização agrícola do Paraná, com raízes indígenas e influências dos tropeiros que cruzavam a região. A história local é marcada por lutas, tradições e a forte ligação com a terra.</p>
+      </article>
+
+      <article id="geografia" class="article" aria-labelledby="geografia-title">
+        <h3 id="geografia-title" class="article-title">Geografia</h3>
+        <p>Localizada nos Campos Gerais do Paraná, Reserva possui relevo acidentado com áreas de planície e serras, clima subtropical úmido e solos férteis que favorecem a agricultura.</p>
+      </article>
+
+      <article id="populacao" class="article" aria-labelledby="populacao-title">
+        <h3 id="populacao-title" class="article-title">População</h3>
+        <p>Com cerca de 10 mil habitantes, Reserva mantém uma comunidade unida, onde as tradições familiares e o trabalho rural predominam.</p>
+      </article>
+
+      <article id="cultura" class="article" aria-labelledby="cultura-title">
+        <h3 id="cultura-title" class="article-title">Cultura Local</h3>
+        <p>Festas típicas, música regional, gastronomia e artesanato são pilares culturais que fortalecem a identidade da cidade e atraem visitantes.</p>
+      </article>
     </section>
 
-    <section id="historia" class="content-section" tabindex="0" aria-labelledby="historia-title">
-      <div class="container">
-        <h2 id="historia-title" class="section-title">História de Reserva</h2>
-        <p>O município de Reserva, localizado na região dos Campos Gerais do Paraná, tem uma história marcada pela força do povo e pelas raízes indígenas e tropeiras. O nome "Reserva" surgiu em razão da antiga reserva indígena que ocupava parte do território da cidade, especialmente de tribos Guarani que habitavam as matas da região.</p>
-        <p>A cidade foi oficialmente emancipada em 1908, e desde então se desenvolveu com base na agricultura familiar, pecuária e comércio local. Os primeiros moradores enfrentaram muitos desafios, como o acesso a saúde e transporte, mas com o tempo, a cidade foi crescendo e se consolidando como um polo agrícola importante.</p>
-      </div>
+    <!-- Agricultura -->
+    <section id="agricultura" class="section section-agricultura" aria-labelledby="agricultura-title">
+      <h2 id="agricultura-title" class="section-title">Agricultura</h2>
+
+      <article id="culturas" class="article" aria-labelledby="culturas-title">
+        <h3 id="culturas-title" class="article-title">Culturas Principais</h3>
+        <ul class="lista-culturas" aria-label="Lista das principais culturas agrícolas">
+          <li>Soja</li>
+          <li>Milho</li>
+          <li>Feijão</li>
+          <li>Trigo</li>
+          <li>Fumo</li>
+        </ul>
+      </article>
+
+      <article id="solo" class="article" aria-labelledby="solo-title">
+        <h3 id="solo-title" class="article-title">Tipos de Solo</h3>
+        <p>Os solos predominantes são Latossolos Vermelhos e Argissolos, conhecidos pela boa drenagem e fertilidade, ideais para as culturas citadas.</p>
+
+        <!-- Tabela de tipos de solo -->
+        <table class="tabela-solos" aria-describedby="solo-desc">
+          <caption id="solo-desc">Tabela de características dos solos predominantes em Reserva</caption>
+          <thead>
+            <tr>
+              <th>Tipo de Solo</th>
+              <th>Cor</th>
+              <th>Textura</th>
+              <th>Uso Principal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Latossolo Vermelho</td>
+              <td>Vermelho</td>
+              <td>Argiloso</td>
+              <td>Soja, Milho</td>
+            </tr>
+            <tr>
+              <td>Argissolo</td>
+              <td>Vermelho-amarelo</td>
+              <td>Textura Média</td>
+              <td>Feijão, Trigo</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article id="tecnologia" class="article" aria-labelledby="tecnologia-title">
+        <h3 id="tecnologia-title" class="article-title">Tecnologia no Campo</h3>
+        <p>O avanço tecnológico possibilita o uso de drones, sensores de umidade, sistemas de irrigação inteligentes e softwares de gestão agrícola que aumentam a produtividade e reduzem impactos ambientais.</p>
+
+        <!-- Exemplo gráfico simples com SVG -->
+        <figure class="grafico-produtividade" role="img" aria-label="Gráfico de produtividade agrícola">
+          <svg width="400" height="200" viewBox="0 0 400 200" role="img" aria-labelledby="grafico-title grafico-desc">
+            <title id="grafico-title">Produtividade Anual</title>
+            <desc id="grafico-desc">Gráfico de barras mostrando a produtividade agrícola dos últimos cinco anos</desc>
+            <rect x="40" y="130" width="50" height="70" fill="#00796b" />
+            <rect x="110" y="100" width="50" height="100" fill="#004d40" />
+            <rect x="180" y="90" width="50" height="110" fill="#009688" />
+            <rect x="250" y="70" width="50" height="130" fill="#004d40" />
+            <rect x="320" y="110" width="50" height="90" fill="#00796b" />
+            <text x="40" y="190" font-size="14" fill="#222">2019</text>
+            <text x="110" y="190" font-size="14" fill="#222">2020</text>
+            <text x="180" y="190" font-size="14" fill="#222">2021</text>
+            <text x="250" y="190" font-size="14" fill="#222">2022</text>
+            <text x="320" y="190" font-size="14" fill="#222">2023</text>
+          </svg>
+          <figcaption>Produtividade de soja em sacas por hectare</figcaption>
+        </figure>
+      </article>
+
+      <article id="sustentabilidade" class="article" aria-labelledby="sustentabilidade-title">
+        <h3 id="sustentabilidade-title" class="article-title">Sustentabilidade</h3>
+        <p>Práticas como plantio direto, rotação de culturas, uso consciente de agrotóxicos e preservação de áreas nativas garantem a sustentabilidade agrícola para as futuras gerações.</p>
+      </article>
     </section>
 
-    <section id="agricultura" class="content-section alternate-bg" tabindex="0" aria-labelledby="agricultura-title">
-      <div class="container">
-        <h2 id="agricultura-title" class="section-title">Agricultura em Reserva</h2>
-        <p>A base econômica de Reserva está profundamente ligada à agricultura. A produção de milho, feijão e soja é destaque, movimentando o mercado local e regional. A cidade é conhecida pela força do pequeno produtor, que com dedicação e conhecimento passado de geração em geração, mantém vivo o sustento do campo.</p>
-        <p>Além dos grãos, também são cultivadas hortaliças, frutas nativas e café em menor escala. Em épocas de colheita, muitas famílias se reúnem para auxiliar no trabalho, o que fortalece os laços comunitários e mantém viva a tradição da agricultura colaborativa.</p>
-        <p>Programas de incentivo à produção sustentável vêm sendo aplicados, promovendo o uso consciente da terra, rotação de culturas, adubação natural e preservação das nascentes e matas ciliares.</p>
-      </div>
+    <!-- Notícias -->
+    <section id="noticias" class="section section-noticias" aria-labelledby="noticias-title">
+      <h2 id="noticias-title" class="section-title">Últimas Notícias</h2>
+
+      <article class="noticia">
+        <h3 class="noticia-title">Nova tecnologia de irrigação lançada em Reserva</h3>
+        <time datetime="2025-06-01" class="noticia-date">1 de junho de 2025</time>
+        <p>Uma startup local desenvolveu um sistema inteligente que otimiza o uso da água na agricultura, reduzindo desperdícios e custos para os agricultores da região.</p>
+      </article>
+
+      <article class="noticia">
+        <h3 class="noticia-title">Reserva realiza feira agrícola com foco em sustentabilidade</h3>
+        <time datetime="2025-05-15" class="noticia-date">15 de maio de 2025</time>
+        <p>O evento reuniu produtores, pesquisadores e empresários para debater e apresentar práticas sustentáveis que podem ser adotadas no campo.</p>
+      </article>
+
+      <article class="noticia">
+        <h3 class="noticia-title">Aumento na produção de soja registra recorde histórico</h3>
+        <time datetime="2025-04-28" class="noticia-date">28 de abril de 2025</time>
+        <p>Os agricultores locais comemoram a maior colheita de soja dos últimos 10 anos, graças ao uso de tecnologias inovadoras e técnicas aprimoradas.</p>
+      </article>
     </section>
 
-    <section id="solo" class="content-section" tabindex="0" aria-labelledby="solo-title">
-      <div class="container">
-        <h2 id="solo-title" class="section-title">Características do Solo</h2>
-        <p>O solo da região de Reserva é predominantemente do tipo Latossolo Vermelho, conhecido por sua profundidade, boa drenagem e fertilidade natural. Essa característica permite o cultivo de diversas culturas agrícolas ao longo do ano.</p>
-        <p>Com o avanço da tecnologia no campo, os agricultores locais passaram a fazer análises químicas do solo para aplicar a adubação correta e evitar o desgaste. Isso garante uma produção mais eficiente, ecológica e econômica, respeitando os limites do ecossistema.</p>
-        <p>Outro fator relevante é o clima subtropical da região, com chuvas bem distribuídas ao longo do ano, o que favorece a produção e a sustentabilidade da atividade agrícola.</p>
-      </div>
+    <!-- Formulário de contato -->
+    <section id="contato" class="section section-contato" aria-labelledby="contato-title">
+      <h2 id="contato-title" class="section-title">Fale Conosco</h2>
+      <form action="#" method="POST" class="form-contato" novalidate>
+        <fieldset>
+          <legend>Informações para contato</legend>
+
+          <label for="nome" class="form-label">Nome completo</label>
+          <input type="text" id="nome" name="nome" required aria-required="true" placeholder="Seu nome completo" />
+
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" id="email" name="email" required aria-required="true" placeholder="exemplo@email.com" />
+
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(00) 00000-0000" />
+
+          <label for="assunto" class="form-label">Assunto</label>
+          <select id="assunto" name="assunto" required aria-required="true">
+            <option value="">Selecione</option>
+            <option value="informacoes">Solicitar informações</option>
+            <option value="parcerias">Parcerias</option>
+            <option value="eventos">Eventos</option>
+            <option value="outros">Outros</option>
+          </select>
+
+          <label for="mensagem" class="form-label">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" rows="6" required aria-required="true" placeholder="Escreva sua mensagem aqui..."></textarea>
+
+          <button type="submit" class="btn btn-submit">Enviar</button>
+        </fieldset>
+      </form>
     </section>
 
-    <section id="cultura" class="content-section alternate-bg" tabindex="0" aria-labelledby="cultura-title">
-      <div class="container">
-        <h2 id="cultura-title" class="section-title">Cultura e Tradições</h2>
-        <p>Reserva é uma cidade que valoriza profundamente sua cultura. Festas religiosas, como a Festa da Padroeira, e eventos como a Festa do Agricultor são momentos importantes para a comunidade se reunir, celebrar e preservar os costumes locais.</p>
-        <p>A tradição do fandango, da dança e da culinária típica, como a polenta, o porco no tacho e o arroz carreteiro, também são marcos culturais da cidade. Além disso, a religiosidade é muito presente, com capelas rurais e procissões que fazem parte do calendário anual da cidade.</p>
-        <p>Os jovens participam ativamente de grupos de dança, teatro e projetos escolares que visam manter viva a identidade do município. A cultura de Reserva é uma mistura rica de influências indígenas, tropeiras e europeias, refletidas no modo de viver do povo.</p>
-      </div>
-    </section>
-
-    <section id="tecnologia" class="content-section" tabindex="0" aria-labelledby="tecnologia-title">
-      <div class="container">
-        <h2 id="tecnologia-title" class="section-title">Tecnologia no Campo</h2>
-        <p>Nos últimos anos, a tecnologia tem transformado o campo em Reserva. Muitos agricultores adotaram o uso de drones para mapeamento de áreas, sensores de umidade no solo, e aplicativos que ajudam no controle de pragas, na previsão do tempo e na gestão da produção.</p>
-        <p>Projetos escolares como o "C.I.A – Central de Informação Agrícola", desenvolvido por alunos como Vitor José, têm colaborado para inserir a juventude no mundo da tecnologia rural, conectando tradição com inovação.</p>
-        <p>Essa modernização permite que pequenos produtores tenham acesso a dados que antes eram restritos a grandes fazendas, tornando o trabalho no campo mais justo, produtivo e sustentável.</p>
-      </div>
-    </section>
   </main>
 
-  <footer role="contentinfo" class="site-footer">
-    <div class="container">
-      <p>© 2025 - Projeto Agrinho | Desenvolvido por Vitor José</p>
-      <p>Todos os direitos reservados. Cidade de Reserva - Paraná</p>
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-container">
+
+      <section class="footer-links" aria-label="Links úteis">
+        <h2 class="footer-title">Links Rápidos</h2>
+        <ul>
+          <li><a href="#sobre-reserva">Sobre Reserva</a></li>
+          <li><a href="#agricultura">Agricultura</a></li>
+          <li><a href="#noticias">Notícias</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="https://www.parana.pr.gov.br" target="_blank" rel="noopener">Governo do Paraná</a></li>
+          <li><a href="https://www.emater.pr.gov.br" target="_blank" rel="noopener">EMATER Paraná</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-info" aria-label="Informações de contato">
+        <address>
+          <strong>Reserva Paraná</strong><br />
+          Rua Principal, 123 - Centro<br />
+          CEP: 86000-000<br />
+          Tel: (43) 1234-5678<br />
+          Email: contato@reservaparana.com.br
+        </address>
+      </section>
+
+      <section class="footer-social" aria-label="Redes sociais">
+        <h2 class="footer-title">Siga-nos</h2>
+        <ul class="social-list">
+          <li><a href="https://facebook.com/reservaparana" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a></li>
+          <li><a href="https://twitter.com/reservaparana" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a></li>
+          <li><a href="https://instagram.com/reservaparana" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a></li>
+          <li><a href="https://youtube.com/reservaparana" target="_blank" rel="noopener" aria-label="YouTube">YouTube</a></li>
+        </ul>
+      </section>
+
+      <section class="footer-copy">
+        <p>&copy; 2025 Reserva Paraná. Todos os direitos reservados.</p>
+      </section>
+
     </div>
   </footer>
 
+  <!-- Script para menu mobile -->
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mainNav = document.querySelector(".main-nav");
+
+    menuToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("active");
+      menuToggle.classList.toggle("active");
+    });
+  </script>
 </body>
+
 </html>
