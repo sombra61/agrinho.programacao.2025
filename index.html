@@ -3,404 +3,613 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Projeto Agrinho - Conexão Campo e Cidade</title>
-<meta name="description" content="Projeto Agrinho: promovendo a conexão entre campo e cidade com educação, sustentabilidade e tecnologia." />
-<meta name="author" content="Vitor José" />
-
+<title>Projeto Gigante - Conexão Campo Cidade</title>
 <style>
-  /* Reset e base */
-  *, *::before, *::after {
+  /* RESET */
+  * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-  body {
+  body, html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f1f8e9;
-    color: #2e3e24;
-    line-height: 1.5;
-    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fefefe;
+    overflow-x: hidden;
     scroll-behavior: smooth;
   }
   a {
-    text-decoration: none;
-    color: #4caf50;
-    transition: color 0.3s ease;
+    color: #ffd700; text-decoration: none;
   }
-  a:hover, a:focus {
-    color: #81c784;
-    outline: none;
+  a:hover {
+    text-decoration: underline;
   }
-  header {
-    background-color: #33691e;
-    color: white;
-    padding: 20px 8%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    box-shadow: 0 3px 8px rgb(0 0 0 / 0.3);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  header h1 {
-    font-size: 1.9rem;
-  }
+
+  /* MENU FIXO + DROPDOWN */
   nav {
-    flex-grow: 1;
-    text-align: right;
+    position: fixed;
+    width: 100%;
+    background: rgba(0,0,0,0.85);
+    top: 0; left: 0;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+  }
+  nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+  }
+  nav .logo {
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: #ffd700;
+    cursor: default;
+    user-select: none;
+    text-shadow: 0 0 10px #ffd700;
   }
   nav ul {
     list-style: none;
     display: flex;
-    gap: 25px;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+    gap: 30px;
   }
-  nav li {
-    flex-grow: 0;
+  nav ul li {
+    position: relative;
   }
-  nav a {
+  nav ul li a {
     font-weight: 600;
     font-size: 1.1rem;
-    padding: 6px 8px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    display: inline-block;
+    transition: color 0.3s ease;
+    user-select: none;
   }
-  nav a:focus-visible {
-    outline: 3px solid #aed581;
-    outline-offset: 2px;
+  nav ul li a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ffd700;
   }
-  main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 24px 60px;
-  }
-  section {
-    margin-bottom: 70px;
-  }
-  h2 {
-    font-size: 2.2rem;
-    color: #33691e;
-    margin-bottom: 18px;
-    border-bottom: 3px solid #aed581;
-    padding-bottom: 8px;
-  }
-  p {
-    font-size: 1.15rem;
-    max-width: 900px;
-    margin-bottom: 16px;
-    text-align: justify;
-  }
-  /* Grid para Culturas */
-  .culturas-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-    gap: 28px;
-    margin-top: 20px;
-  }
-  .cultura-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgb(0 0 0 / 0.12);
-    padding: 18px 15px 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .cultura-card:hover, .cultura-card:focus-within {
-    box-shadow: 0 12px 25px rgb(0 0 0 / 0.2);
-    transform: translateY(-6px);
-    outline: none;
-  }
-  .cultura-card img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-    max-height: 170px;
-    margin-bottom: 12px;
-  }
-  .cultura-card h3 {
-    font-size: 1.35rem;
-    color: #2e7d32;
-    margin-bottom: 8px;
-  }
-  .cultura-card p {
-    flex-grow: 1;
-    font-size: 1rem;
-    color: #455a33;
-  }
-  /* Técnicas */
-  .tecnicas-list {
-    max-width: 850px;
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  .tecnicas-list li {
-    margin-bottom: 11px;
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: #33691e;
-  }
-  /* Tabela Informações */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-    box-shadow: 0 3px 12px rgb(0 0 0 / 0.1);
-  }
-  th, td {
-    padding: 14px 20px;
-    border-bottom: 1px solid #c5e1a5;
-    text-align: left;
-  }
-  th {
-    background-color: #aed581;
-    color: #2e7d32;
-    font-weight: 700;
-  }
-  tbody tr:hover {
-    background-color: #dcedc8;
-  }
-  /* Galeria */
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 18px;
-    margin-top: 20px;
-  }
-  .galeria figure {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgb(0 0 0 / 0.14);
-    overflow: hidden;
-  }
-  .galeria img {
-    width: 100%;
+  nav ul li:hover > ul.dropdown {
     display: block;
-    object-fit: cover;
-    max-height: 190px;
   }
-  .galeria figcaption {
-    padding: 10px 12px;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #558b2f;
+  ul.dropdown {
+    display: none;
+    position: absolute;
+    background: rgba(0,0,0,0.9);
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.7);
   }
-  /* Form */
-  form {
-    max-width: 600px;
-    background: white;
-    padding: 25px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 18px rgb(0 0 0 / 0.12);
+  ul.dropdown li {
+    margin: 0;
+  }
+  ul.dropdown li a {
+    padding: 12px 18px;
+    display: block;
+    font-weight: 400;
+    color: #ffd700;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  ul.dropdown li a:hover {
+    background: #ffd700;
+    color: #222;
+  }
+
+  /* HERO + PARALLAX */
+  .hero {
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(0,0,0,0.7);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(30, 60, 114, 0.7), rgba(42, 82, 152, 0.8));
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    padding: 20px;
+    animation: fadeInScale 1.6s ease forwards;
+  }
+  .hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 900;
+  }
+  .hero-content p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .hero-content button {
+    background: #ffd700;
+    color: #222;
+    border: none;
+    padding: 18px 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+    transition: all 0.3s ease;
+  }
+  .hero-content button:hover {
+    background: #ffc300;
+    box-shadow: 0 8px 25px rgba(255, 195, 0, 0.8);
+    transform: translateY(-3px);
+  }
+
+  @keyframes fadeInScale {
+    0% {opacity: 0; transform: scale(0.9);}
+    100% {opacity: 1; transform: scale(1);}
+  }
+
+  /* SEÇÕES */
+  section {
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(60px);
+    animation-fill-mode: forwards;
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700;
+  }
+  section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    color: #eee;
+    text-align: center;
+  }
+
+  /* CARROSSEL */
+  .carousel-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+  .carousel-slide {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+  }
+  .carousel-slide img {
+    width: 100%;
+    border-radius: 20px;
+    user-select: none;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 215, 0, 0.8);
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 2rem;
+    color: #222;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    transition: background 0.3s ease;
+    user-select: none;
+  }
+  .carousel-btn:hover {
+    background: #ffd700;
+  }
+  .carousel-btn:active {
+    transform: translateY(-50%) scale(0.9);
+  }
+  #prevBtn {
+    left: 15px;
+  }
+  #nextBtn {
+    right: 15px;
+  }
+
+  /* FAQ */
+  .faq {
+    max-width: 900px;
+    margin: 0 auto 80px auto;
+  }
+  .faq-item {
+    background: rgba(255, 215, 0, 0.15);
+    margin-bottom: 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  }
+  .faq-question {
+    padding: 18px 24px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.15rem;
+    user-select: none;
+    position: relative;
+    color: #222;
+    background: #ffd700;
+    border-radius: 12px 12px 0 0;
+    transition: background 0.3s ease;
+  }
+  .faq-question:hover {
+    background: #ffc300;
+  }
+  .faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    background: #222;
+    color: #eee;
+    padding: 0 24px;
+    border-radius: 0 0 12px 12px;
+  }
+  .faq-item.active .faq-answer {
+    max-height: 250px;
+    padding: 15px 24px;
+  }
+
+  /* FORMULÁRIO */
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto 100px auto;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  }
+  .form-container h2 {
+    color: #ffd700;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 2.4rem;
+  }
+  .form-group {
+    margin-bottom: 22px;
   }
   label {
-    font-weight: 600;
-    margin-bottom: 6px;
     display: block;
-    color: #33691e;
+    margin-bottom: 8px;
+    font-weight: 600;
   }
   input[type="text"],
   input[type="email"],
   textarea {
     width: 100%;
-    padding: 12px 15px;
-    border-radius: 8px;
-    border: 2px solid #c5e1a5;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: none;
     font-size: 1rem;
-    font-family: inherit;
-    transition: border-color 0.3s ease;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fefefe;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+    transition: background 0.3s ease;
+    resize: vertical;
   }
   input[type="text"]:focus,
   input[type="email"]:focus,
   textarea:focus {
-    border-color: #81c784;
+    background: rgba(255, 255, 255, 0.3);
     outline: none;
   }
   textarea {
-    resize: vertical;
+    min-height: 100px;
   }
-  button.btn {
-    background-color: #33691e;
-    color: white;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 14px 30px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    margin-top: 18px;
-    transition: background-color 0.25s ease;
-  }
-  button.btn:hover, button.btn:focus {
-    background-color: #558b2f;
-    outline: none;
-  }
-  /* Map container */
-  #mapa-container {
-    margin-top: 30px;
-    max-width: 900px;
-    height: 400px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgb(0 0 0 / 0.15);
-  }
-  /* Footer */
-  footer {
-    background-color: #2e7d32;
-    color: #c8e6c9;
-    padding: 15px 10%;
-    text-align: center;
+  .form-error {
+    color: #ff6b6b;
     font-size: 0.9rem;
-    font-weight: 500;
-    border-top: 3px solid #aed581;
+    margin-top: 6px;
+    display: none;
   }
-
-  /* Botão para expandir textos */
-  .toggle-btn {
-    background-color: #81c784;
+  button[type="submit"] {
+    width: 100%;
+    background: #ffd700;
+    color: #222;
     border: none;
-    color: #2e7d32;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: 600;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 30px;
     cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.7);
+    transition: background 0.3s ease;
   }
-  .toggle-btn:hover, .toggle-btn:focus {
-    background-color: #558b2f;
-    color: white;
-    outline: none;
+  button[type="submit"]:hover {
+    background: #ffc300;
   }
-
-  /* Foco acessível para cards */
-  .cultura-card:focus {
-    outline: 3px solid #aed581;
-    outline-offset: 3px;
+  button[type="submit"]:active {
+    transform: scale(0.97);
   }
 
-  @media (max-width: 720px) {
+  /* RODAPÉ */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.95rem;
+    background: rgba(0,0,0,0.75);
+    color: #ccc;
+    user-select: none;
+    letter-spacing: 1px;
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 768px) {
     nav ul {
-      justify-content: center;
+      gap: 15px;
+      font-size: 0.9rem;
     }
-    header h1 {
-      flex-basis: 100%;
-      text-align: center;
-      margin-bottom: 12px;
+    .hero-content h1 {
+      font-size: 2.6rem;
     }
-    main {
-      margin: 30px 10px 50px;
-      padding: 0 12px;
+    section h2 {
+      font-size: 2rem;
     }
   }
 </style>
 </head>
 <body>
-<header>
-  <h1>Projeto Agrinho</h1>
-  <nav aria-label="Menu de navegação principal">
+
+<nav>
+  <div class="container">
+    <div class="logo">AGRINHO</div>
     <ul>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#culturas">Culturas</a></li>
-      <li><a href="#tecnicas">Técnicas</a></li>
+      <li><a href="#home">Início</a></li>
+      <li>
+        <a href="#sobre">Sobre</a>
+        <ul class="dropdown">
+          <li><a href="#missao">Missão</a></li>
+          <li><a href="#visao">Visão</a></li>
+          <li><a href="#valores">Valores</a></li>
+        </ul>
+      </li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-  </nav>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <h1>Conectando o Campo e a Cidade</h1>
+    <p>Tecnologia e agricultura caminhando lado a lado para um futuro mais sustentável.</p>
+    <button onclick="scrollToSection('servicos')">Conheça nossos serviços</button>
+  </div>
 </header>
 
-<main role="main">
+<section id="sobre">
+  <h2>Sobre Nós</h2>
+  <p>Somos um projeto focado em unir tecnologia avançada com a rotina do agricultor, oferecendo informações essenciais e soluções inteligentes para melhorar a produtividade e sustentabilidade no campo.</p>
 
-  <section id="sobre" tabindex="0" aria-labelledby="sobre-title">
-    <h2 id="sobre-title">Conexão Campo e Cidade</h2>
-    <p>
-      O Projeto Agrinho promove a valorização da agricultura familiar e a conscientização da população urbana sobre a importância do campo para a vida na cidade. Buscamos aproximar esses dois mundos, estimulando práticas sustentáveis, o respeito ao meio ambiente e o fortalecimento das relações sociais entre produtores rurais e moradores urbanos.
-    </p>
-    <p id="mais-sobre" hidden>
-      Através de ações educativas, oficinas, eventos e o uso de tecnologias inovadoras, o Agrinho facilita o diálogo e a troca de conhecimentos entre campo e cidade. Incentivamos a alimentação saudável, o consumo consciente e o desenvolvimento de cadeias produtivas locais que garantam o bem-estar das pessoas e do planeta.
-    </p>
-    <button id="btn-sobre" class="toggle-btn" aria-expanded="false" aria-controls="mais-sobre">Ler mais</button>
-  </section>
+  <article id="missao" style="margin-bottom:30px;">
+    <h3>Missão</h3>
+    <p>Prover informações precisas e acessíveis para agricultores, promovendo práticas eficientes e conscientes.</p>
+  </article>
+  <article id="visao" style="margin-bottom:30px;">
+    <h3>Visão</h3>
+    <p>Ser referência em inovação agrícola, tornando o trabalho no campo mais tecnológico e produtivo.</p>
+  </article>
+  <article id="valores" style="margin-bottom:30px;">
+    <h3>Valores</h3>
+    <p>Transparência, sustentabilidade, educação e tecnologia a serviço do agricultor.</p>
+  </article>
+</section>
 
-  <section id="culturas" tabindex="0" aria-labelledby="culturas-title">
-    <h2 id="culturas-title">Culturas que Conectam</h2>
-    <div class="culturas-list">
-      <article tabindex="0" class="cultura-card" aria-labelledby="milho-title">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Milho_em_espiga.jpg" alt="Espigas de milho amarelas" />
-        <h3 id="milho-title">Milho</h3>
-        <p>Base alimentar tradicional, o milho é fundamental para a agricultura familiar e para a indústria alimentícia urbana, conectando produção e consumo.</p>
-      </article>
-      <article tabindex="0" class="cultura-card" aria-labelledby="soja-title">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Soya_bean.jpg" alt="Grãos de soja sobre fundo branco" />
-        <h3 id="soja-title">Soja</h3>
-        <p>Versátil e nutritiva, a soja sustenta economias locais e é ingrediente-chave em alimentos consumidos diariamente nas cidades.</p>
-      </article>
-      <article tabindex="0" class="cultura-card" aria-labelledby="feijao-title">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Feijão_Mulato.jpg" alt="Grãos de feijão mulato" />
-        <h3 id="feijao-title">Feijão</h3>
-        <p>Presente na mesa do brasileiro, o feijão representa a conexão direta entre o trabalho rural e a alimentação urbana.</p>
-      </article>
-      <article tabindex="0" class="cultura-card" aria-labelledby="horta-title">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Horta_urbana.jpg" alt="Horta urbana com diversas plantas" />
-        <h3 id="horta-title">Horta Urbana</h3>
-        <p>Incentivamos hortas em áreas urbanas, aproximando ainda mais as pessoas da terra e da origem dos alimentos.</p>
-      </article>
+<section id="servicos">
+  <h2>Serviços</h2>
+  <p>Confira algumas funcionalidades que oferecemos para facilitar a vida no campo:</p>
+
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carousel-slide">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80" alt="Drones agrícolas" />
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Sensor no solo" />
+      <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80" alt="Trator moderno" />
+      <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=900&q=80" alt="Agricultor com tablet" />
     </div>
-  </section>
+    <button class="carousel-btn" id="prevBtn">&#10094;</button>
+    <button class="carousel-btn" id="nextBtn">&#10095;</button>
+  </div>
 
-  <section id="tecnicas" tabindex="0" aria-labelledby="tecnicas-title">
-    <h2 id="tecnicas-title">Técnicas Sustentáveis</h2>
-    <p>
-      O Agrinho incentiva práticas que promovem a sustentabilidade e a saúde do solo, além de técnicas que aproximam os moradores das cidades do processo produtivo rural.
-    </p>
-    <ul class="tecnicas-list">
-      <li>Plantio direto para conservação do solo</li>
-      <li>Rotação de culturas para equilíbrio ecológico</li>
-      <li>Uso racional da água e irrigação eficiente</li>
-      <li>Compostagem e adubação orgânica</li>
-      <li>Incentivo à agricultura urbana e periurbana</li>
-    </ul>
-  </section>
+  <ul style="max-width:900px; margin:0 auto; list-style-type:none; padding-left:0;">
+    <li>📱 Aplicativo com informações offline sobre venenos, adubagens e cultivos.</li>
+    <li>🌱 Regulação automática para pulverizadores e equipamentos agrícolas.</li>
+    <li>🧪 Recomendações precisas para uso sustentável de defensivos agrícolas.</li>
+    <li>📊 Estatísticas personalizadas para o acompanhamento da safra.</li>
+  </ul>
+</section>
 
-  <section id="contato" tabindex="0" aria-labelledby="contato-title">
-    <h2 id="contato-title">Fale Conosco</h2>
-    <p>Quer saber mais sobre o Projeto Agrinho ou participar das nossas ações? Envie sua mensagem!</p>
-    <form aria-label="Formulário de contato do Projeto Agrinho">
+<section id="faq" class="faq">
+  <h2>Perguntas Frequentes</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">Como faço para baixar o aplicativo Agrinho?</div>
+    <div class="faq-answer">
+      Você pode baixar o aplicativo diretamente pelo nosso site ou nas lojas de aplicativos oficiais para Android e iOS. O app funciona offline após o download inicial dos dados.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Quais culturas o app suporta?</div>
+    <div class="faq-answer">
+      Atualmente, suportamos milho, soja, feijão, trigo, café e algodão, com informações detalhadas e atualizadas para cada cultura.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Posso usar o app sem conexão à internet?</div>
+    <div class="faq-answer">
+      Sim! Todo o conteúdo principal fica disponível offline, garantindo acesso rápido no campo sem internet.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Como funciona a regulagem automática para equipamentos?</div>
+    <div class="faq-answer">
+      O app fornece guias e tabelas para ajustes finos dos pulverizadores e máquinas agrícolas, melhorando a eficiência e reduzindo desperdícios.
+    </div>
+  </div>
+
+</section>
+
+<section id="contato" class="form-container">
+  <h2>Contato</h2>
+  <form id="contactForm" novalidate>
+    <div class="form-group">
       <label for="nome">Nome</label>
-      <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required />
-      
+      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+      <div class="form-error" id="nomeError">Por favor, insira seu nome.</div>
+    </div>
+    <div class="form-group">
       <label for="email">E-mail</label>
-      <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
-      
+      <input type="email" id="email" name="email" placeholder="seu@email.com" required />
+      <div class="form-error" id="emailError">Por favor, insira um e-mail válido.</div>
+    </div>
+    <div class="form-group">
       <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
-      
-      <button class="btn" type="submit">Enviar</button>
-    </form>
-  </section>
-
-</main>
+      <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem..." required></textarea>
+      <div class="form-error" id="mensagemError">Por favor, insira sua mensagem.</div>
+    </div>
+    <button type="submit">Enviar Mensagem</button>
+  </form>
+</section>
 
 <footer>
-  <p>Projeto Agrinho – Conectando Campo e Cidade | Desenvolvido por Vitor José</p>
+  &copy; 2025 Agrinho. Todos os direitos reservados.
 </footer>
 
 <script>
-  const btnSobre = document.getElementById('btn-sobre');
-  const maisSobre = document.getElementById('mais-sobre');
+  // CARROSSEL
+  const slide = document.getElementById('carousel-slide');
+  const images = slide.querySelectorAll('img');
+  let currentIndex = 0;
 
-  btnSobre.addEventListener('click', () => {
-    const isExpanded = btnSobre.getAttribute('aria-expanded') === 'true';
-    btnSobre.setAttribute('aria-expanded', String(!isExpanded));
-    if (isExpanded) {
-      maisSobre.hidden = true;
-      btnSobre.textContent = 'Ler mais';
+  function showSlide(index) {
+    if (index < 0) currentIndex = images.length - 1;
+    else if (index >= images.length) currentIndex = 0;
+    else currentIndex = index;
+    slide.style.transform = `translateX(${-currentIndex * 100}%)`;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    showSlide(currentIndex - 1);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    showSlide(currentIndex + 1);
+  });
+
+  // Mostrar primeiro slide na carga
+  showSlide(0);
+
+  // FAQ toggle
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Formulário validação básica
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const mensagem = document.getElementById('mensagem');
+
+    const nomeError = document.getElementById('nomeError');
+    const emailError = document.getElementById('emailError');
+    const mensagemError = document.getElementById('mensagemError');
+
+    // Nome
+    if (!nome.value.trim()) {
+      nomeError.style.display = 'block';
+      valid = false;
     } else {
-      maisSobre.hidden = false;
-      btnSobre.textContent = 'Ler menos';
+      nomeError.style.display = 'none';
+    }
+
+    // Email - regex simples
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/i;
+    if (!email.value.trim() || !emailPattern.test(email.value)) {
+      emailError.style.display = 'block';
+      valid = false;
+    } else {
+      emailError.style.display = 'none';
+    }
+
+    // Mensagem
+    if (!mensagem.value.trim()) {
+      mensagemError.style.display = 'block';
+      valid = false;
+    } else {
+      mensagemError.style.display = 'none';
+    }
+
+    if (valid) {
+      alert(`Obrigado, ${nome.value}! Sua mensagem foi enviada com sucesso.`);
+      form.reset();
     }
   });
+
+  // Scroll suave para seção
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior: 'smooth'});
+  }
+
+  // Animação ao rolar
+  function revealOnScroll() {
+    const sections = document.querySelectorAll('section');
+    const windowHeight = window.innerHeight;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < windowHeight - 100) {
+        section.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
 </script>
 
 </body>
