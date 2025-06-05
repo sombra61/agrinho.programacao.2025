@@ -1,616 +1,645 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Projeto Gigante - Conexão Campo Cidade</title>
-<style>
-  /* RESET */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body, html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: #fefefe;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-  a {
-    color: #ffd700; text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agrinho - Conexão Campo & Cidade</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  /* MENU FIXO + DROPDOWN */
-  nav {
-    position: fixed;
-    width: 100%;
-    background: rgba(0,0,0,0.85);
-    top: 0; left: 0;
-    z-index: 9999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.7);
-  }
-  nav .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-  }
-  nav .logo {
-    font-weight: 900;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    color: #ffd700;
-    cursor: default;
-    user-select: none;
-    text-shadow: 0 0 10px #ffd700;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-  }
-  nav ul li {
-    position: relative;
-  }
-  nav ul li a {
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 8px 12px;
-    display: inline-block;
-    transition: color 0.3s ease;
-    user-select: none;
-  }
-  nav ul li a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px #ffd700;
-  }
-  nav ul li:hover > ul.dropdown {
-    display: block;
-  }
-  ul.dropdown {
-    display: none;
-    position: absolute;
-    background: rgba(0,0,0,0.9);
-    top: 100%;
-    left: 0;
-    min-width: 180px;
-    border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-  }
-  ul.dropdown li {
-    margin: 0;
-  }
-  ul.dropdown li a {
-    padding: 12px 18px;
-    display: block;
-    font-weight: 400;
-    color: #ffd700;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-  }
-  ul.dropdown li a:hover {
-    background: #ffd700;
-    color: #222;
-  }
+    body {
+      background: linear-gradient(135deg, #88b04b, #d0e8a4);
+      color: #2d2d2d;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-  /* HERO + PARALLAX */
-  .hero {
-    height: 90vh;
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    text-align: center;
-    color: #fff;
-    text-shadow: 0 0 12px rgba(0,0,0,0.7);
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(30, 60, 114, 0.7), rgba(42, 82, 152, 0.8));
-    z-index: 1;
-  }
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    max-width: 900px;
-    padding: 20px;
-    animation: fadeInScale 1.6s ease forwards;
-  }
-  .hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 900;
-  }
-  .hero-content p {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-  .hero-content button {
-    background: #ffd700;
-    color: #222;
-    border: none;
-    padding: 18px 50px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
-    transition: all 0.3s ease;
-  }
-  .hero-content button:hover {
-    background: #ffc300;
-    box-shadow: 0 8px 25px rgba(255, 195, 0, 0.8);
-    transform: translateY(-3px);
-  }
+    a {
+      color: #2d2d2d;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
 
-  @keyframes fadeInScale {
-    0% {opacity: 0; transform: scale(0.9);}
-    100% {opacity: 1; transform: scale(1);}
-  }
+    a:hover {
+      color: #517f23;
+    }
 
-  /* SEÇÕES */
-  section {
-    max-width: 1100px;
-    margin: 80px auto;
-    padding: 0 20px;
-    opacity: 0;
-    transform: translateY(60px);
-    animation-fill-mode: forwards;
-    animation-duration: 1.2s;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  section h2 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #ffd700;
-    text-shadow: 0 0 10px #ffd700;
-  }
-  section p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    color: #eee;
-    text-align: center;
-  }
+    /* Cabeçalho fixo e responsivo */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      backdrop-filter: saturate(180%) blur(10px);
+    }
 
-  /* CARROSSEL */
-  .carousel-container {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto 60px auto;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  }
-  .carousel-slide {
-    display: flex;
-    transition: transform 0.6s ease-in-out;
-  }
-  .carousel-slide img {
-    width: 100%;
-    border-radius: 20px;
-    user-select: none;
-  }
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 215, 0, 0.8);
-    border: none;
-    padding: 12px 18px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 2rem;
-    color: #222;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-    transition: background 0.3s ease;
-    user-select: none;
-  }
-  .carousel-btn:hover {
-    background: #ffd700;
-  }
-  .carousel-btn:active {
-    transform: translateY(-50%) scale(0.9);
-  }
-  #prevBtn {
-    left: 15px;
-  }
-  #nextBtn {
-    right: 15px;
-  }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #517f23;
+      letter-spacing: 2px;
+      cursor: default;
+      user-select: none;
+    }
 
-  /* FAQ */
-  .faq {
-    max-width: 900px;
-    margin: 0 auto 80px auto;
-  }
-  .faq-item {
-    background: rgba(255, 215, 0, 0.15);
-    margin-bottom: 18px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-  }
-  .faq-question {
-    padding: 18px 24px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1.15rem;
-    user-select: none;
-    position: relative;
-    color: #222;
-    background: #ffd700;
-    border-radius: 12px 12px 0 0;
-    transition: background 0.3s ease;
-  }
-  .faq-question:hover {
-    background: #ffc300;
-  }
-  .faq-question::after {
-    content: '+';
-    position: absolute;
-    right: 20px;
-    font-size: 1.8rem;
-    transition: transform 0.3s ease;
-  }
-  .faq-item.active .faq-question::after {
-    transform: rotate(45deg);
-  }
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    background: #222;
-    color: #eee;
-    padding: 0 24px;
-    border-radius: 0 0 12px 12px;
-  }
-  .faq-item.active .faq-answer {
-    max-height: 250px;
-    padding: 15px 24px;
-  }
-
-  /* FORMULÁRIO */
-  .form-container {
-    max-width: 500px;
-    margin: 0 auto 100px auto;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px 40px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
-  }
-  .form-container h2 {
-    color: #ffd700;
-    margin-bottom: 30px;
-    text-align: center;
-    font-weight: 900;
-    font-size: 2.4rem;
-  }
-  .form-group {
-    margin-bottom: 22px;
-  }
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fefefe;
-    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-    transition: background 0.3s ease;
-    resize: vertical;
-  }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-    background: rgba(255, 255, 255, 0.3);
-    outline: none;
-  }
-  textarea {
-    min-height: 100px;
-  }
-  .form-error {
-    color: #ff6b6b;
-    font-size: 0.9rem;
-    margin-top: 6px;
-    display: none;
-  }
-  button[type="submit"] {
-    width: 100%;
-    background: #ffd700;
-    color: #222;
-    border: none;
-    padding: 16px 0;
-    font-weight: 700;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.7);
-    transition: background 0.3s ease;
-  }
-  button[type="submit"]:hover {
-    background: #ffc300;
-  }
-  button[type="submit"]:active {
-    transform: scale(0.97);
-  }
-
-  /* RODAPÉ */
-  footer {
-    text-align: center;
-    padding: 40px 20px;
-    font-size: 0.95rem;
-    background: rgba(0,0,0,0.75);
-    color: #ccc;
-    user-select: none;
-    letter-spacing: 1px;
-  }
-
-  /* RESPONSIVO */
-  @media (max-width: 768px) {
     nav ul {
-      gap: 15px;
-      font-size: 0.9rem;
+      display: flex;
+      gap: 30px;
+      list-style: none;
     }
-    .hero-content h1 {
-      font-size: 2.6rem;
+
+    nav ul li {
+      position: relative;
     }
+
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 5px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      border-color: #517f23;
+    }
+
+    /* Hero */
+    header.hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    header.hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(21, 56, 6, 0.55);
+      z-index: 0;
+      backdrop-filter: brightness(0.75);
+    }
+
+    header.hero .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    header.hero h1 {
+      font-size: 3.8rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.7);
+    }
+
+    header.hero p {
+      font-size: 1.4rem;
+      margin-bottom: 40px;
+      font-weight: 600;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    header.hero button {
+      background-color: #a5c036;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(165,192,54,0.5);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    header.hero button:hover {
+      background-color: #7b9821;
+      box-shadow: 0 6px 20px rgba(123,152,33,0.75);
+    }
+
+    /* Seções */
+    section {
+      padding: 80px 20px 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     section h2 {
-      font-size: 2rem;
+      font-size: 2.8rem;
+      color: #517f23;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: 1.5px;
     }
-  }
-</style>
+
+    /* Sobre nós */
+    #sobre p {
+      font-size: 1.15rem;
+      max-width: 750px;
+      margin: 0 auto 40px;
+      text-align: center;
+      font-weight: 500;
+      color: #3a3a3a;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    #sobre article {
+      background: #e9f1d7;
+      border-radius: 15px;
+      padding: 25px 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 6px 18px rgba(81,127,35,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    #sobre article:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(81,127,35,0.25);
+    }
+
+    #sobre h3 {
+      font-weight: 800;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      color: #405c13;
+    }
+
+    /* Serviços - estilo cards */
+    #servicos p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #3b4e09;
+      text-align: center;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: #f0f7d1;
+      border-radius: 18px;
+      padding: 30px 25px;
+      box-shadow: 0 8px 20px rgba(81,127,35,0.12);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      user-select: none;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 12px 35px rgba(81,127,35,0.3);
+      transform: translateY(-10px);
+    }
+
+    .service-card svg {
+      width: 60px;
+      height: 60px;
+      fill: #517f23;
+      margin-bottom: 20px;
+    }
+
+    .service-card h4 {
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      color: #405c13;
+    }
+
+    .service-card p {
+      font-weight: 500;
+      color: #46661f;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* Gráficos e estatísticas */
+    #estatisticas {
+      background: #dbe8b0;
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 900px;
+      margin: 50px auto 100px;
+      box-shadow: 0 8px 30px rgba(81,127,35,0.15);
+      text-align: center;
+      color: #314318;
+    }
+
+    #estatisticas h2 {
+      color: #274012;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .stat-box {
+      background: #f6fbe9;
+      border-radius: 15px;
+      padding: 30px 20px;
+      width: 220px;
+      box-shadow: 0 5px 18px rgba(81,127,35,0.1);
+      transition: transform 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .stat-box:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 28px rgba(81,127,35,0.3);
+    }
+
+    .stat-box h3 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #4b7022;
+      margin-bottom: 10px;
+    }
+
+    .stat-box p {
+      font-weight: 600;
+      color: #52742a;
+      font-size: 1.1rem;
+    }
+
+    /* FAQ estilo acordeão */
+    .faq {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      padding: 0 10px;
+    }
+
+    .faq h2 {
+      margin-bottom: 40px;
+      color: #517f23;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+      text-align: center;
+    }
+
+    .faq-item {
+      background: #f1f7d9;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(81,127,35,0.1);
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      user-select: none;
+    }
+
+    .faq-item.active {
+      background: #d9eab0;
+      box-shadow: 0 6px 20px rgba(81,127,35,0.2);
+    }
+
+    .faq-question {
+      padding: 20px 25px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #405c13;
+      position: relative;
+    }
+
+    .faq-question::after {
+      content: "+";
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+      content: "-";
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      padding: 0 25px;
+      font-weight: 500;
+      color: #42581e;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 15px 25px 25px;
+    }
+
+    /* Formulário contato */
+    .form-container {
+      max-width: 650px;
+      margin: 0 auto 80px;
+      background: #f4f9db;
+      padding: 35px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 28px rgba(81,127,35,0.15);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 900;
+      color: #517f23;
+    }
+
+    form label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #406015;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      border: 2px solid #a9c370;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form textarea:focus {
+      outline: none;
+      border-color: #517f23;
+      background-color: #f0f7cf;
+    }
+
+    form textarea {
+      min-height: 100px;
+    }
+
+    form button {
+      background-color: #7d9f22;
+      color: white;
+      padding: 14px 30px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 7px 20px rgba(125,159,34,0.5);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      width: 100%;
+    }
+
+    form button:hover {
+      background-color: #5a7418;
+      box-shadow: 0 10px 28px rgba(90,116,24,0.75);
+    }
+
+    /* Rodapé */
+    footer {
+      background: #4f6a12;
+      color: #dbe8a5;
+      padding: 25px 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.8px;
+      user-select: none;
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      nav ul {
+        gap: 15px;
+      }
+      header.hero h1 {
+        font-size: 2.8rem;
+      }
+      section {
+        padding: 50px 15px 40px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="container">
-    <div class="logo">AGRINHO</div>
+  <nav>
+    <div class="logo">Agrinho</div>
     <ul>
-      <li><a href="#home">Início</a></li>
-      <li>
-        <a href="#sobre">Sobre</a>
-        <ul class="dropdown">
-          <li><a href="#missao">Missão</a></li>
-          <li><a href="#visao">Visão</a></li>
-          <li><a href="#valores">Valores</a></li>
-        </ul>
-      </li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">O Projeto</a></li>
+      <li><a href="#estatisticas">Impacto</a></li>
+      <li><a href="#faq">Perguntas</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-  </div>
-</nav>
+  </nav>
 
-<header class="hero" id="home">
-  <div class="hero-content">
-    <h1>Conectando o Campo e a Cidade</h1>
-    <p>Tecnologia e agricultura caminhando lado a lado para um futuro mais sustentável.</p>
-    <button onclick="scrollToSection('servicos')">Conheça nossos serviços</button>
-  </div>
-</header>
-
-<section id="sobre">
-  <h2>Sobre Nós</h2>
-  <p>Somos um projeto focado em unir tecnologia avançada com a rotina do agricultor, oferecendo informações essenciais e soluções inteligentes para melhorar a produtividade e sustentabilidade no campo.</p>
-
-  <article id="missao" style="margin-bottom:30px;">
-    <h3>Missão</h3>
-    <p>Prover informações precisas e acessíveis para agricultores, promovendo práticas eficientes e conscientes.</p>
-  </article>
-  <article id="visao" style="margin-bottom:30px;">
-    <h3>Visão</h3>
-    <p>Ser referência em inovação agrícola, tornando o trabalho no campo mais tecnológico e produtivo.</p>
-  </article>
-  <article id="valores" style="margin-bottom:30px;">
-    <h3>Valores</h3>
-    <p>Transparência, sustentabilidade, educação e tecnologia a serviço do agricultor.</p>
-  </article>
-</section>
-
-<section id="servicos">
-  <h2>Serviços</h2>
-  <p>Confira algumas funcionalidades que oferecemos para facilitar a vida no campo:</p>
-
-  <div class="carousel-container">
-    <div class="carousel-slide" id="carousel-slide">
-      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80" alt="Drones agrícolas" />
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Sensor no solo" />
-      <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80" alt="Trator moderno" />
-      <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=900&q=80" alt="Agricultor com tablet" />
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Conectando o Campo à Cidade</h1>
+      <p>Projeto Agrinho: educação, tecnologia e sustentabilidade para um futuro mais justo e integrado.</p>
+      <button onclick="document.getElementById('sobre').scrollIntoView({behavior:'smooth'})">Saiba Mais</button>
     </div>
-    <button class="carousel-btn" id="prevBtn">&#10094;</button>
-    <button class="carousel-btn" id="nextBtn">&#10095;</button>
-  </div>
+  </header>
 
-  <ul style="max-width:900px; margin:0 auto; list-style-type:none; padding-left:0;">
-    <li>📱 Aplicativo com informações offline sobre venenos, adubagens e cultivos.</li>
-    <li>🌱 Regulação automática para pulverizadores e equipamentos agrícolas.</li>
-    <li>🧪 Recomendações precisas para uso sustentável de defensivos agrícolas.</li>
-    <li>📊 Estatísticas personalizadas para o acompanhamento da safra.</li>
-  </ul>
-</section>
+  <section id="sobre" class="scroll-section">
+    <h2>Sobre o Agrinho</h2>
+    <p>Mais que um projeto, um elo entre quem planta e quem consome. O Agrinho conecta o mundo rural à vida urbana, promovendo educação ambiental, inovação tecnológica e valorização das tradições agrícolas.</p>
+    <article>
+      <h3>Missão</h3>
+      <p>Promover a conscientização sobre a importância da agricultura sustentável e fortalecer o diálogo entre campo e cidade, garantindo que todos tenham acesso a informações, práticas e valores que respeitam a natureza e o homem.</p>
+    </article>
+    <article>
+      <h3>Visão</h3>
+      <p>Ser referência nacional na integração social e tecnológica entre campo e cidade, inspirando novas gerações a valorizar a agricultura familiar e o desenvolvimento sustentável.</p>
+    </article>
+    <article>
+      <h3>Valores</h3>
+      <p>Respeito à natureza, educação contínua, inovação com propósito, cooperação comunitária e compromisso com o futuro.</p>
+    </article>
+  </section>
 
-<section id="faq" class="faq">
-  <h2>Perguntas Frequentes</h2>
-
-  <div class="faq-item">
-    <div class="faq-question">Como faço para baixar o aplicativo Agrinho?</div>
-    <div class="faq-answer">
-      Você pode baixar o aplicativo diretamente pelo nosso site ou nas lojas de aplicativos oficiais para Android e iOS. O app funciona offline após o download inicial dos dados.
+  <section id="servicos" class="scroll-section">
+    <h2>O que oferecemos</h2>
+    <p>O Agrinho oferece atividades, informações e tecnologias que facilitam a troca de conhecimento entre produtores rurais e moradores urbanos, promovendo a integração e o desenvolvimento sustentável.</p>
+    <div class="services-grid">
+      <div class="service-card" tabindex="0" aria-label="Educação ambiental para jovens">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 2C15.4 2 2 15.4 2 32s13.4 30 30 30 30-13.4 30-30S48.6 2 32 2zm0 56C17.6 58 6 46.4 6 32S17.6 6 32 6s26 11.6 26 26-11.6 26-26 26z"/><path d="M32 14a18 18 0 1018 18A18.02 18.02 0 0032 14zm0 32a14 14 0 1114-14 14.016 14.016 0 01-14 14z"/></svg>
+        <h4>Educação Ambiental</h4>
+        <p>Workshops e oficinas para jovens e adultos, com foco em práticas agrícolas sustentáveis e respeito ao meio ambiente.</p>
+      </div>
+      <div class="service-card" tabindex="0" aria-label="Tecnologia para o campo">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M48 18v28H16V18h32m0-4H16a4 4 0 00-4 4v28a4 4 0 004 4h32a4 4 0 004-4V18a4 4 0 00-4-4z"/><path d="M22 26h20v4H22zM22 34h20v4H22z"/></svg>
+        <h4>Tecnologia Rural</h4>
+        <p>Aplicativos e ferramentas que facilitam o manejo, controle de pragas e otimização da produção agrícola.</p>
+      </div>
+      <div class="service-card" tabindex="0" aria-label="Feiras e eventos comunitários">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M44 14H20l-6 14h36z"/><path d="M12 46h40v4H12z"/></svg>
+        <h4>Feiras e Eventos</h4>
+        <p>Espaços de encontro para troca de saberes, comercialização direta e valorização da produção local.</p>
+      </div>
+      <div class="service-card" tabindex="0" aria-label="Campanhas de conscientização">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 10l14 24H18z"/><path d="M10 54h44v4H10z"/></svg>
+        <h4>Campanhas Educativas</h4>
+        <p>Divulgação de práticas agroecológicas e consumo consciente para toda a sociedade.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="faq-item">
-    <div class="faq-question">Quais culturas o app suporta?</div>
-    <div class="faq-answer">
-      Atualmente, suportamos milho, soja, feijão, trigo, café e algodão, com informações detalhadas e atualizadas para cada cultura.
+  <section id="estatisticas" class="scroll-section">
+    <h2>Impacto do Projeto</h2>
+    <div class="stats-container">
+      <div class="stat-box" aria-label="Mais de 10 mil participantes">
+        <h3>10.000+</h3>
+        <p>Participantes em eventos e oficinas desde 2019</p>
+      </div>
+      <div class="stat-box" aria-label="Mais de 150 comunidades atendidas">
+        <h3>150+</h3>
+        <p>Comunidades rurais e urbanas integradas</p>
+      </div>
+      <div class="stat-box" aria-label="Aumento de 35% em produção sustentável">
+        <h3>+35%</h3>
+        <p>Aumento na adoção de práticas sustentáveis</p>
+      </div>
+      <div class="stat-box" aria-label="Mais de 500 tecnologias implementadas">
+        <h3>500+</h3>
+        <p>Tecnologias e ferramentas agrícolas aplicadas</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="faq-item">
-    <div class="faq-question">Posso usar o app sem conexão à internet?</div>
-    <div class="faq-answer">
-      Sim! Todo o conteúdo principal fica disponível offline, garantindo acesso rápido no campo sem internet.
+  <section id="faq" class="faq scroll-section" aria-label="Perguntas frequentes sobre o projeto Agrinho">
+    <h2>Perguntas Frequentes</h2>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">Como o Agrinho conecta o campo e a cidade?</div>
+      <div class="faq-answer">
+        <p>Por meio de educação, tecnologia, eventos e campanhas que incentivam o diálogo e a troca de conhecimento entre produtores rurais e moradores urbanos.</p>
+      </div>
     </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-question">Como funciona a regulagem automática para equipamentos?</div>
-    <div class="faq-answer">
-      O app fornece guias e tabelas para ajustes finos dos pulverizadores e máquinas agrícolas, melhorando a eficiência e reduzindo desperdícios.
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">Quem pode participar do projeto?</div>
+      <div class="faq-answer">
+        <p>Qualquer pessoa interessada em promover o desenvolvimento sustentável, especialmente jovens, agricultores familiares e educadores.</p>
+      </div>
     </div>
-  </div>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">Quais tecnologias são usadas no Agrinho?</div>
+      <div class="faq-answer">
+        <p>Aplicativos móveis, sensores agrícolas e plataformas digitais que facilitam o manejo e a otimização da produção rural.</p>
+      </div>
+    </div>
+    <div class="faq-item" tabindex="0">
+      <div class="faq-question">Como o projeto impacta as comunidades?</div>
+      <div class="faq-answer">
+        <p>Ao fortalecer a economia local, incentivar práticas sustentáveis e promover a integração social entre campo e cidade.</p>
+      </div>
+    </div>
+  </section>
 
-</section>
-
-<section id="contato" class="form-container">
-  <h2>Contato</h2>
-  <form id="contactForm" novalidate>
-    <div class="form-group">
+  <section id="contato" class="scroll-section">
+    <h2>Contato</h2>
+    <form action="#" method="post" aria-label="Formulário de contato do Agrinho">
       <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
-      <div class="form-error" id="nomeError">Por favor, insira seu nome.</div>
-    </div>
-    <div class="form-group">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="seu@email.com" required />
-      <div class="form-error" id="emailError">Por favor, insira um e-mail válido.</div>
-    </div>
-    <div class="form-group">
+      <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Seu email" required>
+
       <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem..." required></textarea>
-      <div class="form-error" id="mensagemError">Por favor, insira sua mensagem.</div>
-    </div>
-    <button type="submit">Enviar Mensagem</button>
-  </form>
-</section>
+      <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
 
-<footer>
-  &copy; 2025 Agrinho. Todos os direitos reservados.
-</footer>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-<script>
-  // CARROSSEL
-  const slide = document.getElementById('carousel-slide');
-  const images = slide.querySelectorAll('img');
-  let currentIndex = 0;
+  <footer>
+    &copy; 2025 Agrinho - Projeto de Integração Rural e Urbana
+  </footer>
 
-  function showSlide(index) {
-    if (index < 0) currentIndex = images.length - 1;
-    else if (index >= images.length) currentIndex = 0;
-    else currentIndex = index;
-    slide.style.transform = `translateX(${-currentIndex * 100}%)`;
-  }
-
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    showSlide(currentIndex - 1);
-  });
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    showSlide(currentIndex + 1);
-  });
-
-  // Mostrar primeiro slide na carga
-  showSlide(0);
-
-  // FAQ toggle
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      item.classList.toggle('active');
+  <script>
+    // FAQ toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-answer');
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+      // Toggle with keyboard accessibility
+      item.addEventListener('keypress', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
     });
-  });
-
-  // Formulário validação básica
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    let valid = true;
-
-    const nome = document.getElementById('nome');
-    const email = document.getElementById('email');
-    const mensagem = document.getElementById('mensagem');
-
-    const nomeError = document.getElementById('nomeError');
-    const emailError = document.getElementById('emailError');
-    const mensagemError = document.getElementById('mensagemError');
-
-    // Nome
-    if (!nome.value.trim()) {
-      nomeError.style.display = 'block';
-      valid = false;
-    } else {
-      nomeError.style.display = 'none';
-    }
-
-    // Email - regex simples
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/i;
-    if (!email.value.trim() || !emailPattern.test(email.value)) {
-      emailError.style.display = 'block';
-      valid = false;
-    } else {
-      emailError.style.display = 'none';
-    }
-
-    // Mensagem
-    if (!mensagem.value.trim()) {
-      mensagemError.style.display = 'block';
-      valid = false;
-    } else {
-      mensagemError.style.display = 'none';
-    }
-
-    if (valid) {
-      alert(`Obrigado, ${nome.value}! Sua mensagem foi enviada com sucesso.`);
-      form.reset();
-    }
-  });
-
-  // Scroll suave para seção
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({behavior: 'smooth'});
-  }
-
-  // Animação ao rolar
-  function revealOnScroll() {
-    const sections = document.querySelectorAll('section');
-    const windowHeight = window.innerHeight;
-    sections.forEach(section => {
-      const top = section.getBoundingClientRect().top;
-      if (top < windowHeight - 100) {
-        section.classList.add('visible');
-      }
-    });
-  }
-
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('load', revealOnScroll);
-</script>
-
+  </script>
 </body>
 </html>
