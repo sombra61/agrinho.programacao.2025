@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Reserva Paraná - Agricultura Sustentável e Tecnologia</title>
-<meta name="description" content="Informações completas sobre agricultura, técnicas sustentáveis, culturas e tecnologias na região de Reserva Paraná." />
+<title>Projeto Agrinho - Conexão Campo e Cidade</title>
+<meta name="description" content="Projeto Agrinho: promovendo a conexão entre campo e cidade com educação, sustentabilidade e tecnologia." />
 <meta name="author" content="Vitor José" />
 
 <style>
@@ -275,225 +275,131 @@
     outline: none;
   }
 
-  /* Responsividade */
+  /* Foco acessível para cards */
+  .cultura-card:focus {
+    outline: 3px solid #aed581;
+    outline-offset: 3px;
+  }
+
   @media (max-width: 720px) {
     nav ul {
       justify-content: center;
     }
     header h1 {
-      width: 100%;
+      flex-basis: 100%;
       text-align: center;
       margin-bottom: 12px;
     }
     main {
-      padding: 0 15px 50px;
+      margin: 30px 10px 50px;
+      padding: 0 12px;
     }
   }
 </style>
-
 </head>
 <body>
-
-<header role="banner">
-  <h1 tabindex="0">Reserva Paraná - Agricultura Sustentável e Tecnologia</h1>
-  <nav role="navigation" aria-label="Menu principal">
+<header>
+  <h1>Projeto Agrinho</h1>
+  <nav aria-label="Menu de navegação principal">
     <ul>
-      <li><a href="#sobre" tabindex="0">Sobre</a></li>
-      <li><a href="#culturas" tabindex="0">Culturas</a></li>
-      <li><a href="#tecnicas" tabindex="0">Técnicas</a></li>
-      <li><a href="#dados" tabindex="0">Dados Agrícolas</a></li>
-      <li><a href="#galeria" tabindex="0">Galeria</a></li>
-      <li><a href="#localizacao" tabindex="0">Localização</a></li>
-      <li><a href="#contato" tabindex="0">Contato</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#culturas">Culturas</a></li>
+      <li><a href="#tecnicas">Técnicas</a></li>
+      <li><a href="#contato">Contato</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
+<main role="main">
 
-  <section id="sobre" tabindex="0" aria-label="Introdução sobre agricultura em Reserva Paraná">
-    <h2>Sobre a Agricultura em Reserva Paraná</h2>
+  <section id="sobre" tabindex="0" aria-labelledby="sobre-title">
+    <h2 id="sobre-title">Conexão Campo e Cidade</h2>
     <p>
-      Localizada no sul do Brasil, Reserva Paraná destaca-se pela produção agrícola diversificada e sustentável. A combinação do clima temperado com solos férteis cria condições ideais para o cultivo de grãos, hortaliças e frutas. Além disso, a região investe em tecnologias modernas, como agricultura de precisão e manejo integrado de pragas.
+      O Projeto Agrinho promove a valorização da agricultura familiar e a conscientização da população urbana sobre a importância do campo para a vida na cidade. Buscamos aproximar esses dois mundos, estimulando práticas sustentáveis, o respeito ao meio ambiente e o fortalecimento das relações sociais entre produtores rurais e moradores urbanos.
     </p>
-    <p>
-      O compromisso com práticas agrícolas sustentáveis é forte, buscando sempre a preservação ambiental e a melhora da qualidade de vida dos produtores locais. A região também conta com centros de pesquisa que promovem inovação para otimizar a produção e reduzir impactos ambientais.
-    </p>
-    <button class="toggle-btn" aria-expanded="false" aria-controls="mais-sobre" id="btn-sobre">Ler mais</button>
     <p id="mais-sobre" hidden>
-      Nos últimos anos, Reserva Paraná tem investido em sistemas agroflorestais e agricultura orgânica, além de capacitação constante para agricultores, promovendo a integração entre tradição e tecnologia para garantir a segurança alimentar e o desenvolvimento econômico sustentável.
+      Através de ações educativas, oficinas, eventos e o uso de tecnologias inovadoras, o Agrinho facilita o diálogo e a troca de conhecimentos entre campo e cidade. Incentivamos a alimentação saudável, o consumo consciente e o desenvolvimento de cadeias produtivas locais que garantam o bem-estar das pessoas e do planeta.
     </p>
+    <button id="btn-sobre" class="toggle-btn" aria-expanded="false" aria-controls="mais-sobre">Ler mais</button>
   </section>
 
-  <section id="culturas" tabindex="0" aria-label="Principais culturas agrícolas">
-    <h2>Culturas Principais</h2>
-    <div class="culturas-list" role="list">
-      <article class="cultura-card" tabindex="0" role="listitem" aria-describedby="desc-milho">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Maize-ears.jpg/320px-Maize-ears.jpg" alt="Espigas de milho maduras" />
-        <h3>Milho</h3>
-        <p id="desc-milho">Uma das culturas mais importantes da região, o milho é usado tanto para alimentação humana quanto para ração animal. Sua adaptação ao clima local é excelente, permitindo duas safras anuais em algumas áreas.</p>
+  <section id="culturas" tabindex="0" aria-labelledby="culturas-title">
+    <h2 id="culturas-title">Culturas que Conectam</h2>
+    <div class="culturas-list">
+      <article tabindex="0" class="cultura-card" aria-labelledby="milho-title">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Milho_em_espiga.jpg" alt="Espigas de milho amarelas" />
+        <h3 id="milho-title">Milho</h3>
+        <p>Base alimentar tradicional, o milho é fundamental para a agricultura familiar e para a indústria alimentícia urbana, conectando produção e consumo.</p>
       </article>
-      <article class="cultura-card" tabindex="0" role="listitem" aria-describedby="desc-soja">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Soya_Bean_Plant_6.jpg/320px-Soya_Bean_Plant_6.jpg" alt="Planta de soja com vagens" />
-        <h3>Soja</h3>
-        <p id="desc-soja">Cultura fundamental para a economia local, a soja é amplamente cultivada para exportação e processamento industrial. A rotação de culturas com o milho contribui para a fertilidade do solo e controle de pragas.</p>
+      <article tabindex="0" class="cultura-card" aria-labelledby="soja-title">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Soya_bean.jpg" alt="Grãos de soja sobre fundo branco" />
+        <h3 id="soja-title">Soja</h3>
+        <p>Versátil e nutritiva, a soja sustenta economias locais e é ingrediente-chave em alimentos consumidos diariamente nas cidades.</p>
       </article>
-      <article class="cultura-card" tabindex="0" role="listitem" aria-describedby="desc-feijao">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Phaseolus_vulgaris_Flor2.jpg/320px-Phaseolus_vulgaris_Flor2.jpg" alt="Flor e vagens de feijão" />
-        <h3>Feijão</h3>
-        <p id="desc-feijao">Essencial para a dieta brasileira, o feijão é cultivado em diferentes variedades na região. Técnicas de plantio e manejo são aplicadas para garantir alta produtividade e qualidade.</p>
+      <article tabindex="0" class="cultura-card" aria-labelledby="feijao-title">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Feijão_Mulato.jpg" alt="Grãos de feijão mulato" />
+        <h3 id="feijao-title">Feijão</h3>
+        <p>Presente na mesa do brasileiro, o feijão representa a conexão direta entre o trabalho rural e a alimentação urbana.</p>
+      </article>
+      <article tabindex="0" class="cultura-card" aria-labelledby="horta-title">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Horta_urbana.jpg" alt="Horta urbana com diversas plantas" />
+        <h3 id="horta-title">Horta Urbana</h3>
+        <p>Incentivamos hortas em áreas urbanas, aproximando ainda mais as pessoas da terra e da origem dos alimentos.</p>
       </article>
     </div>
   </section>
 
-  <section id="tecnicas" tabindex="0" aria-label="Técnicas agrícolas sustentáveis">
-    <h2>Técnicas Sustentáveis</h2>
+  <section id="tecnicas" tabindex="0" aria-labelledby="tecnicas-title">
+    <h2 id="tecnicas-title">Técnicas Sustentáveis</h2>
     <p>
-      Para garantir a sustentabilidade e a produtividade, agricultores da região utilizam diversas técnicas modernas e tradicionais, como:
+      O Agrinho incentiva práticas que promovem a sustentabilidade e a saúde do solo, além de técnicas que aproximam os moradores das cidades do processo produtivo rural.
     </p>
-    <ul class="tecnicas-list" role="list">
-      <li>Plantio direto para conservação do solo;</li>
-      <li>Rotação de culturas para evitar esgotamento;</li>
-      <li>Uso racional de fertilizantes e defensivos;</li>
-      <li>Manejo integrado de pragas (MIP);</li>
-      <li>Agricultura de precisão com sensores e drones;</li>
-      <li>Sistemas agroflorestais e plantio de cobertura.</li>
+    <ul class="tecnicas-list">
+      <li>Plantio direto para conservação do solo</li>
+      <li>Rotação de culturas para equilíbrio ecológico</li>
+      <li>Uso racional da água e irrigação eficiente</li>
+      <li>Compostagem e adubação orgânica</li>
+      <li>Incentivo à agricultura urbana e periurbana</li>
     </ul>
-    <button class="toggle-btn" aria-expanded="false" aria-controls="mais-tecnicas" id="btn-tecnicas">Ver mais detalhes</button>
-    <p id="mais-tecnicas" hidden>
-      Adicionalmente, há um esforço contínuo para promover a educação rural e o uso de tecnologias digitais para monitoramento climático, irrigação inteligente e análise de dados, otimizando o uso dos recursos naturais.
-    </p>
   </section>
 
-  <section id="dados" tabindex="0" aria-label="Tabela com dados agrícolas detalhados">
-    <h2>Dados Técnicos sobre Venenos e Adubagens</h2>
-    <p>
-      Abaixo estão algumas informações importantes sobre venenos agrícolas e adubagens usadas na região para controle e nutrição das culturas.
-    </p>
-    <table role="table" aria-describedby="tabela-descricao">
-      <caption id="tabela-descricao">Informações sobre alguns venenos agrícolas e adubagens usados em Reserva Paraná</caption>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Tipo</th>
-          <th>Dosagem Recomendada</th>
-          <th>Época de Aplicação</th>
-          <th>Observações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Glifosato</td>
-          <td>Herbicida</td>
-          <td>2 a 4 L/ha</td>
-          <td>Pré-plantio</td>
-          <td>Efetivo no controle de plantas invasoras</td>
-        </tr>
-        <tr>
-          <td>Clorpirifós</td>
-          <td>Inseticida</td>
-          <td>0,6 a 1 L/ha</td>
-          <td>Durante a fase vegetativa</td>
-          <td>Cuidados com polinizadores</td>
-        </tr>
-        <tr>
-          <td>Adubo NPK 10-30-20</td>
-          <td>Adubação</td>
-          <td>150 kg/ha</td>
-          <td>Plantio</td>
-          <td>Balanceado para culturas de grãos</td>
-        </tr>
-        <tr>
-          <td>Calcário Dolomítico</td>
-          <td>Corretivo de solo</td>
-          <td>2 a 4 ton/ha</td>
-          <td>Antes do plantio</td>
-          <td>Corrige acidez e fornece magnésio</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="galeria" tabindex="0" aria-label="Galeria de fotos agrícolas">
-    <h2>Galeria de Imagens</h2>
-    <div class="galeria" role="list">
-      <figure role="listitem">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Agricultura_Residencial_01.jpg/320px-Agricultura_Residencial_01.jpg" alt="Campo de milho ao amanhecer" />
-        <figcaption>Campo de milho no início da manhã em Reserva Paraná.</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Soybean_field_in_Indiana.jpg/320px-Soybean_field_in_Indiana.jpg" alt="Plantação de soja verde" />
-        <figcaption>Plantação saudável de soja com irrigação moderna.</figcaption>
-      </figure>
-      <figure role="listitem">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Bean_field_in_Minnesota.JPG/320px-Bean_field_in_Minnesota.JPG" alt="Cultivo de feijão em solo arado" />
-        <figcaption>Solo preparado para o cultivo de feijão.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section id="localizacao" tabindex="0" aria-label="Mapa e localização">
-    <h2>Localização Geográfica</h2>
-    <p>
-      Reserva Paraná está situada na região sul do Brasil, próxima à divisa entre os estados do Paraná e Santa Catarina. O local é caracterizado pela topografia ondulada e clima ameno, ideal para as culturas aqui descritas.
-    </p>
-    <div id="mapa-container" role="region" aria-label="Mapa da região de Reserva Paraná">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d366102.52486995975!2d-51.956374933084555!3d-25.460852514107694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94df3c456a624e97%3A0xa3ea74e12e0d30a5!2sReserva%2C%20Paran%C3%A1%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1685908000000!5m2!1spt-BR!2sus"
-        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="Mapa de Reserva Paraná">
-      </iframe>
-    </div>
-  </section>
-
-  <section id="contato" tabindex="0" aria-label="Formulário de contato">
-    <h2>Contato</h2>
-    <p>Entre em contato conosco para mais informações, sugestões ou parcerias:</p>
-    <form action="#" method="POST" aria-describedby="form-desc">
-      <p id="form-desc" hidden>Formulário para enviar mensagem para a equipe da Reserva Paraná.</p>
-      <label for="nome">Nome completo</label>
-      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required aria-required="true" />
+  <section id="contato" tabindex="0" aria-labelledby="contato-title">
+    <h2 id="contato-title">Fale Conosco</h2>
+    <p>Quer saber mais sobre o Projeto Agrinho ou participar das nossas ações? Envie sua mensagem!</p>
+    <form aria-label="Formulário de contato do Projeto Agrinho">
+      <label for="nome">Nome</label>
+      <input id="nome" name="nome" type="text" placeholder="Seu nome completo" required />
       
       <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" placeholder="seu@email.com" required aria-required="true" />
+      <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" required />
       
       <label for="mensagem">Mensagem</label>
-      <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required aria-required="true"></textarea>
+      <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
       
-      <button type="submit" class="btn" aria-label="Enviar mensagem">Enviar</button>
+      <button class="btn" type="submit">Enviar</button>
     </form>
   </section>
 
 </main>
 
-<footer role="contentinfo">
-  <p>© 2025 Reserva Paraná. Todos os direitos reservados. Desenvolvido por Vitor José.</p>
+<footer>
+  <p>Projeto Agrinho – Conectando Campo e Cidade | Desenvolvido por Vitor José</p>
 </footer>
 
 <script>
-  // Função para expandir e recolher textos extras
-  function toggleContent(buttonId, contentId) {
-    const btn = document.getElementById(buttonId);
-    const content = document.getElementById(contentId);
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', !expanded);
-      content.hidden = expanded;
-      btn.textContent = expanded ? 'Ler mais' : 'Ler menos';
-    });
-  }
+  const btnSobre = document.getElementById('btn-sobre');
+  const maisSobre = document.getElementById('mais-sobre');
 
-  toggleContent('btn-sobre', 'mais-sobre');
-  toggleContent('btn-tecnicas', 'mais-tecnicas');
-
-  // Acessibilidade: foco nos cartões de cultura com teclado
-  document.querySelectorAll('.cultura-card').forEach(card => {
-    card.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        card.click();
-      }
-    });
+  btnSobre.addEventListener('click', () => {
+    const isExpanded = btnSobre.getAttribute('aria-expanded') === 'true';
+    btnSobre.setAttribute('aria-expanded', String(!isExpanded));
+    if (isExpanded) {
+      maisSobre.hidden = true;
+      btnSobre.textContent = 'Ler mais';
+    } else {
+      maisSobre.hidden = false;
+      btnSobre.textContent = 'Ler menos';
+    }
   });
 </script>
 
