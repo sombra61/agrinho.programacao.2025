@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Projeto Agrinho - Tecnologia aplicada no campo, trazendo inovação e sustentabilidade para o agro." />
-  <meta name="keywords" content="Tecnologia no campo, Agricultura, Inovação, Sustentabilidade, Projeto Agrinho" />
+  <meta name="description" content="Projeto Agrinho 2025 – Integração da tecnologia e sustentabilidade no campo e na cidade." />
+  <meta name="keywords" content="Tecnologia no campo, Agricultura, Inovação, Sustentabilidade, Projeto Agrinho, Cidades inteligentes" />
   <meta name="author" content="Vitor José Rocha">
-  <title>Projeto Agrinho – Tecnologia no Campo</title>
-  
+  <title>Projeto Agrinho 2025 – Campo e Cidade Conectados</title>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS externo -->
+  <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* CSS direto no arquivo HTML para fins de exemplo */
+    /* Estilo atualizado */
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
@@ -31,7 +31,7 @@
 
     header h1 {
       margin: 0;
-      font-size: 2.5em;
+      font-size: 2.8em;
       color: #ffffff;
     }
 
@@ -156,12 +156,13 @@
 <body>
 
   <header>
-    <h1>Projeto Agrinho</h1>
-    <p>Conectando a tecnologia da cidade ao campo</p>
+    <h1>Projeto Agrinho 2025</h1>
+    <p>Unindo a tecnologia do presente com o campo do futuro</p>
   </header>
 
   <nav>
     <a href="#historia">História</a>
+    <a href="#cidade">Cidade</a>
     <a href="#tecnologia">Tecnologia</a>
     <a href="#grafico">Gráfico</a>
     <a href="#galeria">Galeria</a>
@@ -170,25 +171,33 @@
   <section id="historia">
     <h2>📜 História do Projeto</h2>
     <div class="tech">
-      <p>O Projeto Agrinho nasceu com o objetivo de aproximar o conhecimento das áreas urbanas aos trabalhadores e estudantes do meio rural. Desde sua criação, ele promove a educação, sustentabilidade e inovação no campo, inspirando novas gerações a valorizarem o agro com tecnologia.</p>
+      <p>O Projeto Agrinho surgiu como uma iniciativa de inclusão tecnológica no campo, conectando estudantes, agricultores e profissionais à inovação. Desde sua criação, tem sido referência em promover a educação rural aliada à sustentabilidade e à tecnologia de ponta.</p>
+      <p>Na edição de 2025, o projeto se destaca pelo uso de inteligência artificial, drones, softwares de análise de solo e aplicativos móveis, promovendo a eficiência e a valorização da produção rural brasileira.</p>
+    </div>
+  </section>
+
+  <section id="cidade">
+    <h2>🏙️ Conexão com a Cidade</h2>
+    <div class="tech">
+      <p>As cidades também evoluem com a tecnologia e se tornam mais próximas do campo. A integração entre zonas urbanas e rurais proporciona troca de conhecimento, mercados mais justos e uma economia mais sustentável. Cidades inteligentes, com sensores de coleta de lixo e hortas urbanas, se conectam com o agronegócio por meio da tecnologia.</p>
     </div>
   </section>
 
   <section id="tecnologia">
-    <h2>💡 Tecnologia no Campo</h2>
+    <h2>💡 Tecnologias Aplicadas</h2>
     <div class="tech">
       <ul>
-        <li>🌾 Uso de sensores para medir umidade do solo</li>
-        <li>🚜 Máquinas agrícolas inteligentes com GPS</li>
-        <li>📱 Aplicativos de gestão rural</li>
-        <li>📡 Internet no campo para dados em tempo real</li>
-        <li>🌱 Drones para monitoramento de lavouras</li>
+        <li>🌾 Sensores de umidade e temperatura do solo</li>
+        <li>🚜 Tratores autônomos com navegação GPS</li>
+        <li>📱 Aplicativos que gerenciam colheitas, gado e clima</li>
+        <li>📡 Conectividade rural com antenas 4G e satélite</li>
+        <li>🌱 Drones com mapeamento por imagem térmica</li>
       </ul>
     </div>
   </section>
 
   <section id="grafico">
-    <h2>📊 Crescimento do Uso de Tecnologia</h2>
+    <h2>📊 Evolução do Uso de Tecnologia</h2>
     <canvas id="myChart" width="100%" height="60"></canvas>
   </section>
 
@@ -205,26 +214,35 @@
     <p>Projeto Agrinho 2025 • Desenvolvido por Vitor José</p>
   </footer>
 
-  <!-- Botão voltar ao topo -->
   <button id="topBtn" onclick="topFunction()">↑</button>
 
-  <!-- Scripts -->
   <script>
-    // Gráfico Chart.js
+    // Gráfico atualizado
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: ['2015', '2017', '2019', '2021', '2023', '2025'],
-        datasets: [{
-          label: 'Uso de Tecnologia no Campo (%)',
-          data: [15, 25, 40, 55, 70, 85],
-          backgroundColor: 'rgba(102, 187, 106, 0.2)',
-          borderColor: 'rgba(102, 187, 106, 1)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.3
-        }]
+        datasets: [
+          {
+            label: 'Tecnologia no Campo (%)',
+            data: [15, 25, 40, 55, 70, 85],
+            backgroundColor: 'rgba(102, 187, 106, 0.2)',
+            borderColor: 'rgba(102, 187, 106, 1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'Tecnologia nas Cidades (%)',
+            data: [45, 55, 65, 75, 85, 92],
+            backgroundColor: 'rgba(66, 165, 245, 0.2)',
+            borderColor: 'rgba(66, 165, 245, 1)',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }
+        ]
       },
       options: {
         responsive: true,
@@ -250,12 +268,8 @@
     // Botão "voltar ao topo"
     const btn = document.getElementById("topBtn");
     window.onscroll = function() {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
-    }
+      btn.style.display = (document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
 
     function topFunction() {
       document.body.scrollTop = 0;
