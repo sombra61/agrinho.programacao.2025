@@ -2,306 +2,266 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserva Paraná - Plataforma Integrada Agrícola e Cultural 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Projeto Agrinho - Tecnologia aplicada no campo, trazendo inovação e sustentabilidade para o agro." />
+  <meta name="keywords" content="Tecnologia no campo, Agricultura, Inovação, Sustentabilidade, Projeto Agrinho" />
+  <meta name="author" content="Vitor José Rocha">
+  <title>Projeto Agrinho – Tecnologia no Campo</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS externo -->
 
-  <!-- Fonte moderna -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Estilo CSS embutido -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* CSS direto no arquivo HTML para fins de exemplo */
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f4f4f4;
-      color: #222;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    header.site-header {
-      background: linear-gradient(90deg, #00796b, #004d40);
-      color: white;
-      padding: 15px 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 0 20px;
-    }
-
-    .logo img {
-      height: 50px;
-    }
-
-    .main-nav .nav-list {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    .nav-link {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      position: relative;
-      transition: color 0.3s;
-    }
-
-    .nav-link:hover {
-      color: #c8e6c9;
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      background: white;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      top: 100%;
-      left: 0;
-      z-index: 1000;
-      min-width: 180px;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-link {
-      display: block;
-      padding: 10px 15px;
-      color: #333;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    .dropdown-link:hover {
-      background-color: #f0f0f0;
-    }
-
-    .hero-section {
-      background: linear-gradient(to right, #e0f7fa, #b2dfdb);
-      padding: 60px 20px;
+    header {
+      background-color: #1f1f1f;
       text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
-    .hero-title {
-      font-size: 2.8rem;
-      color: #004d40;
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #ffffff;
     }
 
-    .hero-subtitle {
-      font-size: 1.3rem;
-      margin-top: 10px;
-      color: #00695c;
+    header p {
+      font-size: 1.2em;
+      color: #b0b0b0;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin-top: 25px;
-      font-weight: 600;
+    nav {
+      background-color: #2c2c2c;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #ffffff;
       text-decoration: none;
-      color: white;
-      background: #00796b;
-      border-radius: 8px;
-      transition: background 0.3s, transform 0.2s;
+      margin: 5px 15px;
+      font-weight: bold;
+      font-size: 1em;
     }
 
-    .btn:hover {
-      background: #004d40;
+    nav a:hover {
+      color: #66bb6a;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      animation: slideUp 1.5s ease-in-out;
+    }
+
+    h2 {
+      color: #66bb6a;
+      margin-bottom: 10px;
+    }
+
+    .tech {
+      background-color: #1e1e1e;
+      border-left: 6px solid #66bb6a;
+      padding: 20px;
+      margin: 30px 0;
+      border-radius: 8px;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      margin: 10px 0;
+      border: 2px solid #333;
+      border-radius: 5px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gallery img:hover {
       transform: scale(1.05);
     }
 
-    .section-title {
-      font-size: 1.8rem;
-      margin: 40px 0 20px;
-      color: #00796b;
+    footer {
+      background-color: #1f1f1f;
+      color: #b0b0b0;
       text-align: center;
-    }
-
-    .article-title {
-      font-size: 1.3rem;
-      margin: 20px 0 10px;
-      color: #004d40;
-    }
-
-    .lista-culturas {
-      list-style: disc inside;
-      margin-top: 10px;
-    }
-
-    .tabela-solos {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-
-    .tabela-solos th, .tabela-solos td {
-      padding: 12px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-
-    .tabela-solos th {
-      background-color: #004d40;
-      color: white;
-    }
-
-    .grafico-produtividade {
-      margin-top: 30px;
-      background: white;
       padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-top: 40px;
     }
 
-    footer.site-footer {
-      background: #263238;
-      color: #eee;
-      padding: 20px 0;
-      text-align: center;
-      margin-top: 50px;
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #66bb6a;
+      color: #121212;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.3s ease-in-out;
+    }
+
+    #topBtn:hover {
+      background-color: #81c784;
+    }
+
+    canvas {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        align-items: flex-start;
+      header h1 {
+        font-size: 2em;
       }
 
-      .main-nav .nav-list {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 15px;
+      nav a {
+        font-size: 0.9em;
+        margin: 5px 10px;
       }
 
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
+      section {
+        padding: 20px 10px;
       }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Cabeçalho -->
-  <header class="site-header">
-    <div class="header-container container">
-      <div class="logo">
-        <img src="logo.png" alt="Logo Reserva Paraná" />
-      </div>
-      <nav class="main-nav">
-        <ul class="nav-list">
-          <li><a href="#inicial" class="nav-link">Início</a></li>
-          <li class="dropdown">
-            <a href="#" class="nav-link">Serviços</a>
-            <div class="dropdown-menu">
-              <a href="#agricultura" class="dropdown-link">Agricultura</a>
-              <a href="#cultura" class="dropdown-link">Cultura</a>
-              <a href="#educacao" class="dropdown-link">Educação</a>
-            </div>
-          </li>
-          <li><a href="#sobre" class="nav-link">Sobre</a></li>
-          <li><a href="#contato" class="nav-link">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <h1>Projeto Agrinho</h1>
+    <p>Conectando a tecnologia da cidade ao campo</p>
   </header>
 
-  <!-- Seção Hero -->
-  <section class="hero-section" id="inicial">
-    <div class="container">
-      <h1 class="hero-title">Bem-vindo ao Reserva Paraná</h1>
-      <p class="hero-subtitle">Uma plataforma integrada para apoiar agricultores, educadores e a cultura regional.</p>
-      <a href="#agricultura" class="btn">Explorar Agora</a>
+  <nav>
+    <a href="#historia">História</a>
+    <a href="#tecnologia">Tecnologia</a>
+    <a href="#grafico">Gráfico</a>
+    <a href="#galeria">Galeria</a>
+  </nav>
+
+  <section id="historia">
+    <h2>📜 História do Projeto</h2>
+    <div class="tech">
+      <p>O Projeto Agrinho nasceu com o objetivo de aproximar o conhecimento das áreas urbanas aos trabalhadores e estudantes do meio rural. Desde sua criação, ele promove a educação, sustentabilidade e inovação no campo, inspirando novas gerações a valorizarem o agro com tecnologia.</p>
     </div>
   </section>
 
-  <!-- Seção Agricultura -->
-  <section class="container" id="agricultura">
-    <h2 class="section-title">Setor Agrícola</h2>
-
-    <article>
-      <h3 class="article-title">Culturas Principais</h3>
-      <ul class="lista-culturas">
-        <li>Milho</li>
-        <li>Soja</li>
-        <li>Feijão</li>
-        <li>Trigo</li>
+  <section id="tecnologia">
+    <h2>💡 Tecnologia no Campo</h2>
+    <div class="tech">
+      <ul>
+        <li>🌾 Uso de sensores para medir umidade do solo</li>
+        <li>🚜 Máquinas agrícolas inteligentes com GPS</li>
+        <li>📱 Aplicativos de gestão rural</li>
+        <li>📡 Internet no campo para dados em tempo real</li>
+        <li>🌱 Drones para monitoramento de lavouras</li>
       </ul>
-    </article>
-
-    <article>
-      <h3 class="article-title">Análise de Solo</h3>
-      <table class="tabela-solos">
-        <thead>
-          <tr>
-            <th>Elemento</th>
-            <th>Nível Ideal</th>
-            <th>Atual</th>
-            <th>Recomendação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>pH</td>
-            <td>6.0 - 6.5</td>
-            <td>5.8</td>
-            <td>Aplicar calcário</td>
-          </tr>
-          <tr>
-            <td>Fósforo</td>
-            <td>20 - 40 mg/kg</td>
-            <td>18</td>
-            <td>Adicionar fosfato natural</td>
-          </tr>
-        </tbody>
-      </table>
-    </article>
-
-    <article>
-      <h3 class="article-title">Gráfico de Produtividade</h3>
-      <div class="grafico-produtividade">
-        <p>[Gráfico de barras simulando produtividade - substituir por gráfico real]</p>
-      </div>
-    </article>
+    </div>
   </section>
 
-  <!-- Seção Cultura -->
-  <section class="container" id="cultura">
-    <h2 class="section-title">Cultura Local</h2>
-    <p>Espaço dedicado à preservação e valorização das tradições, festas populares, culinária regional e música paranaense.</p>
+  <section id="grafico">
+    <h2>📊 Crescimento do Uso de Tecnologia</h2>
+    <canvas id="myChart" width="100%" height="60"></canvas>
   </section>
 
-  <!-- Seção Educação -->
-  <section class="container" id="educacao">
-    <h2 class="section-title">Educação e Conhecimento</h2>
-    <p>Informações técnicas e científicas para agricultores, professores e estudantes. Acesso a cursos, eventos e capacitações.</p>
+  <section id="galeria">
+    <h2>🖼️ Galeria de Imagens</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1581090700227-1e8c46b4f1d1" alt="Máquinas modernas">
+      <img src="https://images.unsplash.com/photo-1584447023137-1cc0a81698fc" alt="Drones no campo">
+      <img src="https://images.unsplash.com/photo-1583337130417-3346a1e11bfa" alt="Agricultores usando apps">
+    </div>
   </section>
 
-  <!-- Rodapé -->
-  <footer class="site-footer" id="contato">
-    <p>&copy; 2025 Reserva Paraná. Todos os direitos reservados.</p>
+  <footer>
+    <p>Projeto Agrinho 2025 • Desenvolvido por Vitor José</p>
   </footer>
+
+  <!-- Botão voltar ao topo -->
+  <button id="topBtn" onclick="topFunction()">↑</button>
+
+  <!-- Scripts -->
+  <script>
+    // Gráfico Chart.js
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2015', '2017', '2019', '2021', '2023', '2025'],
+        datasets: [{
+          label: 'Uso de Tecnologia no Campo (%)',
+          data: [15, 25, 40, 55, 70, 85],
+          backgroundColor: 'rgba(102, 187, 106, 0.2)',
+          borderColor: 'rgba(102, 187, 106, 1)',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#e0e0e0'
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#e0e0e0' }
+          },
+          y: {
+            ticks: { color: '#e0e0e0' },
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Botão "voltar ao topo"
+    const btn = document.getElementById("topBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = "block";
+      } else {
+        btn.style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
 </body>
 </html>
