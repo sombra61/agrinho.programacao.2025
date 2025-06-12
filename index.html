@@ -1,252 +1,434 @@
-<<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Projeto Agrinho 2025 – Inovação, sustentabilidade e tecnologia no campo e na cidade." />
-  <meta name="keywords" content="Agricultura, Inovação, Tecnologia, Sustentabilidade, Educação, Projeto Agrinho, 2025" />
-  <meta name="author" content="Vitor José Rocha">
-  <title>Projeto Agrinho 2025 – Cidade e Campo Conectados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="styles.css">
+
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      margin: 0;
-      scroll-behavior: smooth;
-      line-height: 1.6;
+    /* Scrollbar custom */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-    header, nav, section, footer {
-      animation: fadeIn 1.5s ease-in-out;
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
     }
-    header {
-      background-image: url('https://images.unsplash.com/photo-1570321511221-f577ebf8d831');
-      background-size: cover;
-      text-align: center;
-      padding: 50px 20px;
-      color: #fff;
-      background-position: center;
-      background-attachment: fixed;
+    ::-webkit-scrollbar-thumb {
+      background-color: #2563eb;
+      border-radius: 20px;
+      border: 3px solid #f1f1f1;
     }
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-      color: #66bb6a;
-    }
-    header p {
-      font-size: 1.3em;
-      color: #b0b0b0;
-    }
-    nav {
-      background-color: rgba(44, 44, 44, 0.8);
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      position: relative;
-    }
-    nav a:hover {
-      color: #66bb6a;
-    }
-    nav a:hover::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      background-color: #66bb6a;
-      bottom: -5px;
-      left: 0;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    h2 {
-      color: #66bb6a;
-    }
-    .tech, .info-box {
-      background-color: #1e1e1e;
-      border-left: 6px solid #66bb6a;
-      padding: 20px;
-      margin: 30px 0;
-      border-radius: 8px;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 8px;
-    }
-    .gallery img {
-      max-width: 100%;
-      height: auto;
-      margin: 10px 0;
-      border: 2px solid #333;
-      border-radius: 5px;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    .portfolio {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .portfolio div {
-      background-color: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-    }
-    .portfolio img {
-      width: 100%;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
-    footer {
-      background-color: #1f1f1f;
-      color: #b0b0b0;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    #topBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #66bb6a;
-      color: #121212;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      display: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: 0.3s ease-in-out;
-    }
-    #topBtn:hover {
-      background-color: #81c784;
+
+    /* Smooth fade-in */
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      to {opacity: 1;}
     }
+
   </style>
 </head>
-<body>
-  <header>
-    <h1>Projeto Agrinho 2025</h1>
-    <p>Inovação e Sustentabilidade: o Futuro do Campo começa aqui</p>
-  </header>
-  <nav>
-    <a href="#apresentacao">Apresentação</a>
-    <a href="#historia">História</a>
-    <a href="#cidade">Cidade</a>
-    <a href="#tecnologia">Tecnologia</a>
-    <a href="#educacao">Educação</a>
-    <a href="#desafios">Desafios</a>
-    <a href="#grafico">Gráficos</a>
-    <a href="#galeria">Galeria</a>
-    <a href="#portfolio">Portfólio</a>
-    <a href="#bibliografia">Bibliografia</a>
+<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
+
+  <!-- Navigation Sidebar -->
+  <nav class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6">
+    <h1 class="text-3xl font-extrabold mb-10 text-blue-700">AgriTech</h1>
+    <ul class="space-y-4 text-lg font-medium">
+      <li><a href="#intro" class="hover:text-blue-600 transition-colors duration-300">Introdução</a></li>
+      <li><a href="#historico" class="hover:text-blue-600 transition-colors duration-300">Histórico</a></li>
+      <li><a href="#graficos" class="hover:text-blue-600 transition-colors duration-300">Gráficos</a></li>
+      <li><a href="#impactos" class="hover:text-blue-600 transition-colors duration-300">Impactos</a></li>
+      <li><a href="#desafios" class="hover:text-blue-600 transition-colors duration-300">Desafios</a></li>
+      <li><a href="#fatos" class="hover:text-blue-600 transition-colors duration-300">Fatos Importantes</a></li>
+      <li><a href="#referencias" class="hover:text-blue-600 transition-colors duration-300">Referências</a></li>
+    </ul>
   </nav>
-  
-  <section id="apresentacao">
-    <h2>📌 Apresentação</h2>
-    <div class="info-box">
-      <p>Este projeto foi desenvolvido por Vitor José Rocha com o objetivo de promover a conexão entre o campo e a cidade, valorizando a educação, sustentabilidade e tecnologia. O Agrinho 2025 representa um novo passo rumo à inclusão digital rural, capacitação de jovens e incentivo à inovação agrícola.</p>
-    </div>
-  </section>
 
-  <section id="historia">
-    <h2>📜 História do Projeto</h2>
-    <div class="tech">
-      <p>O Projeto Agrinho surgiu com a missão de transformar a relação entre o campo e a cidade. Desde os anos 90, ele vem integrando a educação rural às novas tecnologias, levando oportunidades para jovens e agricultores em todo o país.</p>
-    </div>
-  </section>
+  <!-- Main Content Wrapper -->
+  <div class="md:ml-64 px-6 md:px-16 py-10 max-w-7xl mx-auto">
 
-  <!-- Seções anteriores mantidas -->
+    <!-- Introdução -->
+    <section id="intro" class="mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-blue-700 mb-4">📜 A Evolução da Tecnologia na Agricultura Familiar</h2>
+      <p class="text-lg text-gray-700 max-w-4xl">
+        Desde as primeiras ferramentas manuais até as modernas tecnologias digitais, a agricultura familiar tem passado por uma verdadeira revolução. 
+        Este painel interativo explora a história, os avanços tecnológicos, os impactos e os desafios enfrentados por agricultores familiares ao redor do mundo.
+      </p>
+      <p class="mt-4 text-gray-600 italic max-w-3xl">
+        Navegue pelas seções para entender como cada fase tecnológica moldou o presente e futuro da agricultura familiar.
+      </p>
+    </section>
 
-  <section id="portfolio">
-    <h2>📁 Portfólio</h2>
-    <div class="portfolio">
-      <div>
-        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231" alt="Palestra Agrícola">
-        <h3>Palestras nas Escolas</h3>
-        <p>Apresentações em escolas sobre o uso consciente de tecnologias no campo.</p>
+    <!-- Histórico Completo -->
+    <section id="historico" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌾 Histórico Detalhado</h3>
+
+      <!-- Card Histórico 1 -->
+      <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
+          🌱 Início da Agricultura e Ferramentas Manuais
+        </h4>
+        <p class="text-gray-700 leading-relaxed">
+          A agricultura começou há cerca de 10 mil anos, quando as primeiras civilizações surgiram. Os agricultores utilizavam ferramentas manuais simples, como enxadas, foices e arados puxados por animais. O conhecimento era passado oralmente entre gerações, formando a base da agricultura familiar, cujo principal objetivo era garantir a subsistência da família.
+        </p>
+      </article>
+
+      <!-- Card Histórico 2 -->
+      <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
+          ⚙️ Revolução Industrial (século XVIII – XIX)
+        </h4>
+        <p class="text-gray-700 leading-relaxed">
+          A Revolução Industrial trouxe máquinas a vapor e os primeiros tratores agrícolas. Embora essas tecnologias tenham começado a modernizar a agricultura, elas demoraram a alcançar as pequenas propriedades familiares, especialmente em países em desenvolvimento. Por isso, os agricultores familiares mantiveram por muito tempo métodos tradicionais.
+        </p>
+      </article>
+
+      <!-- Card Histórico 3 -->
+      <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
+          🚜 Mecanização Agrícola (século XX)
+        </h4>
+        <p class="text-gray-700 leading-relaxed">
+          Após a Segunda Guerra Mundial, houve uma grande disseminação da mecanização agrícola, com tratores, plantadeiras e colheitadeiras acessíveis a um número maior de agricultores. Essa mecanização reduziu o esforço físico, aumentou a produtividade e melhorou a qualidade de vida no campo, mesmo entre famílias que trabalhavam em pequenos lotes.
+        </p>
+      </article>
+
+      <!-- Card Histórico 4 -->
+      <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
+          🧪 Revolução Verde (décadas de 1950–1970)
+        </h4>
+        <p class="text-gray-700 leading-relaxed">
+          A Revolução Verde introduziu fertilizantes químicos, pesticidas, sementes melhoradas e técnicas modernas de irrigação. Embora tenha elevado drasticamente a produção, os altos custos limitaram o acesso dos pequenos agricultores, que muitas vezes dependiam de políticas públicas e cooperativas para se beneficiarem dessas inovações.
+        </p>
+      </article>
+
+      <!-- Card Histórico 5 -->
+      <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
+          💻 Agricultura Digital e de Precisão (final do século XX – hoje)
+        </h4>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          A tecnologia digital transformou a agricultura familiar, trazendo internet, sensores, GPS, drones e inteligência artificial para o campo. Agricultores familiares contam hoje com:
+        </p>
+        <ul class="list-disc list-inside ml-6 text-gray-700 space-y-1">
+          <li>Aplicativos móveis para cálculo de adubação, previsão do clima e registro de dados;</li>
+          <li>Sensores e drones para monitoramento da lavoura;</li>
+          <li>Máquinas equipadas com GPS para plantio e colheita otimizados;</li>
+          <li>Assistência técnica remota e plataformas online de comercialização.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Gráficos -->
+    <section id="graficos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-6">📊 Gráficos Interativos</h3>
+
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <!-- Gráfico Linha de Produção -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold mb-4">Evolução da Produção Agrícola (Índice Relativo)</h4>
+          <canvas id="prodChart" style="max-height: 350px;"></canvas>
+        </div>
+
+        <!-- Gráfico Pizza - Impactos -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h4 class="text-xl font-semibold mb-4">Impactos Positivos na Agricultura Familiar</h4>
+          <canvas id="impactChart" style="max-height: 350px;"></canvas>
+        </div>
+
+        <!-- Gráfico Barras - Desafios -->
+        <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
+          <h4 class="text-xl font-semibold mb-4">Principais Desafios para a Agricultura Familiar</h4>
+          <canvas id="challengeChart" style="max-height: 350px;"></canvas>
+        </div>
+
       </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1583337130417-3346a1e11bfa" alt="Oficina em sala">
-        <h3>Oficinas Práticas</h3>
-        <p>Oficinas sobre compostagem, análise de solo e manutenção de sistemas agrícolas.</p>
-      </div>
-      <div>
-        <img src="https://images.unsplash.com/photo-1603069561150-dc0927ed4d08" alt="Laboratório">
-        <h3>Laboratório Rural</h3>
-        <p>Estudos com sensores e drones para monitoramento da produção agrícola.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="bibliografia">
-    <h2>📚 Bibliografia</h2>
-    <div class="info-box">
-      <ul>
-        <li>SEBRAE. Agricultura 4.0: A nova revolução do campo. 2021.</li>
-        <li>EMBRAPA. Tecnologias para Agricultura Familiar. 2022.</li>
-        <li>UNESCO. Educação para o Desenvolvimento Sustentável. 2020.</li>
-        <li>FAO. Relatório Mundial da Agricultura 2023.</li>
-        <li>AGRINHO. Materiais oficiais e publicações dos anos anteriores (1995-2024).</li>
+    <!-- Impactos detalhados -->
+    <section id="impactos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🤝 Impactos da Tecnologia na Agricultura Familiar</h3>
+
+      <ul class="list-disc list-inside ml-6 space-y-4 text-gray-800 max-w-4xl">
+        <li><strong>Aumento da produtividade e da renda:</strong> Com máquinas e técnicas modernas, pequenos agricultores conseguem produzir mais e melhor.</li>
+        <li><strong>Redução do esforço físico:</strong> A mecanização diminuiu o desgaste físico, ajudando na saúde dos agricultores.</li>
+        <li><strong>Melhor gestão e tomada de decisão:</strong> Informações em tempo real ajudam a planejar plantios, colheitas e vendas.</li>
+        <li><strong>Acesso a mercados e crédito:</strong> Plataformas digitais aproximam o produtor do consumidor e facilitam financiamentos.</li>
+        <li><strong>Preservação ambiental:</strong> Tecnologias de precisão permitem uso racional de insumos e menor impacto ambiental.</li>
       </ul>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <p>© 2025 Projeto Agrinho • Desenvolvido por Vitor José Rocha • Todos os direitos reservados</p>
-  </footer>
+    <!-- Desafios -->
+    <section id="desafios" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">⚠️ Desafios Enfrentados</h3>
+      <div class="max-w-5xl space-y-6 text-gray-800">
 
-  <button id="topBtn" title="Ir para o topo">↑</button>
+        <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-2xl font-semibold mb-2">1. Acesso limitado a tecnologia</h4>
+          <p>
+            Em muitas regiões rurais, a infraestrutura precária e o custo dos equipamentos dificultam o acesso a tecnologias avançadas.
+          </p>
+        </article>
+
+        <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-2xl font-semibold mb-2">2. Capacitação e conhecimento técnico</h4>
+          <p>
+            A falta de treinamento adequado impede que muitos agricultores usem o potencial completo das tecnologias disponíveis.
+          </p>
+        </article>
+
+        <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-2xl font-semibold mb-2">3. Sustentabilidade econômica e ambiental</h4>
+          <p>
+            É preciso balancear o aumento da produção com práticas que preservem o solo, a água e a biodiversidade local.
+          </p>
+        </article>
+
+        <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-2xl font-semibold mb-2">4. Políticas públicas e apoio financeiro</h4>
+          <p>
+            A ausência ou ineficiência de políticas que apoiem a pequena agricultura limita investimentos em inovação e expansão.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Fatos Importantes -->
+    <section id="fatos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">📌 Fatos Importantes</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">35% da produção mundial</h4>
+          <p>A agricultura familiar é responsável por aproximadamente 35% da produção mundial de alimentos, sendo fundamental para a segurança alimentar.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">80% dos agricultores</h4>
+          <p>Mais de 80% dos agricultores no mundo são familiares, mostrando a importância desse modelo para a economia rural.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Tecnologia móvel</h4>
+          <p>Mais de 70% dos agricultores familiares usam smartphones para acessar informações técnicas e de mercado.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Redução do trabalho manual</h4>
+          <p>O uso de máquinas modernas reduziu em 50% o trabalho manual em pequenas propriedades nos últimos 30 anos.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Agricultura sustentável</h4>
+          <p>Tecnologias de agricultura de precisão têm potencial para reduzir o uso de fertilizantes em até 30% sem perda de produtividade.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Conectividade no campo</h4>
+          <p>Projetos de conectividade rural têm alcançado mais de 40 milhões de pessoas, facilitando a difusão tecnológica.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Referências -->
+    <footer id="referencias" class="mb-10 border-t border-gray-300 pt-6 text-gray-600 text-sm max-w-4xl">
+      <h3 class="text-2xl font-semibold text-blue-700 mb-4">📚 Referências</h3>
+      <ul class="list-disc list-inside space-y-2">
+        <li><a href="https://www.fao.org/family-farming/en/" target="_blank" class="text-blue-600 hover:underline">FAO - Agricultura Familiar</a></li>
+        <li><a href="https://www.agricultura.gov.br/" target="_blank" class="text-blue-600 hover:underline">Ministério da Agricultura, Pecuária e Abastecimento (Brasil)</a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0308521X18304274" target="_blank" class="text-blue-600 hover:underline">Artigo: Agricultura Digital para Pequenos Agricultores</a></li>
+        <li><a href="https://www.wfp.org/" target="_blank" class="text-blue-600 hover:underline">Programa Mundial de Alimentos (WFP)</a></li>
+      </ul>
+
+      <p class="mt-6 italic">Desenvolvido por Vitor Rocha — 2025</p>
+    </footer>
+
+  </div>
 
   <script>
-    window.onscroll = function() {
-      var topBtn = document.getElementById("topBtn");
-      topBtn.style.display = (document.documentElement.scrollTop > 20) ? "block" : "none";
-    };
-    document.getElementById("topBtn").onclick = function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'bar',
+    // Chart.js scripts para os gráficos interativos
+
+    // Gráfico de linha - Evolução da produção agrícola
+    const ctxProd = document.getElementById('prodChart').getContext('2d');
+    const prodChart = new Chart(ctxProd, {
+      type: 'line',
       data: {
-        labels: ['Sensores', 'Aplicativos', 'Tratores AI', 'Satélite', 'Drones'],
+        labels: ['1900', '1920', '1940', '1960', '1980', '2000', '2020', '2025'],
         datasets: [{
-          label: 'Adoção Tecnológica no Campo',
-          data: [80, 65, 70, 50, 60],
-          backgroundColor: '#66bb6a',
-          borderColor: '#4caf50',
-          borderWidth: 1
+          label: 'Índice Relativo de Produção',
+          data: [10, 20, 35, 60, 85, 110, 130, 140],
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.2)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          borderWidth: 3,
         }]
       },
       options: {
+        responsive: true,
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              color: '#1e40af',
+              font: { size: 14, weight: 'bold' }
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#2563eb',
+            titleFont: { weight: 'bold' },
+            padding: 10,
+            cornerRadius: 6,
+          }
+        },
         scales: {
-          y: { beginAtZero: true }
+          x: {
+            title: {
+              display: true,
+              text: 'Ano',
+              color: '#1e40af',
+              font: { size: 16, weight: 'bold' }
+            },
+            ticks: {
+              color: '#1e40af',
+              font: { size: 14 }
+            },
+            grid: { display: false }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Índice',
+              color: '#1e40af',
+              font: { size: 16, weight: 'bold' }
+            },
+            min: 0,
+            max: 150,
+            ticks: {
+              stepSize: 25,
+              color: '#1e40af',
+              font: { size: 14 }
+            },
+            grid: { color: '#dbeafe' }
+          }
+        }
+      }
+    });
+
+    // Gráfico pizza - Impactos
+    const ctxImpact = document.getElementById('impactChart').getContext('2d');
+    const impactChart = new Chart(ctxImpact, {
+      type: 'pie',
+      data: {
+        labels: [
+          'Produtividade e Renda',
+          'Redução do esforço físico',
+          'Gestão e decisão',
+          'Acesso a mercado e crédito',
+          'Preservação ambiental'
+        ],
+        datasets: [{
+          label: 'Impactos Positivos',
+          data: [35, 20, 15, 20, 10],
+          backgroundColor: [
+            '#2563eb',
+            '#3b82f6',
+            '#60a5fa',
+            '#93c5fd',
+            '#bfdbfe'
+          ],
+          hoverOffset: 25,
+          borderWidth: 1,
+          borderColor: '#fff',
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { font: { size: 14 }, color: '#1e40af' }
+          },
+          tooltip: {
+            enabled: true,
+            padding: 10,
+            cornerRadius: 6,
+            backgroundColor: '#3b82f6'
+          }
+        }
+      }
+    });
+
+    // Gráfico barras - Desafios
+    const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
+    const challengeChart = new Chart(ctxChallenge, {
+      type: 'bar',
+      data: {
+        labels: [
+          'Acesso limitado à tecnologia',
+          'Capacitação técnica',
+          'Sustentabilidade',
+          'Políticas públicas'
+        ],
+        datasets: [{
+          label: 'Nível de Desafio (1-10)',
+          data: [8, 7, 6, 5],
+          backgroundColor: [
+            '#2563eb',
+            '#3b82f6',
+            '#60a5fa',
+            '#93c5fd'
+          ],
+          borderRadius: 8,
+          borderSkipped: false,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          x: {
+            min: 0,
+            max: 10,
+            ticks: { stepSize: 1, color: '#1e40af', font: { size: 14 }},
+            grid: { color: '#dbeafe' }
+          },
+          y: {
+            ticks: { color: '#1e40af', font: { size: 14 }},
+            grid: { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#2563eb',
+            padding: 10,
+            cornerRadius: 6
+          }
         }
       }
     });
   </script>
+
 </body>
 </html>
