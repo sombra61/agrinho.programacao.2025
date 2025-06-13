@@ -1,201 +1,296 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Empresa Exemplar - Soluções Inteligentes</title>
-    <meta name="description" content="Empresa Exemplar - Soluções inteligentes em tecnologia, inovação e consultoria. Conheça nossos serviços e equipe." />
-    <meta name="author" content="Vitor Rocha" />
-    <link rel="icon" href="favicon.ico" />
-    <!-- Link para fontes externas -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet" />
-    <!-- CSS será adicionado depois -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    // Configuração do modo dark no Tailwind via script
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+
 </head>
-<body>
-    <header class="site-header">
-        <nav class="navbar container">
-            <a href="#" class="logo" aria-label="Logo Empresa Exemplar">EmpresaEx</a>
-            <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#sobre" role="menuitem" tabindex="0">Sobre</a></li>
-                <li role="none"><a href="#servicos" role="menuitem" tabindex="0">Serviços</a></li>
-                <li role="none"><a href="#portfolio" role="menuitem" tabindex="0">Portfólio</a></li>
-                <li role="none"><a href="#blog" role="menuitem" tabindex="0">Blog</a></li>
-                <li role="none"><a href="#contato" role="menuitem" tabindex="0" class="btn-primary">Contato</a></li>
-            </ul>
-            <button class="menu-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Abrir menu">
-                <span class="hamburger"></span>
-            </button>
-        </nav>
-    </header>
+<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
-    <main>
-        <!-- Banner Principal -->
-        <section class="hero" aria-label="Soluções inovadoras para seu negócio">
-            <div class="container hero-content">
-                <h1>Soluções Inteligentes para o Futuro da Sua Empresa</h1>
-                <p>Transformamos desafios em oportunidades com tecnologia e inovação.</p>
-                <a href="#contato" class="btn-primary">Solicite uma Consultoria</a>
-            </div>
-        </section>
+  <!-- Cabeçalho fixo -->
+  <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between h-16">
+      <h1 class="text-2xl font-extrabold text-blue-700 dark:text-blue-400">AgriTech</h1>
+      <div class="flex items-center gap-4">
+        <button id="toggleDark" aria-label="Alternar modo escuro/claro" class="bg-blue-600 dark:bg-blue-400 text-white px-3 py-1 rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors">
+          Modo Dark
+        </button>
+        <button id="menuToggle" class="md:hidden text-gray-700 dark:text-gray-300" aria-label="Alternar menu mobile">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-md hidden">
+      <ul class="flex flex-col p-4 space-y-2 text-lg font-medium">
+        <li><a href="#intro" class="hover:text-blue-600 dark:hover:text-blue-400">Introdução</a></li>
+        <li><a href="#historico" class="hover:text-blue-600 dark:hover:text-blue-400">Histórico</a></li>
+        <li><a href="#graficos" class="hover:text-blue-600 dark:hover:text-blue-400">Gráficos</a></li>
+        <li><a href="#impactos" class="hover:text-blue-600 dark:hover:text-blue-400">Impactos</a></li>
+        <li><a href="#desafios" class="hover:text-blue-600 dark:hover:text-blue-400">Desafios</a></li>
+        <li><a href="#fatos" class="hover:text-blue-600 dark:hover:text-blue-400">Fatos Importantes</a></li>
+        <li><a href="#referencias" class="hover:text-blue-600 dark:hover:text-blue-400">Referências</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <!-- Sobre -->
-        <section id="sobre" class="about container" aria-labelledby="sobre-title">
-            <h2 id="sobre-title">Quem Somos</h2>
-            <p>Com mais de 10 anos de experiência, a Empresa Exemplar oferece soluções tecnológicas personalizadas para clientes de diversos setores. Nosso time é formado por especialistas apaixonados por inovação e resultados.</p>
-            <div class="team-grid">
-                <article class="team-member" tabindex="0">
-                    <img src="imagens/equipe/maria.jpg" alt="Foto da Maria Silva, CEO" />
-                    <h3>Maria Silva</h3>
-                    <p>CEO & Fundadora</p>
-                    <p>Visão estratégica e liderança para guiar projetos inovadores.</p>
-                </article>
-                <article class="team-member" tabindex="0">
-                    <img src="imagens/equipe/joao.jpg" alt="Foto do João Souza, CTO" />
-                    <h3>João Souza</h3>
-                    <p>CTO</p>
-                    <p>Especialista em desenvolvimento e arquitetura de sistemas.</p>
-                </article>
-                <article class="team-member" tabindex="0">
-                    <img src="imagens/equipe/ana.jpg" alt="Foto da Ana Costa, Designer" />
-                    <h3>Ana Costa</h3>
-                    <p>Design Lead</p>
-                    <p>Criação visual e experiência do usuário para projetos impactantes.</p>
-                </article>
-            </div>
-        </section>
+  <!-- Sidebar para desktop -->
+  <nav class="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6 overflow-auto dark:bg-gray-900 dark:border-gray-700">
+    <ul class="space-y-4 text-lg font-medium">
+      <li><a href="#intro" class="hover:text-blue-600 dark:hover:text-blue-400">Introdução</a></li>
+      <li><a href="#historico" class="hover:text-blue-600 dark:hover:text-blue-400">Histórico</a></li>
+      <li><a href="#graficos" class="hover:text-blue-600 dark:hover:text-blue-400">Gráficos</a></li>
+      <li><a href="#impactos" class="hover:text-blue-600 dark:hover:text-blue-400">Impactos</a></li>
+      <li><a href="#desafios" class="hover:text-blue-600 dark:hover:text-blue-400">Desafios</a></li>
+      <li><a href="#fatos" class="hover:text-blue-600 dark:hover:text-blue-400">Fatos</a></li>
+      <li><a href="#referencias" class="hover:text-blue-600 dark:hover:text-blue-400">Referências</a></li>
+    </ul>
+  </nav>
 
-        <!-- Serviços -->
-        <section id="servicos" class="services container" aria-labelledby="servicos-title">
-            <h2 id="servicos-title">Nossos Serviços</h2>
-            <div class="services-grid">
-                <article class="service-card" tabindex="0" aria-describedby="servico1-desc">
-                    <h3>Consultoria Tecnológica</h3>
-                    <p id="servico1-desc">Análise personalizada para otimizar seus processos com tecnologia de ponta.</p>
-                </article>
-                <article class="service-card" tabindex="0" aria-describedby="servico2-desc">
-                    <h3>Desenvolvimento de Software</h3>
-                    <p id="servico2-desc">Criação de sistemas sob medida que atendem exatamente às suas necessidades.</p>
-                </article>
-                <article class="service-card" tabindex="0" aria-describedby="servico3-desc">
-                    <h3>Design UX/UI</h3>
-                    <p id="servico3-desc">Experiências digitais intuitivas e atraentes para maximizar o engajamento.</p>
-                </article>
-                <article class="service-card" tabindex="0" aria-describedby="servico4-desc">
-                    <h3>Suporte e Manutenção</h3>
-                    <p id="servico4-desc">Assistência contínua para garantir a performance e segurança de seus sistemas.</p>
-                </article>
-            </div>
-        </section>
+  <!-- Conteúdo principal -->
+  <main class="md:ml-64 px-6 md:px-16 pt-20 pb-24 max-w-7xl mx-auto">
 
-        <!-- Portfólio -->
-        <section id="portfolio" class="portfolio container" aria-labelledby="portfolio-title">
-            <h2 id="portfolio-title">Portfólio de Projetos</h2>
-            <div class="portfolio-gallery">
-                <figure tabindex="0">
-                    <img src="imagens/projetos/projeto1.jpg" alt="Interface do projeto Alpha" />
-                    <figcaption>Projeto Alpha - Plataforma de E-commerce</figcaption>
-                </figure>
-                <figure tabindex="0">
-                    <img src="imagens/projetos/projeto2.jpg" alt="Dashboard do projeto Beta" />
-                    <figcaption>Projeto Beta - Sistema de Gestão Financeira</figcaption>
-                </figure>
-                <figure tabindex="0">
-                    <img src="imagens/projetos/projeto3.jpg" alt="Aplicativo móvel do projeto Gamma" />
-                    <figcaption>Projeto Gamma - App Mobile para Serviços</figcaption>
-                </figure>
-            </div>
-        </section>
+    <!-- Introdução -->
+    <section id="intro" class="mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-4">📜 A Evolução da Tecnologia na Agricultura Familiar</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-4xl">
+        A agricultura familiar é a espinha dorsal da alimentação de muitos países. Vamos explorar juntos, de forma leve e direta, cada etapa da evolução tecnológica que transformou o campo — da enxada aos drones!
+      </p>
+      <p class="mt-4 italic text-gray-600 dark:text-gray-400 max-w-3xl">
+        Use o menu ao lado ou no topo para navegar pelas seções e compreender como cada período impactou os pequenos produtores.
+      </p>
+    </section>
 
-        <!-- Blog -->
-        <section id="blog" class="blog container" aria-labelledby="blog-title">
-            <h2 id="blog-title">Últimos Artigos</h2>
-            <article class="blog-post" tabindex="0">
-                <h3>Como a Inteligência Artificial Pode Impulsionar Seu Negócio</h3>
-                <time datetime="2025-05-20">20 de Maio de 2025</time>
-                <p>Descubra as principais aplicações da IA no mercado e como implementar de forma eficiente.</p>
-                <a href="blog/ia-negocios.html" class="btn-secondary">Leia mais</a>
-            </article>
-            <article class="blog-post" tabindex="0">
-                <h3>Tendências em UX Design para 2025</h3>
-                <time datetime="2025-04-15">15 de Abril de 2025</time>
-                <p>Explore as inovações e boas práticas para melhorar a experiência dos seus usuários.</p>
-                <a href="blog/ux-design-2025.html" class="btn-secondary">Leia mais</a>
-            </article>
-            <article class="blog-post" tabindex="0">
-                <h3>Segurança Cibernética: Proteja Sua Empresa</h3>
-                <time datetime="2025-03-10">10 de Março de 2025</time>
-                <p>Dicas e ferramentas essenciais para manter seus dados seguros contra ataques digitais.</p>
-                <a href="blog/seguranca-cibernetica.html" class="btn-secondary">Leia mais</a>
-            </article>
-        </section>
+    <!-- Histórico -->
+    <section id="historico" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌾 Histórico Detalhado</h3>
 
-        <!-- Contato -->
-        <section id="contato" class="contact container" aria-labelledby="contato-title">
-            <h2 id="contato-title">Fale Conosco</h2>
-            <form action="/enviar-contato" method="POST" novalidate>
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" name="nome" required aria-required="true" placeholder="Seu nome completo" />
-                </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required aria-required="true" placeholder="seuemail@exemplo.com" />
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" />
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true" placeholder="Escreva sua mensagem aqui"></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Enviar</button>
-            </form>
-            <address>
-                <p><strong>Endereço:</strong> Rua das Flores, 123, Centro, São Paulo - SP</p>
-                <p><strong>Telefone:</strong> (11) 1234-5678</p>
-                <p><strong>E-mail:</strong> contato@empresaexemplar.com.br</p>
-            </address>
-        </section>
-    </main>
+      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h4 class="text-2xl font-bold mb-2">🌱 Começo com Ferramentas Manuais</h4>
+        <p>
+          Há cerca de 10 000 anos, as primeiras comunidades plantavam alimentos com instrumentos simples como enxadas e foices. Nesse tempo, o conhecimento era passado de geração em geração — ali nasceu o jeitinho familiar de plantar.
+        </p>
+      </article>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2025 Empresa Exemplar. Todos os direitos reservados.</p>
-            <nav aria-label="Redes sociais">
-                <ul class="social-links">
-                    <li><a href="https://facebook.com/empresaexemplar" target="_blank" rel="noopener" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24"><use href="#icon-facebook"></use></svg></a></li>
-                    <li><a href="https://twitter.com/empresaexemplar" target="_blank" rel="noopener" aria-label="Twitter"><svg aria-hidden="true" width="24" height="24"><use href="#icon-twitter"></use></svg></a></li>
-                    <li><a href="https://linkedin.com/company/empresaexemplar" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" width="24" height="24"><use href="#icon-linkedin"></use></svg></a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h4 class="text-2xl font-bold mb-2">⚙️ Revolução Industrial (séc. XVIII‑XIX)</h4>
+        <p>
+          Com a máquina a vapor e os primeiros tratores, a produção deu um salto — embora isso tenha sido mais sentido nas grandes propriedades. Nas pequenas, ainda se usava muito a tração animal e o esforço manual.
+        </p>
+      </article>
 
-    <!-- Ícones SVG ocultos para uso nas redes sociais -->
-    <svg style="display:none;">
-        <symbol id="icon-facebook" viewBox="0 0 24 24">
-            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-3v-3h3v-2c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v3h-1.5c-1.5 0-2 1-2 2v2h3.4l-.5 3h-2.9v7A10 10 0 0 0 22 12z" />
-        </symbol>
-        <symbol id="icon-twitter" viewBox="0 0 24 24">
-            <path d="M22.46 6c-.77.35-1.6.6-2.46.7a4.3 4.3 0 0 0 1.9-2.37 8.64 8.64 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.15 12.15 0 0 1 3 4.9a4.27 4.27 0 0 0 1.32 5.7 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.44 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.58 8.58 0 0 1-5.3 1.82A8.78 8.78 0 0 1 2 17.54a12.12 12.12 0 0 0 6.57 1.92c7.89 0 12.2-6.54 12.2-12.2 0-.18 0-.36-.02-.53A8.64 8.64 0 0 0 22.46 6z" />
-        </symbol>
-        <symbol id="icon-linkedin" viewBox="0 0 24 24">
-            <path d="M20 20h-3.56v-5.48c0-1.31-.47-2.2-1.66-2.2-.91 0-1.45.61-1.69 1.2-.09.22-.11.52-.11.82V20H9.56s.05-11.23 0-12.38h3.56v1.75c.47-.73 1.31-1.77 3.19-1.77 2.33 0 4.08 1.52 4.08 4.78V20zM5 7.68a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.78 20H2.22V7.62H7.78V20z" />
-        </symbol>
-    </svg>
+      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h4 class="text-2xl font-bold mb-2">🌾 Revolução Verde (1950‑1980)</h4>
+        <p>
+          Entraram na cena sementes híbridas, fertilizantes, pesticidas e irrigação mecanizada — a produtividade cresceu muito. Porém, isso também trouxe custos maiores e a dependência de insumos industriais.
+        </p>
+      </article>
 
-    <script>
-        // Script para toggle do menu mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
+      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+        <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
+        <p>
+          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com smartphones e aplicativos.
+        </p>
+      </article>
+    </section>
 
-        menuToggle.addEventListener('click', () => {
-            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-            menuToggle.setAttribute('aria-expanded', !expanded);
-            navMenu.classList.toggle('active');
-        });
-    </script>
+    <!-- Gráficos -->
+    <section id="graficos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
+
+      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Produtividade Agrícola (2000–2020)</h4>
+        <canvas id="produtividadeChart" aria-label="Gráfico de linha mostrando a produtividade agrícola entre 2000 e 2020" role="img"></canvas>
+      </article>
+
+      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias (%)</h4>
+        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a porcentagem de adoção de diferentes tecnologias pela agricultura familiar" role="img"></canvas>
+      </article>
+    </section>
+
+    <!-- Impactos -->
+    <section id="impactos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos Positivos e Desafios</h3>
+
+      <ul class="list-disc list-inside space-y-3 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li><strong>Aumento da produtividade:</strong> Mais alimentos com menos esforço.</li>
+        <li><strong>Redução do trabalho manual:</strong> Menos desgaste físico e mais eficiência.</li>
+        <li><strong>Uso racional dos recursos:</strong> Irrigação e fertilização controladas para preservar o solo.</li>
+        <li><strong>Desafios econômicos:</strong> Custo elevado dos equipamentos e insumos.</li>
+        <li><strong>Dependência tecnológica:</strong> Acesso desigual às tecnologias modernas.</li>
+        <li><strong>Impactos ambientais:</strong> Uso inadequado de pesticidas pode prejudicar o ecossistema.</li>
+      </ul>
+    </section>
+
+    <!-- Desafios -->
+    <section id="desafios" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios Atuais</h3>
+      <p class="max-w-4xl text-gray-700 dark:text-gray-300 mb-6">
+        A agricultura familiar enfrenta desafios importantes para integrar as novas tecnologias:
+      </p>
+      <ol class="list-decimal list-inside space-y-3 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li>Educação e capacitação técnica dos agricultores.</li>
+        <li>Investimento em infraestrutura e acesso a crédito.</li>
+        <li>Suporte técnico e manutenção dos equipamentos.</li>
+        <li>Garantia de sustentabilidade e preservação ambiental.</li>
+      </ol>
+    </section>
+
+    <!-- Fatos Importantes -->
+    <section id="fatos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Interessantes</h3>
+      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li>Mais de 70% da produção de alimentos do Brasil vem da agricultura familiar.</li>
+        <li>Drones podem mapear áreas e identificar pragas com alta precisão.</li>
+        <li>Apps agrícolas ajudam a prever o clima e otimizar o uso de água.</li>
+        <li>Comunidades tradicionais têm desenvolvido tecnologias próprias, adaptadas à realidade local.</li>
+      </ul>
+    </section>
+
+    <!-- Referências -->
+    <section id="referencias" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
+      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li><a href="https://www.fao.org/family-farming/en/" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">FAO - Agricultura Familiar</a></li>
+        <li><a href="https://www.embrapa.br/en" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">EMBRAPA - Tecnologias para Agricultura Familiar</a></li>
+        <li><a href="https://www.chartjs.org/" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">Chart.js - Biblioteca para gráficos</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script>
+    // Menu mobile toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Dark mode toggle
+    const toggleDark = document.getElementById('toggleDark');
+    toggleDark.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      // Atualiza o texto do botão
+      if(document.documentElement.classList.contains('dark')){
+        toggleDark.textContent = 'Modo Claro';
+      } else {
+        toggleDark.textContent = 'Modo Dark';
+      }
+    });
+
+    // Gráficos com Chart.js
+    const ctxProd = document.getElementById('produtividadeChart').getContext('2d');
+    const produtividadeChart = new Chart(ctxProd, {
+      type: 'line',
+      data: {
+        labels: ['2000', '2005', '2010', '2015', '2020'],
+        datasets: [{
+          label: 'Produtividade (ton/ha)',
+          data: [1.2, 1.8, 2.3, 3.0, 3.5],
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.3)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { labels: { color: '#3b82f6' } }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#374151' }
+          },
+          x: {
+            ticks: { color: '#374151' }
+          }
+        }
+      }
+    });
+
+    const ctxTec = document.getElementById('tecnologiaChart').getContext('2d');
+    const tecnologiaChart = new Chart(ctxTec, {
+      type: 'bar',
+      data: {
+        labels: ['Sensores', 'GPS', 'Drones', 'Apps', 'Máquinas'],
+        datasets: [{
+          label: 'Adoção (%)',
+          data: [25, 30, 15, 40, 35],
+          backgroundColor: [
+            '#3b82f6',
+            '#2563eb',
+            '#1d4ed8',
+            '#1e40af',
+            '#1e3a8a',
+          ],
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { color: '#374151', stepSize: 20 }
+          },
+          x: {
+            ticks: { color: '#374151' }
+          }
+        }
+      }
+    });
+
+    // Fade in animation for sections on scroll
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+      entries.forEach(entry => {
+        if (!entry.isIntersecting){
+          return;
+        } else {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      fader.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
+      appearOnScroll.observe(fader);
+    });
+
+  </script>
+
 </body>
 </html>
-
