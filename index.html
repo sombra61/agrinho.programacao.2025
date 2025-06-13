@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-  <head>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
@@ -132,292 +131,103 @@
       </article>
 
       <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
+        <h4 class="text-2xl font-bold mb-2">🤖 A Agricultura 4.0 (atualidade)</h4>
         <p>
-          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com o apoio de políticas públicas.
+          Sensores, drones e até inteligência artificial agora fazem parte da realidade do campo, possibilitando o monitoramento em tempo real e a otimização de cada fase da produção agrícola.
         </p>
       </article>
     </section>
 
     <!-- Gráficos -->
     <section id="graficos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
-        <canvas id="historicoChart"></canvas>
-      </div>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos de Evolução da Produtividade</h3>
+
+      <!-- Gráfico -->
+      <canvas id="historicoChart"></canvas>
     </section>
 
-    <!-- Impactos -->
-    <section id="impactos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos Positivos e Negativos</h3>
-      <ul class="list-disc list-inside max-w-4xl text-gray-700 dark:text-gray-300 space-y-3">
-        <li><strong>Positivos:</strong> aumento da produtividade, melhor qualidade de vida, acesso a mercados, uso eficiente dos recursos naturais.</li>
-        <li><strong>Negativos:</strong> custo de insumos, dependência tecnológica, impacto ambiental dos pesticidas e fertilizantes, desigualdade no acesso à tecnologia.</li>
-      </ul>
-    </section>
-
-    <!-- Desafios -->
-    <section id="desafios" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🚧 Desafios Atuais</h3>
-      <p class="max-w-3xl text-gray-700 dark:text-gray-300">
-        A principal missão da agricultura familiar hoje é conciliar tradição com inovação, preservando o meio ambiente e garantindo renda justa. Políticas públicas, acesso à informação e capacitação são cruciais para isso.
-      </p>
-    </section>
-
-    <!-- Fatos Importantes -->
-    <section id="fatos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
-      <ul class="list-decimal list-inside max-w-4xl space-y-3 text-gray-700 dark:text-gray-300">
-        <li>70% dos alimentos consumidos no Brasil vêm da agricultura familiar.</li>
-        <li>Mais de 80% das propriedades rurais brasileiras são familiares.</li>
-        <li>A tecnologia ajuda a reduzir o desperdício e aumentar a sustentabilidade.</li>
-      </ul>
-    </section>
-
-    <!-- Referências -->
-    <section id="referencias" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
-      <ol class="list-decimal list-inside max-w-4xl space-y-2 text-gray-700 dark:text-gray-300">
-        <li>Instituto Brasileiro de Geografia e Estatística (IBGE) - Censo Agropecuário.</li>
-        <li>Embrapa - Tecnologias para agricultura familiar.</li>
-        <li>FAO - Relatórios sobre agricultura sustentável.</li>
-      </ol>
-    </section>
   </main>
 
-  <!-- Scripts -->
   <script>
-    // Configuração do modo dark no Tailwind via script
-tailwind.config = {
-  darkMode: 'class',
-};
-
-// Toggle modo dark
-const toggleDarkBtn = document.getElementById('toggleDark');
-toggleDarkBtn.addEventListener('click', () => {
-  document.documentElement.classList.toggle('dark');
-  // Salva preferência no localStorage
-  if (document.documentElement.classList.contains('dark')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
-});
-
-// Aplica o tema salvo no carregamento da página
-window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
-});
-
-// Toggle menu mobile
-const menuToggleBtn = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-menuToggleBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
-
-// Configuração dos gráficos Chart.js
-
-// Dados e configurações para gráfico de produtividade agrícola (linha)
-const ctxProdutividade = document.getElementById('produtividadeChart').getContext('2d');
-const produtividadeChart = new Chart(ctxProdutividade, {
-  type: 'line',
-  data: {
-    labels: [
-      '2000', '2001', '2002', '2003', '2004', '2005',
-      '2006', '2007', '2008', '2009', '2010', '2011',
-      '2012', '2013', '2014', '2015', '2016', '2017',
-      '2018', '2019', '2020'
-    ],
-    datasets: [{
-      label: 'Produtividade (ton/ha)',
-      data: [
-        1.2, 1.3, 1.5, 1.6, 1.7, 1.9,
-        2.0, 2.1, 2.3, 2.5, 2.7, 2.9,
-        3.0, 3.2, 3.3, 3.5, 3.6, 3.8,
-        4.0, 4.2, 4.5
-      ],
-      borderColor: '#2563eb',
-      backgroundColor: 'rgba(37, 99, 235, 0.2)',
-      fill: true,
-      tension: 0.3,
-      pointRadius: 3,
-      pointHoverRadius: 6,
-    }]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: { display: true, text: 'Toneladas por hectare' }
-      },
-      x: {
-        title: { display: true, text: 'Ano' }
-      }
-    },
-    plugins: {
-      legend: { position: 'top' },
-      tooltip: { enabled: true }
-    }
-  }
-});
-
-// Dados e configurações para gráfico de adoção de tecnologias (barras)
-const ctxTecnologia = document.getElementById('tecnologiaChart').getContext('2d');
-const tecnologiaChart = new Chart(ctxTecnologia, {
-  type: 'bar',
-  data: {
-    labels: ['Sensores', 'GPS', 'Drones', 'Apps', 'Máquinas'],
-    datasets: [{
-      label: 'Adoção (%)',
-      data: [65, 60, 45, 70, 55],
-      backgroundColor: [
-        '#3b82f6',
-        '#2563eb',
-        '#1d4ed8',
-        '#1e40af',
-        '#1e3a8a'
-      ]
-    }]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 100,
-        title: { display: true, text: 'Percentual de adoção' }
-      }
-    },
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true }
-    }
-  }
-});
-
-// Dados e configurações para gráfico de impacto econômico (barras)
-const ctxEconomico = document.getElementById('economicoChart').getContext('2d');
-const economicoChart = new Chart(ctxEconomico, {
-  type: 'bar',
-  data: {
-    labels: ['2000', '2005', '2010', '2015', '2020'],
-    datasets: [{
-      label: 'Impacto Econômico (milhões R$)',
-      data: [100, 150, 230, 340, 480],
-      backgroundColor: '#2563eb'
-    }]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      y: {
-        beginAtZero: true,
-        title: { display: true, text: 'Milhões de reais' }
-      },
-      x: {
-        title: { display: true, text: 'Ano' }
-      }
-    },
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true }
-    }
-  }
-});
-
-    // Toggle Dark Mode
+    // Alternar modo dark
     const toggleDarkBtn = document.getElementById('toggleDark');
-    const htmlElement = document.documentElement;
-
-    // Checa se há preferência salva no localStorage
-    if(localStorage.getItem('theme') === 'dark' || 
-       (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      htmlElement.classList.add('dark');
-      toggleDarkBtn.textContent = 'Modo Light';
-    }
-
     toggleDarkBtn.addEventListener('click', () => {
-      htmlElement.classList.toggle('dark');
-      if (htmlElement.classList.contains('dark')) {
-        toggleDarkBtn.textContent = 'Modo Light';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        toggleDarkBtn.textContent = 'Modo Dark';
-        localStorage.setItem('theme', 'light');
-      }
+      document.documentElement.classList.toggle('dark');
     });
 
-    // Toggle Menu Mobile
-    const menuToggle = document.getElementById('menuToggle');
+    // Toggle menu mobile
+    const menuToggleBtn = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    menuToggle.addEventListener('click', () => {
+    menuToggleBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Dados do gráfico histórico
-    const ctx = document.getElementById('historicoChart').getContext('2d');
-    const historicoChart = new Chart(ctx, {
+    // Configuração do gráfico Chart.js
+    const ctxProdutividade = document.getElementById('historicoChart').getContext('2d');
+    const produtividadeChart = new Chart(ctxProdutividade, {
       type: 'line',
       data: {
-        labels: [
-          '10.000 a.C.',
-          'Século XVIII',
-          '1950',
-          '2000',
-          '2025'
-        ],
+        labels: ['Antes de 1900', '1900-1950', '1950-1980', '1980-2000', '2000-2025'],
         datasets: [{
-          label: 'Produtividade (indexada)',
-          data: [10, 30, 60, 85, 95],
-          fill: false,
+          label: 'Produtividade (ton/ha)',
+          data: [0.3, 1.2, 3.5, 5.0, 7.5],
           borderColor: '#2563eb',
-          backgroundColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.2)',
+          fill: true,
           tension: 0.3,
-          pointRadius: 6,
-          pointHoverRadius: 8,
-          borderWidth: 3,
-          pointBackgroundColor: '#2563eb'
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          borderWidth: 2,
+          hoverBorderWidth: 3,
         }]
       },
       options: {
         responsive: true,
-        interaction: {
-          mode: 'nearest',
-          intersect: false,
-        },
         plugins: {
           legend: {
             labels: {
-              color: 'rgb(100 116 139)', // cinza escuro
-              font: { size: 16 }
+              color: '#2563eb',
+              font: { size: 14, weight: 'bold' },
             }
           },
           tooltip: {
-            enabled: true,
-            backgroundColor: '#2563eb',
-            titleFont: { size: 16 },
-            bodyFont: { size: 14 }
+            mode: 'index',
+            intersect: false,
+          },
+          title: {
+            display: true,
+            text: 'Evolução da Produtividade na Agricultura Familiar',
+            color: '#1e40af',
+            font: { size: 18, weight: 'bold' },
           }
         },
         scales: {
           x: {
-            ticks: { color: '#64748b', font: { size: 14 } },
-            grid: { display: false }
+            ticks: { color: '#2563eb' },
+            grid: { color: '#e0e7ff' },
+            title: {
+              display: true,
+              text: 'Período',
+              color: '#1e40af',
+              font: { size: 14, weight: 'bold' }
+            }
           },
           y: {
-            min: 0,
-            max: 100,
-            ticks: { color: '#64748b', font: { size: 14 }, stepSize: 20 },
-            grid: {
-              color: '#e2e8f0',
-              borderDash: [5, 5]
+            beginAtZero: true,
+            ticks: { color: '#2563eb' },
+            grid: { color: '#e0e7ff' },
+            title: {
+              display: true,
+              text: 'Produtividade (ton/ha)',
+              color: '#1e40af',
+              font: { size: 14, weight: 'bold' }
             }
           }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
         }
       }
     });
