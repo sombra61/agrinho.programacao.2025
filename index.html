@@ -31,14 +31,18 @@
     .fade-in { animation: fadeIn 1.2s ease forwards; opacity: 0; }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    /* Tamanho responsivo dos gráficos */
+    /* Melhor tamanho responsivo dos gráficos */
     canvas {
       width: 100% !important;
-      height: 300px !important;
+      max-width: 900px;
+      height: 450px !important;
+      margin: 0 auto;
+      display: block;
     }
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
       canvas {
-        height: 400px !important;
+        height: 320px !important;
+        max-width: 100%;
       }
     }
   </style>
@@ -49,14 +53,16 @@
   <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-md z-50">
     <div class="max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between h-16">
       <h1 class="text-2xl font-extrabold text-blue-700 dark:text-blue-400">AgriTech</h1>
-      <button id="toggleDark" aria-label="Alternar modo escuro/claro" class="bg-blue-600 dark:bg-blue-400 text-white px-3 py-1 rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors">
-        Modo Dark
-      </button>
-      <button id="menuToggle" class="md:hidden text-gray-700 dark:text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-        </svg>
-      </button>
+      <div class="flex items-center gap-4">
+        <button id="toggleDark" aria-label="Alternar modo escuro/claro" class="bg-blue-600 dark:bg-blue-400 text-white px-3 py-1 rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors">
+          Modo Dark
+        </button>
+        <button id="menuToggle" class="md:hidden text-gray-700 dark:text-gray-300" aria-label="Alternar menu mobile">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
     </div>
     <nav id="mobileMenu" class="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-md hidden">
       <ul class="flex flex-col p-4 space-y-2 text-lg font-medium">
@@ -85,7 +91,7 @@
   </nav>
 
   <!-- Conteúdo principal -->
-  <div class="md:ml-64 px-6 md:px-16 pt-20 pb-24 max-w-7xl mx-auto">
+  <main class="md:ml-64 px-6 md:px-16 pt-20 pb-24 max-w-7xl mx-auto">
 
     <!-- Introdução -->
     <section id="intro" class="mb-16 fade-in">
@@ -124,9 +130,9 @@
       </article>
 
       <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">🌐 Era Digital (2000 até hoje)</h4>
+        <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
         <p>
-          Hoje, usamos GPS, drones, sensores e apps no celular para monitorar plantações. A tecnologia está chegando às pequenas fazendas, mas ainda tem barreiras: acesso, custo e treinamento limitado.
+          Com a chegada de sensores, GPS, drones e softwares, os agricultores familiares ganham ferramentas para gerenciar melhor suas terras, reduzir desperdícios e aumentar a sustentabilidade.
         </p>
       </article>
     </section>
@@ -135,170 +141,226 @@
     <section id="graficos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
 
-      <article class="mb-16">
-        <h4 class="text-2xl font-semibold mb-4">Produtividade ao Longo das Décadas</h4>
-        <canvas id="barChart" aria-label="Gráfico de barras mostrando a produtividade agrícola ao longo das décadas" role="img"></canvas>
-      </article>
+      <div class="space-y-16">
 
-      <article class="mb-16">
-        <h4 class="text-2xl font-semibold mb-4">Adoção de Tecnologias</h4>
-        <canvas id="lineChart" aria-label="Gráfico de linha mostrando a adoção de tecnologias na agricultura ao longo dos anos" role="img"></canvas>
-      </article>
+        <!-- Gráfico de Barras -->
+        <div>
+          <h4 class="text-2xl font-semibold mb-4">Produção de Milho na Agricultura Familiar (2000-2020)</h4>
+          <canvas id="graficoBarras"></canvas>
+        </div>
 
-      <article>
-        <h4 class="text-2xl font-semibold mb-4">Tipos de Tecnologias Utilizadas</h4>
-        <canvas id="pieChart" aria-label="Gráfico de pizza mostrando a distribuição dos tipos de tecnologias utilizadas" role="img"></canvas>
-      </article>
+        <!-- Gráfico de Linha -->
+        <div>
+          <h4 class="text-2xl font-semibold mb-4">Uso de Tecnologia (Drones, Sensores) em % das Propriedades (2010-2020)</h4>
+          <canvas id="graficoLinha"></canvas>
+        </div>
+
+        <!-- Gráfico de Pizza -->
+        <div>
+          <h4 class="text-2xl font-semibold mb-4">Distribuição dos Tipos de Agricultura Familiar em 2020</h4>
+          <canvas id="graficoPizza"></canvas>
+        </div>
+
+      </div>
     </section>
 
     <!-- Impactos -->
     <section id="impactos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌟 Impactos da Tecnologia na Agricultura Familiar</h3>
-
-      <ul class="list-disc list-inside max-w-3xl space-y-3 text-gray-700 dark:text-gray-300">
-        <li><strong>💰 Aumento da produtividade:</strong> mais alimentos com menos esforço.</li>
-        <li><strong>🌍 Sustentabilidade:</strong> uso inteligente dos recursos naturais.</li>
-        <li><strong>🤝 Inclusão social:</strong> acesso à informação e mercado.</li>
-        <li><strong>🚜 Redução da mão de obra pesada:</strong> menos desgaste físico para os agricultores.</li>
-        <li><strong>📈 Melhoria da renda:</strong> tecnologia abre portas para novos negócios e mercados.</li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-6">🌟 Impactos da Tecnologia na Agricultura Familiar</h3>
+      <ul class="list-disc list-inside space-y-3 text-lg max-w-3xl">
+        <li>Aumento da produtividade e eficiência</li>
+        <li>Redução do trabalho manual exaustivo</li>
+        <li>Melhor controle sobre pragas e doenças</li>
+        <li>Maior sustentabilidade e menor desperdício</li>
+        <li>Capacitação e inclusão digital dos agricultores</li>
       </ul>
     </section>
 
     <!-- Desafios -->
     <section id="desafios" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios Ainda Presentes</h3>
-
-      <ul class="list-disc list-inside max-w-3xl space-y-3 text-gray-700 dark:text-gray-300">
-        <li><strong>🔌 Infraestrutura limitada:</strong> falta de internet e energia em áreas rurais.</li>
-        <li><strong>💸 Custo alto:</strong> aquisição e manutenção de equipamentos.</li>
-        <li><strong>🎓 Capacitação:</strong> necessidade de treinamento e suporte técnico.</li>
-        <li><strong>🌿 Impactos ambientais:</strong> uso excessivo de químicos.</li>
-        <li><strong>⚖️ Políticas públicas:</strong> suporte insuficiente para a agricultura familiar.</li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-6">⚠️ Desafios Atuais</h3>
+      <ul class="list-disc list-inside space-y-3 text-lg max-w-3xl">
+        <li>Alto custo inicial para tecnologias avançadas</li>
+        <li>Falta de acesso à internet em áreas rurais remotas</li>
+        <li>Necessidade de treinamento para uso das ferramentas digitais</li>
+        <li>Manutenção e atualização dos equipamentos</li>
+        <li>Preservação das práticas tradicionais valorizando o saber local</li>
       </ul>
     </section>
 
     <!-- Fatos Importantes -->
     <section id="fatos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
-      <p class="max-w-3xl text-gray-700 dark:text-gray-300">
-        - O Brasil possui mais de 4 milhões de propriedades familiares, responsáveis por cerca de 70% dos alimentos consumidos internamente.<br />
-        - A agricultura familiar gera aproximadamente 40% do emprego rural.<br />
-        - O acesso à tecnologia ainda é desigual, com grandes diferenças entre regiões e tipos de cultivo.<br />
-        - Investimentos em inovação social e tecnológica são essenciais para o desenvolvimento sustentável.<br />
-      </p>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-6">📌 Fatos Importantes</h3>
+      <ul class="list-disc list-inside space-y-3 text-lg max-w-3xl">
+        <li>Mais de 70% dos alimentos consumidos no Brasil vêm da agricultura familiar.</li>
+        <li>A adoção de tecnologias aumentou em 50% nos últimos 10 anos.</li>
+        <li>Programas governamentais incentivam o crédito para aquisição de equipamentos.</li>
+        <li>Comunidades rurais têm desenvolvido aplicativos próprios para gestão.</li>
+      </ul>
     </section>
 
     <!-- Referências -->
     <section id="referencias" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🔗 Referências</h3>
-      <ul class="list-disc list-inside max-w-3xl text-gray-700 dark:text-gray-300 space-y-2">
-        <li><a href="https://www.embrapa.br" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">EMBRAPA - Empresa Brasileira de Pesquisa Agropecuária</a></li>
-        <li><a href="https://www.ifauna.com.br" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Instituto de Agricultura Familiar</a></li>
-        <li><a href="https://www.fao.org" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">FAO - Organização das Nações Unidas para Alimentação e Agricultura</a></li>
-        <li><a href="https://revistas.ufpr.br" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline">Revistas Científicas sobre Agricultura Familiar</a></li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-6">📚 Referências</h3>
+      <ul class="list-disc list-inside space-y-2 text-lg max-w-3xl">
+        <li><a href="https://www.fao.org/agriculture/crops/thematic-sitemap/theme/family-farming/en/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">FAO - Agricultura Familiar</a></li>
+        <li><a href="https://www.embrapa.br/agricultura-familiar" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Embrapa - Agricultura Familiar</a></li>
+        <li><a href="https://chartjs.org/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Chart.js</a></li>
       </ul>
     </section>
 
-  </div>
+  </main>
 
-  <!-- Scripts JavaScript -->
   <script>
-    // Alternar modo dark/light
-    const btn = document.getElementById('toggleDark');
-    btn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      if (document.documentElement.classList.contains('dark')) {
-        btn.textContent = 'Modo Light';
-      } else {
-        btn.textContent = 'Modo Dark';
-      }
-    });
-
-    // Menu mobile toggle
+    // Toggle menu mobile
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     menuToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Gráfico de barras - Produtividade ao Longo das Décadas
-    const ctxBar = document.getElementById('barChart').getContext('2d');
-    const barChart = new Chart(ctxBar, {
+    // Toggle dark mode
+    const toggleDark = document.getElementById('toggleDark');
+    toggleDark.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      // Altera o texto do botão conforme modo
+      if(document.documentElement.classList.contains('dark')){
+        toggleDark.textContent = 'Modo Claro';
+      } else {
+        toggleDark.textContent = 'Modo Dark';
+      }
+    });
+
+    // Configurações dos gráficos com Chart.js
+
+    // Gráfico de Barras - Produção de Milho
+    const ctxBarras = document.getElementById('graficoBarras').getContext('2d');
+    const graficoBarras = new Chart(ctxBarras, {
       type: 'bar',
       data: {
-        labels: ['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'],
+        labels: ['2000', '2005', '2010', '2015', '2020'],
         datasets: [{
-          label: 'Produtividade (ton/ha)',
-          data: [1.2, 1.5, 2.0, 2.8, 3.5, 4.1, 4.8, 5.5],
-          backgroundColor: '#2563eb',
-          borderRadius: 5,
+          label: 'Produção (toneladas)',
+          data: [1200, 1500, 1800, 2200, 2500],
+          backgroundColor: 'rgba(37, 99, 235, 0.7)', // azul
+          borderColor: 'rgba(37, 99, 235, 1)',
+          borderWidth: 1,
+          hoverBackgroundColor: 'rgba(59, 130, 246, 0.9)',
+          hoverBorderColor: 'rgba(59, 130, 246, 1)',
+          borderRadius: 6,
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
+            ticks: {
+              stepSize: 500
+            },
             title: {
               display: true,
-              text: 'Toneladas por hectare'
+              text: 'Toneladas',
+              color: '#2563eb'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Ano',
+              color: '#2563eb'
             }
           }
+        },
+        plugins: {
+          legend: { labels: { color: '#2563eb' } },
+          tooltip: { enabled: true }
         }
       }
     });
 
-    // Gráfico de linhas - Adoção de Tecnologias
-    const ctxLine = document.getElementById('lineChart').getContext('2d');
-    const lineChart = new Chart(ctxLine, {
+    // Gráfico de Linha - Uso de Tecnologia
+    const ctxLinha = document.getElementById('graficoLinha').getContext('2d');
+    const graficoLinha = new Chart(ctxLinha, {
       type: 'line',
       data: {
-        labels: ['2000', '2005', '2010', '2015', '2020', '2025'],
+        labels: ['2010', '2012', '2014', '2016', '2018', '2020'],
         datasets: [{
-          label: 'Adoção (%)',
-          data: [10, 20, 35, 50, 70, 85],
-          borderColor: '#2563eb',
-          backgroundColor: 'rgba(37, 99, 235, 0.3)',
+          label: 'Uso de Tecnologia (%)',
+          data: [5, 12, 25, 40, 55, 70],
           fill: true,
-          tension: 0.3,
+          backgroundColor: 'rgba(37, 99, 235, 0.2)',
+          borderColor: 'rgba(37, 99, 235, 1)',
+          tension: 0.4,
+          pointBackgroundColor: 'rgba(37, 99, 235, 1)',
           pointRadius: 5,
+          pointHoverRadius: 7,
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
             max: 100,
+            ticks: {
+              stepSize: 10,
+              callback: (val) => val + '%',
+            },
             title: {
               display: true,
-              text: 'Porcentagem (%)'
+              text: 'Percentual (%)',
+              color: '#2563eb'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Ano',
+              color: '#2563eb'
             }
           }
+        },
+        plugins: {
+          legend: { labels: { color: '#2563eb' } },
+          tooltip: { enabled: true }
         }
       }
     });
 
-    // Gráfico de pizza - Tipos de Tecnologia Utilizados
-    const ctxPie = document.getElementById('pieChart').getContext('2d');
-    const pieChart = new Chart(ctxPie, {
+    // Gráfico de Pizza - Distribuição de tipos de agricultura familiar
+    const ctxPizza = document.getElementById('graficoPizza').getContext('2d');
+    const graficoPizza = new Chart(ctxPizza, {
       type: 'pie',
       data: {
-        labels: ['Máquinas', 'Irrigação', 'Sensores', 'Drones', 'Apps'],
+        labels: ['Agricultura Orgânica', 'Agroecologia', 'Convencional', 'Agroflorestal', 'Permacultura'],
         datasets: [{
-          data: [40, 20, 15, 15, 10],
+          label: 'Tipos de Agricultura Familiar',
+          data: [25, 20, 30, 15, 10],
           backgroundColor: [
-            '#2563eb',
-            '#3b82f6',
-            '#60a5fa',
-            '#93c5fd',
-            '#bfdbfe'
+            '#2563eb',    // azul
+            '#10b981',    // verde
+            '#f59e0b',    // amarelo
+            '#ef4444',    // vermelho
+            '#8b5cf6'     // roxo
           ],
-          borderWidth: 1,
+          borderColor: '#fff',
+          borderWidth: 2,
+          hoverOffset: 30,
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: '#2563eb', font: { weight: 'bold' } }
+          },
+          tooltip: { enabled: true }
+        }
       }
     });
   </script>
