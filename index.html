@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
+  <head>
+  <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
@@ -17,8 +19,35 @@
     };
   </script>
 
-  <!-- Link para o CSS externo -->
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Scrollbar customizada */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb {
+      background-color: #2563eb;
+      border-radius: 20px;
+      border: 3px solid #f1f1f1;
+    }
+
+    /* Animação de fade-in */
+    .fade-in { animation: fadeIn 1.2s ease forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    /* Melhor tamanho responsivo dos gráficos */
+    canvas {
+      width: 100% !important;
+      max-width: 900px;
+      height: 450px !important;
+      margin: 0 auto;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      canvas {
+        height: 320px !important;
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
@@ -105,7 +134,7 @@
       <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
         <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
         <p>
-          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com smartphones e aplicativos.
+          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com o apoio de políticas públicas.
         </p>
       </article>
     </section>
@@ -113,66 +142,143 @@
     <!-- Gráficos -->
     <section id="graficos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
-
-      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Produtividade Agrícola (2000–2020)</h4>
-        <canvas id="produtividadeChart" aria-label="Gráfico de linha mostrando a produtividade agrícola entre 2000 e 2020" role="img"></canvas>
-      </article>
-
-      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias</h4>
-        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a adoção de tecnologias na agricultura familiar" role="img"></canvas>
-      </article>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md">
+        <canvas id="historicoChart"></canvas>
+      </div>
     </section>
 
     <!-- Impactos -->
     <section id="impactos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos e Benefícios</h3>
-      <ul class="list-disc pl-6 space-y-2 max-w-3xl">
-        <li>Aumento da produtividade e da renda familiar</li>
-        <li>Melhoria na qualidade dos alimentos produzidos</li>
-        <li>Redução do trabalho braçal e maior qualidade de vida</li>
-        <li>Uso consciente e sustentável dos recursos naturais</li>
-        <li>Fortalecimento da agricultura local e economia regional</li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos Positivos e Negativos</h3>
+      <ul class="list-disc list-inside max-w-4xl text-gray-700 dark:text-gray-300 space-y-3">
+        <li><strong>Positivos:</strong> aumento da produtividade, melhor qualidade de vida, acesso a mercados, uso eficiente dos recursos naturais.</li>
+        <li><strong>Negativos:</strong> custo de insumos, dependência tecnológica, impacto ambiental dos pesticidas e fertilizantes, desigualdade no acesso à tecnologia.</li>
       </ul>
     </section>
 
     <!-- Desafios -->
     <section id="desafios" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios Atuais</h3>
-      <ol class="list-decimal pl-6 space-y-3 max-w-3xl">
-        <li>Acesso limitado a crédito e financiamentos</li>
-        <li>Formação e capacitação tecnológica</li>
-        <li>Infraestrutura deficiente em áreas rurais</li>
-        <li>Mercados competitivos e instabilidade econômica</li>
-        <li>Preservação ambiental e sustentabilidade</li>
-      </ol>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🚧 Desafios Atuais</h3>
+      <p class="max-w-3xl text-gray-700 dark:text-gray-300">
+        A principal missão da agricultura familiar hoje é conciliar tradição com inovação, preservando o meio ambiente e garantindo renda justa. Políticas públicas, acesso à informação e capacitação são cruciais para isso.
+      </p>
     </section>
 
-    <!-- Fatos importantes -->
+    <!-- Fatos Importantes -->
     <section id="fatos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
-      <ul class="list-disc pl-6 space-y-3 max-w-3xl">
-        <li>Mais de 70% dos alimentos consumidos no Brasil vêm da agricultura familiar.</li>
-        <li>A agricultura familiar gera 38% do emprego no setor agropecuário.</li>
-        <li>O uso de smartphones aumentou em 150% entre agricultores familiares na última década.</li>
-        <li>Drones são usados para monitorar a saúde das plantações e otimizar recursos.</li>
+      <ul class="list-decimal list-inside max-w-4xl space-y-3 text-gray-700 dark:text-gray-300">
+        <li>70% dos alimentos consumidos no Brasil vêm da agricultura familiar.</li>
+        <li>Mais de 80% das propriedades rurais brasileiras são familiares.</li>
+        <li>A tecnologia ajuda a reduzir o desperdício e aumentar a sustentabilidade.</li>
       </ul>
     </section>
 
     <!-- Referências -->
-    <section id="referencias" class="mb-12 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">📚 Referências</h3>
-      <ul class="list-disc pl-6 space-y-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
-        <li>IBGE – Censo Agropecuário 2017</li>
-        <li>Embrapa – Tecnologias na Agricultura Familiar</li>
-        <li>FAO – Agricultura Familiar no Mundo</li>
-        <li>Agência Nacional de Assistência Técnica e Extensão Rural (Anater)</li>
-      </ul>
+    <section id="referencias" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
+      <ol class="list-decimal list-inside max-w-4xl space-y-2 text-gray-700 dark:text-gray-300">
+        <li>Instituto Brasileiro de Geografia e Estatística (IBGE) - Censo Agropecuário.</li>
+        <li>Embrapa - Tecnologias para agricultura familiar.</li>
+        <li>FAO - Relatórios sobre agricultura sustentável.</li>
+      </ol>
     </section>
-
   </main>
 
-  <script src="scripts.js"></script>
+  <!-- Scripts -->
+  <script>
+    // Toggle Dark Mode
+    const toggleDarkBtn = document.getElementById('toggleDark');
+    const htmlElement = document.documentElement;
+
+    // Checa se há preferência salva no localStorage
+    if(localStorage.getItem('theme') === 'dark' || 
+       (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+      toggleDarkBtn.textContent = 'Modo Light';
+    }
+
+    toggleDarkBtn.addEventListener('click', () => {
+      htmlElement.classList.toggle('dark');
+      if (htmlElement.classList.contains('dark')) {
+        toggleDarkBtn.textContent = 'Modo Light';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        toggleDarkBtn.textContent = 'Modo Dark';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Toggle Menu Mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Dados do gráfico histórico
+    const ctx = document.getElementById('historicoChart').getContext('2d');
+    const historicoChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [
+          '10.000 a.C.',
+          'Século XVIII',
+          '1950',
+          '2000',
+          '2025'
+        ],
+        datasets: [{
+          label: 'Produtividade (indexada)',
+          data: [10, 30, 60, 85, 95],
+          fill: false,
+          borderColor: '#2563eb',
+          backgroundColor: '#2563eb',
+          tension: 0.3,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          borderWidth: 3,
+          pointBackgroundColor: '#2563eb'
+        }]
+      },
+      options: {
+        responsive: true,
+        interaction: {
+          mode: 'nearest',
+          intersect: false,
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: 'rgb(100 116 139)', // cinza escuro
+              font: { size: 16 }
+            }
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#2563eb',
+            titleFont: { size: 16 },
+            bodyFont: { size: 14 }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#64748b', font: { size: 14 } },
+            grid: { display: false }
+          },
+          y: {
+            min: 0,
+            max: 100,
+            ticks: { color: '#64748b', font: { size: 14 }, stepSize: 20 },
+            grid: {
+              color: '#e2e8f0',
+              borderDash: [5, 5]
+            }
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
