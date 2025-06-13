@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-  <link rel="stylesheet" href="styles.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
@@ -131,106 +130,215 @@
       </article>
 
       <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">🤖 A Agricultura 4.0 (atualidade)</h4>
+        <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
         <p>
-          Sensores, drones e até inteligência artificial agora fazem parte da realidade do campo, possibilitando o monitoramento em tempo real e a otimização de cada fase da produção agrícola.
+          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com smartphones e aplicativos.
         </p>
       </article>
     </section>
 
     <!-- Gráficos -->
     <section id="graficos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos de Evolução da Produtividade</h3>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
 
-      <!-- Gráfico -->
-      <canvas id="historicoChart"></canvas>
+      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Produtividade Agrícola (2000–2020)</h4>
+        <canvas id="produtividadeChart" aria-label="Gráfico de linha mostrando a produtividade agrícola entre 2000 e 2020" role="img"></canvas>
+      </article>
+
+      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias (%)</h4>
+        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a adoção de diferentes tecnologias na agricultura familiar" role="img"></canvas>
+      </article>
+
+      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Impacto Econômico (em milhões R$)</h4>
+        <canvas id="economicoChart" aria-label="Gráfico de barras mostrando o impacto econômico da tecnologia na agricultura familiar" role="img"></canvas>
+      </article>
+    </section>
+
+    <!-- Impactos -->
+    <section id="impactos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌟 Impactos Positivos</h3>
+      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li>Maior eficiência na produção e menos desperdício.</li>
+        <li>Facilidade no acesso a informações técnicas.</li>
+        <li>Melhoria da qualidade de vida do agricultor.</li>
+        <li>Redução do impacto ambiental com técnicas precisas.</li>
+      </ul>
+    </section>
+
+    <!-- Desafios -->
+    <section id="desafios" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios a Superar</h3>
+      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li>Baixo acesso à internet em áreas rurais remotas.</li>
+        <li>Custo inicial elevado para aquisição de equipamentos.</li>
+        <li>Necessidade de capacitação para uso das novas tecnologias.</li>
+        <li>Riscos de dependência tecnológica e perda do conhecimento tradicional.</li>
+      </ul>
+    </section>
+
+    <!-- Fatos importantes -->
+    <section id="fatos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
+      <ol class="list-decimal list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li>70% dos alimentos do mundo vêm da agricultura familiar.</li>
+        <li>85% das propriedades rurais no Brasil são de agricultura familiar.</li>
+        <li>Tecnologias digitais aumentam a produtividade em até 30%.</li>
+      </ol>
+    </section>
+
+    <!-- Referências -->
+    <section id="referencias" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
+      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
+        <li><a href="https://www.fao.org/family-farming/overview/en/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">FAO - Family Farming Overview</a></li>
+        <li><a href="https://www.embrapa.br/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">Embrapa - Empresa Brasileira de Pesquisa Agropecuária</a></li>
+        <li><a href="https://www.ifad.org/en/family-farming" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">IFAD - Family Farming</a></li>
+      </ul>
     </section>
 
   </main>
 
+  <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 text-center p-6 text-gray-500 dark:text-gray-400">
+    &copy; 2025 AgriTech. Todos os direitos reservados.
+  </footer>
+
+  <!-- Scripts -->
   <script>
-    // Alternar modo dark
+    // Toggle modo dark
     const toggleDarkBtn = document.getElementById('toggleDark');
     toggleDarkBtn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
+      if(document.documentElement.classList.contains('dark')) {
+        toggleDarkBtn.textContent = 'Modo Light';
+      } else {
+        toggleDarkBtn.textContent = 'Modo Dark';
+      }
     });
 
     // Toggle menu mobile
-    const menuToggleBtn = document.getElementById('menuToggle');
+    const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuToggleBtn.addEventListener('click', () => {
+    menuToggle.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
+  </script>
 
-    // Configuração do gráfico Chart.js
-    const ctxProdutividade = document.getElementById('historicoChart').getContext('2d');
-    const produtividadeChart = new Chart(ctxProdutividade, {
+  <script>
+    // Dados dos gráficos
+    const produtividadeCtx = document.getElementById('produtividadeChart').getContext('2d');
+    const produtividadeChart = new Chart(produtividadeCtx, {
       type: 'line',
       data: {
-        labels: ['Antes de 1900', '1900-1950', '1950-1980', '1980-2000', '2000-2025'],
+        labels: [
+          '2000', '2002', '2004', '2006', '2008',
+          '2010', '2012', '2014', '2016', '2018', '2020'
+        ],
         datasets: [{
           label: 'Produtividade (ton/ha)',
-          data: [0.3, 1.2, 3.5, 5.0, 7.5],
+          data: [1.2, 1.5, 1.7, 1.9, 2.0, 2.3, 2.6, 3.0, 3.3, 3.7, 4.0],
           borderColor: '#2563eb',
-          backgroundColor: 'rgba(37, 99, 235, 0.2)',
+          backgroundColor: 'rgba(37, 99, 235, 0.3)',
           fill: true,
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-          borderWidth: 2,
-          hoverBorderWidth: 3,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            labels: {
-              color: '#2563eb',
-              font: { size: 14, weight: 'bold' },
-            }
-          },
-          tooltip: {
-            mode: 'index',
-            intersect: false,
-          },
-          title: {
-            display: true,
-            text: 'Evolução da Produtividade na Agricultura Familiar',
-            color: '#1e40af',
-            font: { size: 18, weight: 'bold' },
-          }
+          legend: { labels: { color: '#1e3a8a' } },
+          tooltip: { mode: 'index', intersect: false }
         },
         scales: {
-          x: {
-            ticks: { color: '#2563eb' },
-            grid: { color: '#e0e7ff' },
-            title: {
-              display: true,
-              text: 'Período',
-              color: '#1e40af',
-              font: { size: 14, weight: 'bold' }
-            }
-          },
+          x: { ticks: { color: '#1e40af' } },
           y: {
             beginAtZero: true,
-            ticks: { color: '#2563eb' },
-            grid: { color: '#e0e7ff' },
-            title: {
-              display: true,
-              text: 'Produtividade (ton/ha)',
+            ticks: { color: '#1e40af' }
+          }
+        }
+      }
+    });
+
+    const tecnologiaCtx = document.getElementById('tecnologiaChart').getContext('2d');
+    const tecnologiaChart = new Chart(tecnologiaCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Sementes Híbridas', 'Fertilizantes', 'Irrigação', 'Drones', 'Apps Mobile'],
+        datasets: [{
+          label: 'Adoção (%)',
+          data: [70, 60, 40, 25, 35],
+          backgroundColor: [
+            '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'
+          ],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        },
+        scales: {
+          x: { ticks: { color: '#1e40af' } },
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { color: '#1e40af', stepSize: 20 }
+          }
+        }
+      }
+    });
+
+    const economicoCtx = document.getElementById('economicoChart').getContext('2d');
+    const economicoChart = new Chart(economicoCtx, {
+      type: 'bar',
+      data: {
+        labels: ['2000', '2005', '2010', '2015', '2020'],
+        datasets: [{
+          label: 'Impacto Econômico (milhões R$)',
+          data: [500, 750, 1100, 1600, 2100],
+          backgroundColor: '#2563eb',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        },
+        scales: {
+          x: { ticks: { color: '#1e40af' } },
+          y: {
+            beginAtZero: true,
+            ticks: {
               color: '#1e40af',
-              font: { size: 14, weight: 'bold' }
+              callback: function(value) {
+                return value + ' M';
+              }
             }
           }
-        },
-        interaction: {
-          mode: 'nearest',
-          axis: 'x',
-          intersect: false
         }
       }
     });
   </script>
+<!-- VLibras Plugin -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
 </body>
 </html>
