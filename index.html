@@ -1,125 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link rel="stylesheet" href="style.css" />
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Exemplo com Dark Mode, Chart.js e CSS</title>
-
-<style>
-  /* ===== Scrollbar personalizada ===== */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: #2563eb;
-    border-radius: 20px;
-    border: 3px solid #f1f1f1;
-  }
-
-  /* ===== Animação Fade-In ===== */
-  .fade-in {
-    animation: fadeIn 1.2s ease forwards;
-    opacity: 0;
-  }
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* ===== Canvas Chart.js ===== */
-  canvas {
-    width: 100% !important;
-    max-width: 900px;
-    height: 450px !important;
-    margin: 0 auto;
-    display: block;
-  }
-
-  /* ===== Responsividade Canvas ===== */
-  @media (max-width: 768px) {
-    canvas {
-      height: 320px !important;
-      max-width: 100%;
-    }
-  }
-
-  /* ===== Transição para modo escuro ===== */
-  body {
-    transition: background-color 0.5s ease, color 0.5s ease;
-    font-family: Arial, sans-serif;
-    margin: 0; padding: 0 1rem 2rem;
-    background-color: #fff;
-    color: #111;
-  }
-  body.dark {
-    background-color: #111827;
-    color: #f9fafb;
-  }
-
-  /* ===== Botão ===== */
-  button {
-    background-color: #2563eb;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 1rem 0;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  button:hover {
-    background-color: #1d4ed8;
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empresa Exemplar - Soluções Inteligentes</title>
+    <meta name="description" content="Empresa Exemplar - Soluções inteligentes em tecnologia, inovação e consultoria. Conheça nossos serviços e equipe." />
+    <meta name="author" content="Vitor Rocha" />
+    <link rel="icon" href="favicon.ico" />
+    <!-- Link para fontes externas -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet" />
+    <!-- CSS será adicionado depois -->
 </head>
-<body class="fade-in">
+<body>
+    <header class="site-header">
+        <nav class="navbar container">
+            <a href="#" class="logo" aria-label="Logo Empresa Exemplar">EmpresaEx</a>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#sobre" role="menuitem" tabindex="0">Sobre</a></li>
+                <li role="none"><a href="#servicos" role="menuitem" tabindex="0">Serviços</a></li>
+                <li role="none"><a href="#portfolio" role="menuitem" tabindex="0">Portfólio</a></li>
+                <li role="none"><a href="#blog" role="menuitem" tabindex="0">Blog</a></li>
+                <li role="none"><a href="#contato" role="menuitem" tabindex="0" class="btn-primary">Contato</a></li>
+            </ul>
+            <button class="menu-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Abrir menu">
+                <span class="hamburger"></span>
+            </button>
+        </nav>
+    </header>
 
-<h1>Exemplo: Dark Mode e Gráfico Chart.js</h1>
-<button id="toggleDarkMode">Alternar Modo Escuro</button>
+    <main>
+        <!-- Banner Principal -->
+        <section class="hero" aria-label="Soluções inovadoras para seu negócio">
+            <div class="container hero-content">
+                <h1>Soluções Inteligentes para o Futuro da Sua Empresa</h1>
+                <p>Transformamos desafios em oportunidades com tecnologia e inovação.</p>
+                <a href="#contato" class="btn-primary">Solicite uma Consultoria</a>
+            </div>
+        </section>
 
-<canvas id="meuGrafico"></canvas>
+        <!-- Sobre -->
+        <section id="sobre" class="about container" aria-labelledby="sobre-title">
+            <h2 id="sobre-title">Quem Somos</h2>
+            <p>Com mais de 10 anos de experiência, a Empresa Exemplar oferece soluções tecnológicas personalizadas para clientes de diversos setores. Nosso time é formado por especialistas apaixonados por inovação e resultados.</p>
+            <div class="team-grid">
+                <article class="team-member" tabindex="0">
+                    <img src="imagens/equipe/maria.jpg" alt="Foto da Maria Silva, CEO" />
+                    <h3>Maria Silva</h3>
+                    <p>CEO & Fundadora</p>
+                    <p>Visão estratégica e liderança para guiar projetos inovadores.</p>
+                </article>
+                <article class="team-member" tabindex="0">
+                    <img src="imagens/equipe/joao.jpg" alt="Foto do João Souza, CTO" />
+                    <h3>João Souza</h3>
+                    <p>CTO</p>
+                    <p>Especialista em desenvolvimento e arquitetura de sistemas.</p>
+                </article>
+                <article class="team-member" tabindex="0">
+                    <img src="imagens/equipe/ana.jpg" alt="Foto da Ana Costa, Designer" />
+                    <h3>Ana Costa</h3>
+                    <p>Design Lead</p>
+                    <p>Criação visual e experiência do usuário para projetos impactantes.</p>
+                </article>
+            </div>
+        </section>
 
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- Serviços -->
+        <section id="servicos" class="services container" aria-labelledby="servicos-title">
+            <h2 id="servicos-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <article class="service-card" tabindex="0" aria-describedby="servico1-desc">
+                    <h3>Consultoria Tecnológica</h3>
+                    <p id="servico1-desc">Análise personalizada para otimizar seus processos com tecnologia de ponta.</p>
+                </article>
+                <article class="service-card" tabindex="0" aria-describedby="servico2-desc">
+                    <h3>Desenvolvimento de Software</h3>
+                    <p id="servico2-desc">Criação de sistemas sob medida que atendem exatamente às suas necessidades.</p>
+                </article>
+                <article class="service-card" tabindex="0" aria-describedby="servico3-desc">
+                    <h3>Design UX/UI</h3>
+                    <p id="servico3-desc">Experiências digitais intuitivas e atraentes para maximizar o engajamento.</p>
+                </article>
+                <article class="service-card" tabindex="0" aria-describedby="servico4-desc">
+                    <h3>Suporte e Manutenção</h3>
+                    <p id="servico4-desc">Assistência contínua para garantir a performance e segurança de seus sistemas.</p>
+                </article>
+            </div>
+        </section>
 
-<script>
-  // Função para alternar dark mode
-  const btn = document.getElementById('toggleDarkMode');
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
+        <!-- Portfólio -->
+        <section id="portfolio" class="portfolio container" aria-labelledby="portfolio-title">
+            <h2 id="portfolio-title">Portfólio de Projetos</h2>
+            <div class="portfolio-gallery">
+                <figure tabindex="0">
+                    <img src="imagens/projetos/projeto1.jpg" alt="Interface do projeto Alpha" />
+                    <figcaption>Projeto Alpha - Plataforma de E-commerce</figcaption>
+                </figure>
+                <figure tabindex="0">
+                    <img src="imagens/projetos/projeto2.jpg" alt="Dashboard do projeto Beta" />
+                    <figcaption>Projeto Beta - Sistema de Gestão Financeira</figcaption>
+                </figure>
+                <figure tabindex="0">
+                    <img src="imagens/projetos/projeto3.jpg" alt="Aplicativo móvel do projeto Gamma" />
+                    <figcaption>Projeto Gamma - App Mobile para Serviços</figcaption>
+                </figure>
+            </div>
+        </section>
 
-  // Criando gráfico Chart.js básico
-  const ctx = document.getElementById('meuGrafico').getContext('2d');
-  const meuGrafico = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-      datasets: [{
-        label: 'Vendas',
-        data: [12, 19, 7, 15, 11],
-        backgroundColor: 'rgba(37, 99, 235, 0.7)',
-        borderColor: 'rgba(37, 99, 235, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
-</script>
+        <!-- Blog -->
+        <section id="blog" class="blog container" aria-labelledby="blog-title">
+            <h2 id="blog-title">Últimos Artigos</h2>
+            <article class="blog-post" tabindex="0">
+                <h3>Como a Inteligência Artificial Pode Impulsionar Seu Negócio</h3>
+                <time datetime="2025-05-20">20 de Maio de 2025</time>
+                <p>Descubra as principais aplicações da IA no mercado e como implementar de forma eficiente.</p>
+                <a href="blog/ia-negocios.html" class="btn-secondary">Leia mais</a>
+            </article>
+            <article class="blog-post" tabindex="0">
+                <h3>Tendências em UX Design para 2025</h3>
+                <time datetime="2025-04-15">15 de Abril de 2025</time>
+                <p>Explore as inovações e boas práticas para melhorar a experiência dos seus usuários.</p>
+                <a href="blog/ux-design-2025.html" class="btn-secondary">Leia mais</a>
+            </article>
+            <article class="blog-post" tabindex="0">
+                <h3>Segurança Cibernética: Proteja Sua Empresa</h3>
+                <time datetime="2025-03-10">10 de Março de 2025</time>
+                <p>Dicas e ferramentas essenciais para manter seus dados seguros contra ataques digitais.</p>
+                <a href="blog/seguranca-cibernetica.html" class="btn-secondary">Leia mais</a>
+            </article>
+        </section>
 
+        <!-- Contato -->
+        <section id="contato" class="contact container" aria-labelledby="contato-title">
+            <h2 id="contato-title">Fale Conosco</h2>
+            <form action="/enviar-contato" method="POST" novalidate>
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true" placeholder="Seu nome completo" />
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required aria-required="true" placeholder="seuemail@exemplo.com" />
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" />
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required aria-required="true" placeholder="Escreva sua mensagem aqui"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+            <address>
+                <p><strong>Endereço:</strong> Rua das Flores, 123, Centro, São Paulo - SP</p>
+                <p><strong>Telefone:</strong> (11) 1234-5678</p>
+                <p><strong>E-mail:</strong> contato@empresaexemplar.com.br</p>
+            </address>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2025 Empresa Exemplar. Todos os direitos reservados.</p>
+            <nav aria-label="Redes sociais">
+                <ul class="social-links">
+                    <li><a href="https://facebook.com/empresaexemplar" target="_blank" rel="noopener" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24"><use href="#icon-facebook"></use></svg></a></li>
+                    <li><a href="https://twitter.com/empresaexemplar" target="_blank" rel="noopener" aria-label="Twitter"><svg aria-hidden="true" width="24" height="24"><use href="#icon-twitter"></use></svg></a></li>
+                    <li><a href="https://linkedin.com/company/empresaexemplar" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true" width="24" height="24"><use href="#icon-linkedin"></use></svg></a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Ícones SVG ocultos para uso nas redes sociais -->
+    <svg style="display:none;">
+        <symbol id="icon-facebook" viewBox="0 0 24 24">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-3v-3h3v-2c0-3 1.8-4.7 4.5-4.7 1.3 0 2.6.2 2.6.2v3h-1.5c-1.5 0-2 1-2 2v2h3.4l-.5 3h-2.9v7A10 10 0 0 0 22 12z" />
+        </symbol>
+        <symbol id="icon-twitter" viewBox="0 0 24 24">
+            <path d="M22.46 6c-.77.35-1.6.6-2.46.7a4.3 4.3 0 0 0 1.9-2.37 8.64 8.64 0 0 1-2.72 1.04 4.28 4.28 0 0 0-7.3 3.9A12.15 12.15 0 0 1 3 4.9a4.27 4.27 0 0 0 1.32 5.7 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.44 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 3 8.58 8.58 0 0 1-5.3 1.82A8.78 8.78 0 0 1 2 17.54a12.12 12.12 0 0 0 6.57 1.92c7.89 0 12.2-6.54 12.2-12.2 0-.18 0-.36-.02-.53A8.64 8.64 0 0 0 22.46 6z" />
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24">
+            <path d="M20 20h-3.56v-5.48c0-1.31-.47-2.2-1.66-2.2-.91 0-1.45.61-1.69 1.2-.09.22-.11.52-.11.82V20H9.56s.05-11.23 0-12.38h3.56v1.75c.47-.73 1.31-1.77 3.19-1.77 2.33 0 4.08 1.52 4.08 4.78V20zM5 7.68a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.78 20H2.22V7.62H7.78V20z" />
+        </symbol>
+    </svg>
+
+    <script>
+        // Script para toggle do menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+            menuToggle.setAttribute('aria-expanded', !expanded);
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
+
