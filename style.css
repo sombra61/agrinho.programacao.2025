@@ -1,0 +1,94 @@
+// Alternar modo dark
+const toggleDarkBtn = document.getElementById('toggleDark');
+toggleDarkBtn.addEventListener('click', () => {
+  document.documentElement.classList.toggle('dark');
+  if (document.documentElement.classList.contains('dark')) {
+    toggleDarkBtn.textContent = 'Modo Light';
+  } else {
+    toggleDarkBtn.textContent = 'Modo Dark';
+  }
+});
+
+// Menu mobile toggle
+const menuToggleBtn = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+menuToggleBtn.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+
+// Dados do gráfico de produtividade
+const ctxProd = document.getElementById('produtividadeChart').getContext('2d');
+const produtividadeChart = new Chart(ctxProd, {
+  type: 'line',
+  data: {
+    labels: [
+      '2000', '2002', '2004', '2006', '2008', 
+      '2010', '2012', '2014', '2016', '2018', '2020'
+    ],
+    datasets: [{
+      label: 'Produtividade (ton/ha)',
+      data: [1.2, 1.5, 1.9, 2.3, 2.8, 3.2, 3.8, 4.0, 4.5, 5.0, 5.3],
+      borderColor: '#3b82f6',
+      backgroundColor: 'rgba(59,130,246,0.3)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4,
+      pointHoverRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { color: '#2563eb' } }
+    },
+    scales: {
+      x: {
+        ticks: { color: '#1e40af' },
+        grid: { color: 'rgba(59,130,246,0.1)' }
+      },
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#1e40af' },
+        grid: { color: 'rgba(59,130,246,0.1)' }
+      }
+    }
+  }
+});
+
+// Dados do gráfico de adoção de tecnologias
+const ctxTec = document.getElementById('tecnologiaChart').getContext('2d');
+const tecnologiaChart = new Chart(ctxTec, {
+  type: 'bar',
+  data: {
+    labels: ['Smartphones', 'Drones', 'Sensores', 'GPS', 'Apps'],
+    datasets: [{
+      label: 'Adoção (%)',
+      data: [75, 40, 55, 60, 70],
+      backgroundColor: [
+        '#3b82f6',
+        '#2563eb',
+        '#1e40af',
+        '#2563eb',
+        '#3b82f6'
+      ]
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false }
+    },
+    scales: {
+      x: {
+        max: 100,
+        ticks: { color: '#1e40af' },
+        grid: { color: 'rgba(59,130,246,0.1)' }
+      },
+      y: {
+        ticks: { color: '#1e40af' },
+        grid: { display: false }
+      }
+    }
+  }
+});

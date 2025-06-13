@@ -17,6 +17,8 @@
     };
   </script>
 
+  <!-- Link para o CSS externo -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
 
@@ -118,179 +120,59 @@
       </article>
 
       <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias (%)</h4>
-        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a porcentagem de adoção de diferentes tecnologias pela agricultura familiar" role="img"></canvas>
+        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias</h4>
+        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a adoção de tecnologias na agricultura familiar" role="img"></canvas>
       </article>
     </section>
 
     <!-- Impactos -->
     <section id="impactos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos Positivos e Desafios</h3>
-
-      <ul class="list-disc list-inside space-y-3 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li><strong>Aumento da produtividade:</strong> Mais alimentos com menos esforço.</li>
-        <li><strong>Redução do trabalho manual:</strong> Menos desgaste físico e mais eficiência.</li>
-        <li><strong>Uso racional dos recursos:</strong> Irrigação e fertilização controladas para preservar o solo.</li>
-        <li><strong>Desafios econômicos:</strong> Custo elevado dos equipamentos e insumos.</li>
-        <li><strong>Dependência tecnológica:</strong> Acesso desigual às tecnologias modernas.</li>
-        <li><strong>Impactos ambientais:</strong> Uso inadequado de pesticidas pode prejudicar o ecossistema.</li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌍 Impactos e Benefícios</h3>
+      <ul class="list-disc pl-6 space-y-2 max-w-3xl">
+        <li>Aumento da produtividade e da renda familiar</li>
+        <li>Melhoria na qualidade dos alimentos produzidos</li>
+        <li>Redução do trabalho braçal e maior qualidade de vida</li>
+        <li>Uso consciente e sustentável dos recursos naturais</li>
+        <li>Fortalecimento da agricultura local e economia regional</li>
       </ul>
     </section>
 
     <!-- Desafios -->
     <section id="desafios" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios Atuais</h3>
-      <p class="max-w-4xl text-gray-700 dark:text-gray-300 mb-6">
-        A agricultura familiar enfrenta desafios importantes para integrar as novas tecnologias:
-      </p>
-      <ol class="list-decimal list-inside space-y-3 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li>Educação e capacitação técnica dos agricultores.</li>
-        <li>Investimento em infraestrutura e acesso a crédito.</li>
-        <li>Suporte técnico e manutenção dos equipamentos.</li>
-        <li>Garantia de sustentabilidade e preservação ambiental.</li>
+      <ol class="list-decimal pl-6 space-y-3 max-w-3xl">
+        <li>Acesso limitado a crédito e financiamentos</li>
+        <li>Formação e capacitação tecnológica</li>
+        <li>Infraestrutura deficiente em áreas rurais</li>
+        <li>Mercados competitivos e instabilidade econômica</li>
+        <li>Preservação ambiental e sustentabilidade</li>
       </ol>
     </section>
 
-    <!-- Fatos Importantes -->
+    <!-- Fatos importantes -->
     <section id="fatos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Interessantes</h3>
-      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li>Mais de 70% da produção de alimentos do Brasil vem da agricultura familiar.</li>
-        <li>Drones podem mapear áreas e identificar pragas com alta precisão.</li>
-        <li>Apps agrícolas ajudam a prever o clima e otimizar o uso de água.</li>
-        <li>Comunidades tradicionais têm desenvolvido tecnologias próprias, adaptadas à realidade local.</li>
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
+      <ul class="list-disc pl-6 space-y-3 max-w-3xl">
+        <li>Mais de 70% dos alimentos consumidos no Brasil vêm da agricultura familiar.</li>
+        <li>A agricultura familiar gera 38% do emprego no setor agropecuário.</li>
+        <li>O uso de smartphones aumentou em 150% entre agricultores familiares na última década.</li>
+        <li>Drones são usados para monitorar a saúde das plantações e otimizar recursos.</li>
       </ul>
     </section>
 
     <!-- Referências -->
-    <section id="referencias" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
-      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li><a href="https://www.fao.org/family-farming/en/" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">FAO - Agricultura Familiar</a></li>
-        <li><a href="https://www.embrapa.br/en" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">EMBRAPA - Tecnologias para Agricultura Familiar</a></li>
-        <li><a href="https://www.chartjs.org/" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-600">Chart.js - Biblioteca para gráficos</a></li>
+    <section id="referencias" class="mb-12 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-4">📚 Referências</h3>
+      <ul class="list-disc pl-6 space-y-2 max-w-3xl text-sm text-gray-600 dark:text-gray-400">
+        <li>IBGE – Censo Agropecuário 2017</li>
+        <li>Embrapa – Tecnologias na Agricultura Familiar</li>
+        <li>FAO – Agricultura Familiar no Mundo</li>
+        <li>Agência Nacional de Assistência Técnica e Extensão Rural (Anater)</li>
       </ul>
     </section>
 
   </main>
 
-  <!-- Scripts -->
-  <script>
-    // Menu mobile toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Dark mode toggle
-    const toggleDark = document.getElementById('toggleDark');
-    toggleDark.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      // Atualiza o texto do botão
-      if(document.documentElement.classList.contains('dark')){
-        toggleDark.textContent = 'Modo Claro';
-      } else {
-        toggleDark.textContent = 'Modo Dark';
-      }
-    });
-
-    // Gráficos com Chart.js
-    const ctxProd = document.getElementById('produtividadeChart').getContext('2d');
-    const produtividadeChart = new Chart(ctxProd, {
-      type: 'line',
-      data: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
-        datasets: [{
-          label: 'Produtividade (ton/ha)',
-          data: [1.2, 1.8, 2.3, 3.0, 3.5],
-          borderColor: '#2563eb',
-          backgroundColor: 'rgba(37, 99, 235, 0.3)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { labels: { color: '#3b82f6' } }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: { color: '#374151' }
-          },
-          x: {
-            ticks: { color: '#374151' }
-          }
-        }
-      }
-    });
-
-    const ctxTec = document.getElementById('tecnologiaChart').getContext('2d');
-    const tecnologiaChart = new Chart(ctxTec, {
-      type: 'bar',
-      data: {
-        labels: ['Sensores', 'GPS', 'Drones', 'Apps', 'Máquinas'],
-        datasets: [{
-          label: 'Adoção (%)',
-          data: [25, 30, 15, 40, 35],
-          backgroundColor: [
-            '#3b82f6',
-            '#2563eb',
-            '#1d4ed8',
-            '#1e40af',
-            '#1e3a8a',
-          ],
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            ticks: { color: '#374151', stepSize: 20 }
-          },
-          x: {
-            ticks: { color: '#374151' }
-          }
-        }
-      }
-    });
-
-    // Fade in animation for sections on scroll
-    const faders = document.querySelectorAll('.fade-in');
-
-    const appearOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px"
-    };
-
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
-      entries.forEach(entry => {
-        if (!entry.isIntersecting){
-          return;
-        } else {
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-          appearOnScroll.unobserve(entry.target);
-        }
-      });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-      fader.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out');
-      appearOnScroll.observe(fader);
-    });
-
-  </script>
-
+  <script src="scripts.js"></script>
 </body>
 </html>
