@@ -1,0 +1,153 @@
+/* ===== Scrollbar personalizada ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2563eb;
+  border-radius: 20px;
+  border: 3px solid #f1f1f1;
+}
+
+/* ===== Animação Fade-In ===== */
+.fade-in {
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Canvas Chart.js ===== */
+canvas {
+  width: 100% !important;
+  max-width: 900px;
+  height: 450px !important;
+  margin: 0 auto;
+  display: block;
+}
+
+/* ===== Responsividade Canvas ===== */
+@media (max-width: 768px) {
+  canvas {
+    height: 320px !important;
+    max-width: 100%;
+  }
+}
+
+/* ===== Transição para modo escuro ===== */
+body {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* ===== Tipografia responsiva ===== */
+@media (max-width: 640px) {
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  .text-lg {
+    font-size: 1.125rem;
+  }
+}
+
+/* ===== Botões ===== */
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+/* ===== Header fixo ===== */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  z-index: 50;
+}
+
+/* ===== Navegação lateral (sidebar) ===== */
+nav.sidebar {
+  position: fixed;
+  top: 4rem; /* considerando header 64px */
+  left: 0;
+  height: calc(100vh - 4rem);
+  width: 16rem; /* 256px */
+  background-color: #fff;
+  border-right: 1px solid #e5e7eb;
+  padding: 1.5rem;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+/* ===== Dark mode ===== */
+.dark body {
+  background-color: #111827; /* gray-900 */
+  color: #f9fafb; /* gray-100 */
+}
+
+.dark header {
+  background-color: #1f2937; /* gray-800 */
+  border-color: #374151; /* gray-700 */
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
+}
+
+.dark nav.sidebar {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+/* ===== Mobile menu toggle ===== */
+#mobileMenu {
+  background-color: #fff;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  z-index: 60;
+}
+
+.dark #mobileMenu {
+  background-color: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
+}
+
+/* ===== Links e listas ===== */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+a {
+  color: #2563eb; /* azul */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #1d4ed8; /* azul escuro */
+  outline: none;
+}
+
+/* ===== Container principal ===== */
+main {
+  max-width: 1120px; /* 7xl */
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem; /* topo para header fixo + padding */
+}
+
+@media (min-width: 768px) {
+  main {
+    padding-left: 16rem; /* para sidebar */
+  }
+}
