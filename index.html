@@ -100,77 +100,6 @@
   #darkModeToggle.active {
     color: #facc15;
   }
-  /* Chatbox simples */
-  #chatbox {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    background: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid var(--nav-border);
-    width: 320px;
-    max-width: 90vw;
-    height: 380px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px var(--card-shadow);
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    transition: background-color 0.4s, color 0.4s;
-  }
-  #chatHeader {
-    background: var(--link-color);
-    color: white;
-    padding: 0.8rem 1rem;
-    font-weight: 700;
-    border-radius: 10px 10px 0 0;
-  }
-  #chatMessages {
-    flex: 1;
-    padding: 1rem;
-    overflow-y: auto;
-    background: var(--bg-color);
-  }
-  #chatInputForm {
-    display: flex;
-    border-top: 1px solid var(--nav-border);
-  }
-  #chatInput {
-    flex: 1;
-    border: none;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    color: var(--text-color);
-    background: var(--card-bg);
-    transition: background-color 0.4s, color 0.4s;
-  }
-  #chatInput:focus {
-    outline: none;
-    background: var(--bg-color);
-  }
-  #chatSendBtn {
-    background: var(--link-color);
-    color: white;
-    border: none;
-    padding: 0 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #chatSendBtn:hover {
-    background: #1e40af;
-  }
-  .message {
-    margin-bottom: 0.7rem;
-    line-height: 1.3;
-  }
-  .user-msg {
-    text-align: right;
-    color: var(--link-color);
-  }
-  .bot-msg {
-    text-align: left;
-    color: var(--text-color);
-  }
   /* Menu ativo com scroll */
   section {
     scroll-margin-top: 5rem;
@@ -379,8 +308,11 @@
     </section>
 
     <section id="interacoes" class="mb-20">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">💬 Interaja com o AgriTech</h3>
-      <p class="max-w-4xl mb-6">Use o chat abaixo para tirar dúvidas rápidas ou conhecer dicas sobre agricultura familiar e tecnologia.</p>
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">💬 Vídeo Educativo sobre Agricultura Familiar e Tecnologia</h3>
+      <p class="max-w-4xl mb-6">Assista a este vídeo para entender melhor como a tecnologia está transformando a agricultura familiar.</p>
+      <div class="max-w-4xl mx-auto">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/gkd4HQE-3yI" title="Tecnologia na Agricultura Familiar - Canal Embrapa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </section>
 
     <section id="referencias" class="mb-20">
@@ -398,177 +330,123 @@
     <p>© 2025 Vitor José — Todos os direitos reservados.</p>
   </footer>
 
-  <div id="chatbox" aria-live="polite" role="region" aria-label="Chat interativo">
-    <div id="chatHeader">AgriTech Chat</div>
-    <div id="chatMessages" tabindex="0" aria-atomic="true" aria-relevant="additions"></div>
-    <form id="chatInputForm" aria-label="Enviar mensagem para AgriTech Chat">
-      <input type="text" id="chatInput" aria-label="Mensagem" placeholder="Digite sua dúvida ou dica..." autocomplete="off" />
-      <button type="submit" id="chatSendBtn" aria-label="Enviar mensagem">Enviar</button>
-    </form>
-  </div>
-
-<script>
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const htmlRoot = document.documentElement;
-  function updateToggleState() {
-    const isDark = htmlRoot.classList.contains('dark');
-    darkModeToggle.textContent = isDark ? '☀️' : '🌙';
-    darkModeToggle.setAttribute('aria-checked', isDark);
-    if(isDark) darkModeToggle.classList.add('active');
-    else darkModeToggle.classList.remove('active');
-  }
-  darkModeToggle.addEventListener('click', () => {
-    htmlRoot.classList.toggle('dark');
+  <script>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlRoot = document.documentElement;
+    function updateToggleState() {
+      const isDark = htmlRoot.classList.contains('dark');
+      darkModeToggle.textContent = isDark ? '☀️' : '🌙';
+      darkModeToggle.setAttribute('aria-checked', isDark);
+      if(isDark) darkModeToggle.classList.add('active');
+      else darkModeToggle.classList.remove('active');
+    }
+    darkModeToggle.addEventListener('click', () => {
+      htmlRoot.classList.toggle('dark');
+      updateToggleState();
+      prodChart && prodChart.update();
+      impactChart && impactChart.update();
+      challengeChart && challengeChart.update();
+    });
     updateToggleState();
-    // Atualizar cores dos gráficos se estiverem renderizados
-    prodChart && prodChart.update();
-    impactChart && impactChart.update();
-    challengeChart && challengeChart.update();
-  });
-  updateToggleState();
 
-  // Menu com destaque do item ativo conforme scroll
-  const menuLinks = document.querySelectorAll('#menu a');
-  const sections = Array.from(menuLinks).map(link => document.querySelector(link.getAttribute('href')));
-  window.addEventListener('scroll', () => {
-    let scrollPos = window.scrollY + window.innerHeight / 4;
-    sections.forEach((section, idx) => {
-      if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
-        menuLinks.forEach(link => link.classList.remove('active'));
-        menuLinks[idx].classList.add('active');
+    const menuLinks = document.querySelectorAll('#menu a');
+    const sections = Array.from(menuLinks).map(link => document.querySelector(link.getAttribute('href')));
+    window.addEventListener('scroll', () => {
+      let scrollPos = window.scrollY + window.innerHeight / 4;
+      sections.forEach((section, idx) => {
+        if (section.offsetTop <= scrollPos && (section.offsetTop + section.offsetHeight) > scrollPos) {
+          menuLinks.forEach(link => link.classList.remove('active'));
+          menuLinks[idx].classList.add('active');
+        }
+      });
+    });
+
+    const ctxProd = document.getElementById('prodChart').getContext('2d');
+    const ctxImpact = document.getElementById('impactChart').getContext('2d');
+    const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
+
+    const prodChart = new Chart(ctxProd, {
+      type: 'line',
+      data: {
+        labels: ['1900', '1950', '1970', '1990', '2010', '2025'],
+        datasets: [{
+          label: 'Produção',
+          data: [10, 40, 70, 90, 130, 160],
+          fill: false,
+          borderColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
+          backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        }]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'nearest', intersect: false },
+        scales: {
+          y: {beginAtZero: true, title: {display: true, text: 'Índice Relativo', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}},
+          x: {title: {display: true, text: 'Ano', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
+        },
+        plugins: {
+          legend: {display: true, labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
+        }
       }
     });
-  });
 
-  // Gráficos Chart.js
-  const ctxProd = document.getElementById('prodChart').getContext('2d');
-  const ctxImpact = document.getElementById('impactChart').getContext('2d');
-  const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
-
-  const prodChart = new Chart(ctxProd, {
-    type: 'line',
-    data: {
-      labels: ['1900', '1950', '1970', '1990', '2010', '2025'],
-      datasets: [{
-        label: 'Produção',
-        data: [10, 40, 70, 90, 130, 160],
-        fill: false,
-        borderColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
-        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
-        tension: 0.3,
-        pointRadius: 5,
-        pointHoverRadius: 7,
-      }]
-    },
-    options: {
-      responsive: true,
-      interaction: {
-        mode: 'nearest',
-        intersect: false
+    const impactChart = new Chart(ctxImpact, {
+      type: 'doughnut',
+      data: {
+        labels: ['Aumento da produtividade', 'Redução do esforço físico', 'Melhor gestão', 'Acesso a mercados', 'Preservação ambiental'],
+        datasets: [{
+          label: 'Impactos',
+          data: [30, 20, 25, 15, 10],
+          backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
+        }]
       },
-      scales: {
-        y: {beginAtZero: true, title: {display: true, text: 'Índice Relativo', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}},
-        x: {title: {display: true, text: 'Ano', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
-      },
-      plugins: {
-        legend: {display: true, labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
-      }
-    }
-  });
-
-  const impactChart = new Chart(ctxImpact, {
-    type: 'doughnut',
-    data: {
-      labels: ['Aumento da produtividade', 'Redução do esforço físico', 'Melhor gestão', 'Acesso a mercados', 'Preservação ambiental'],
-      datasets: [{
-        label: 'Impactos',
-        data: [30, 20, 25, 15, 10],
-        backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+          }
         }
       }
-    }
-  });
+    });
 
-  const challengeChart = new Chart(ctxChallenge, {
-    type: 'bar',
-    data: {
-      labels: ['Acesso limitado', 'Capacitação', 'Sustentabilidade', 'Políticas públicas'],
-      datasets: [{
-        label: 'Nível de desafio',
-        data: [70, 60, 50, 40],
-        backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim()
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: 'Intensidade (%)',
-            color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+    const challengeChart = new Chart(ctxChallenge, {
+      type: 'bar',
+      data: {
+        labels: ['Acesso limitado', 'Capacitação', 'Sustentabilidade', 'Políticas públicas'],
+        datasets: [{
+          label: 'Nível de desafio',
+          data: [70, 60, 50, 40],
+          backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim()
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Intensidade (%)',
+              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+            },
+            ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
           },
-          ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+          x: {
+            ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+          }
         },
-        x: {
-          ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
-        }
-      },
-      plugins: {
-        legend: {display: false}
+        plugins: { legend: {display: false} }
       }
-    }
-  });
+    });
+  </script>
 
-  // Chatbox funcionalidade simples
-  const chatForm = document.getElementById('chatInputForm');
-  const chatInput = document.getElementById('chatInput');
-  const chatMessages = document.getElementById('chatMessages');
-
-  function addMessage(text, sender='bot') {
-    const msgEl = document.createElement('div');
-    msgEl.className = 'message ' + (sender === 'user' ? 'user-msg' : 'bot-msg');
-    msgEl.textContent = text;
-    chatMessages.appendChild(msgEl);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  chatForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const userText = chatInput.value.trim();
-    if(!userText) return;
-    addMessage(userText, 'user');
-    chatInput.value = '';
-    setTimeout(() => {
-      // Resposta simples simulada, com algumas respostas básicas
-      const lower = userText.toLowerCase();
-      let reply = 'Não entendi muito bem, mas continuo aprendendo! Pode reformular?';
-
-      if(lower.includes('drones')) reply = 'Drones ajudam muito no monitoramento, melhorando o uso de pesticidas e economizando tempo.';
-      else if(lower.includes('orgânica') || lower.includes('organica')) reply = 'A agricultura orgânica preserva o meio ambiente e garante alimentos mais saudáveis.';
-      else if(lower.includes('tecnologia')) reply = 'Tecnologia está transformando a agricultura familiar com ferramentas digitais, sensores e IA.';
-      else if(lower.includes('clima')) reply = 'Mudanças climáticas desafiam os agricultores, mas a adaptação tecnológica ajuda a enfrentar esses desafios.';
-      else if(lower.includes('futuro')) reply = 'O futuro passa por IoT, IA e agricultura regenerativa para garantir sustentabilidade e produtividade.';
-      else if(lower.includes('olá') || lower.includes('oi') || lower.includes('bom dia')) reply = 'Olá! Em que posso ajudar sobre agricultura familiar?';
-      else if(lower.includes('obrigado') || lower.includes('valeu')) reply = 'Disponha! Sempre que precisar, estou aqui para ajudar.';
-
-      addMessage(reply);
-    }, 1000);
-  });
-
-</script>
-
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 </body>
 </html>
