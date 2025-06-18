@@ -33,7 +33,7 @@
       to {opacity: 1;}
     }
 
-    /* Animação leve ao passar o mouse nos cards históricos */
+    /* Hover effect on historical cards */
     #historico article {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
@@ -42,31 +42,53 @@
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
     }
+
+    /* Dark mode styles */
+    .dark body {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    .dark nav {
+      background-color: #1f2937;
+      border-color: #374151;
+    }
+    .dark nav ul li a {
+      color: #9ca3af;
+    }
+    .dark nav ul li a.text-blue-600 {
+      color: #3b82f6 !important;
+    }
+    .dark footer {
+      background-color: #1f2937;
+      color: #9ca3af;
+      border-color: #374151;
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
+
   <!-- Botões de Acessibilidade -->
-<div class="fixed top-4 right-4 flex flex-col gap-3 z-50">
-  <!-- Modo Escuro -->
-  <button onclick="toggleDarkMode()"
-    class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition">
-    🌓 Modo Escuro
-  </button>
+  <div class="fixed top-4 right-4 flex flex-col gap-3 z-50">
+    <!-- Modo Escuro -->
+    <button onclick="toggleDarkMode()"
+      class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition">
+      🌓 Modo Escuro
+    </button>
 
-  <!-- Leitura em Voz Alta -->
-  <button onclick="lerTexto()"
-    class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition">
-    🔊 Ler em voz alta
-  </button>
+    <!-- Leitura em Voz Alta -->
+    <button onclick="lerTexto()"
+      class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition">
+      🔊 Ler em voz alta
+    </button>
 
-  <!-- Plugin VLibras -->
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
+    <!-- Plugin VLibras -->
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Navigation Sidebar -->
   <nav class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6 overflow-auto">
@@ -78,7 +100,7 @@
       <li><a href="#impactos" class="hover:text-blue-600 transition-colors duration-300">Impactos</a></li>
       <li><a href="#desafios" class="hover:text-blue-600 transition-colors duration-300">Desafios</a></li>
       <li><a href="#fatos" class="hover:text-blue-600 transition-colors duration-300">Fatos Importantes</a></li>
-      <li><a href="#orgânica" class="hover:text-blue-600 transition-colors duration-300">Agricultura Orgânica</a></li>
+      <li><a href="#organica" class="hover:text-blue-600 transition-colors duration-300">Agricultura Orgânica</a></li>
       <li><a href="#drones" class="hover:text-blue-600 transition-colors duration-300">Drones e Sensores</a></li>
       <li><a href="#clima" class="hover:text-blue-600 transition-colors duration-300">Mudanças Climáticas</a></li>
       <li><a href="#futuro" class="hover:text-blue-600 transition-colors duration-300">Perspectivas Futuras</a></li>
@@ -105,7 +127,6 @@
     <section id="historico" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌾 Histórico Detalhado</h3>
 
-      <!-- Card Histórico 1 -->
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
           🌱 Início da Agricultura e Ferramentas Manuais
@@ -115,7 +136,6 @@
         </p>
       </article>
 
-      <!-- Card Histórico 2 -->
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
           ⚙️ Revolução Industrial (século XVIII – XIX)
@@ -125,7 +145,6 @@
         </p>
       </article>
 
-      <!-- Card Histórico 3 -->
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
           🚜 Mecanização Agrícola (século XX)
@@ -135,7 +154,6 @@
         </p>
       </article>
 
-      <!-- Card Histórico 4 -->
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
           🧪 Revolução Verde (décadas de 1950–1970)
@@ -145,7 +163,6 @@
         </p>
       </article>
 
-      <!-- Card Histórico 5 -->
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
         <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
           💻 Agricultura Digital e de Precisão (final do século XX – hoje)
@@ -168,19 +185,16 @@
 
       <div class="grid md:grid-cols-2 gap-10">
 
-        <!-- Gráfico Linha de Produção -->
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h4 class="text-xl font-semibold mb-4">Evolução da Produção Agrícola (Índice Relativo)</h4>
           <canvas id="prodChart" style="max-height: 350px;"></canvas>
         </div>
 
-        <!-- Gráfico Pizza - Impactos -->
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h4 class="text-xl font-semibold mb-4">Impactos Positivos na Agricultura Familiar</h4>
           <canvas id="impactChart" style="max-height: 350px;"></canvas>
         </div>
 
-        <!-- Gráfico Barras - Desafios -->
         <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
           <h4 class="text-xl font-semibold mb-4">Principais Desafios para a Agricultura Familiar</h4>
           <canvas id="challengeChart" style="max-height: 350px;"></canvas>
@@ -276,10 +290,8 @@
       </div>
     </section>
 
-    <!-- Novos tópicos adicionados -->
-
     <!-- Agricultura Orgânica -->
-    <section id="orgânica" class="mb-20 fade-in">
+    <section id="organica" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌿 Inovações em Agricultura Orgânica</h3>
       <p class="text-gray-700 max-w-4xl">
         A agricultura orgânica cresce com técnicas que dispensam agrotóxicos, priorizando o equilíbrio ecológico. Novas tecnologias permitem monitorar solo, pragas e umidade com sensores naturais, facilitando práticas sustentáveis para pequenos agricultores familiares.
@@ -290,82 +302,75 @@
     <section id="drones" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🚁 Uso de Drones e Sensores Avançados</h3>
       <p class="text-gray-700 max-w-4xl">
-        Drones equipados com câmeras multiespectrais ajudam no monitoramento da saúde das plantações, identificando áreas que precisam de atenção. Sensores IoT no campo permitem o controle remoto de irrigação e aplicação de insumos, aumentando eficiência.
+        Drones equipados com câmeras multiespectrais ajudam no monitoramento da saúde das plantas, permitindo ações rápidas contra doenças e pragas. Sensores no solo medem umidade, temperatura e nutrientes, otimizando a irrigação e o uso de fertilizantes.
       </p>
     </section>
 
     <!-- Mudanças Climáticas -->
     <section id="clima" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌍 Agricultura Familiar e Mudanças Climáticas</h3>
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌍 Mudanças Climáticas e Adaptação</h3>
       <p class="text-gray-700 max-w-4xl">
-        As mudanças climáticas desafiam os agricultores familiares a adotarem novas práticas resilientes, como cultivos diversificados, uso racional da água e sistemas agroflorestais, para manter a produção frente às variações ambientais.
+        Tecnologias ajudam agricultores familiares a se adaptarem às mudanças climáticas, como variedades resistentes à seca e softwares de previsão climática que auxiliam no planejamento agrícola.
       </p>
     </section>
 
-    <!-- Perspectivas Futuras -->
+    <!-- Futuro da Agricultura -->
     <section id="futuro" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🔮 Perspectivas Futuras e Tecnologias Emergentes</h3>
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🔮 Perspectivas Futuras</h3>
       <p class="text-gray-700 max-w-4xl">
-        O futuro da agricultura familiar inclui avanços em inteligência artificial, robótica e biotecnologia, tornando as pequenas propriedades mais produtivas, sustentáveis e conectadas a redes globais de conhecimento e comércio.
+        O futuro da agricultura familiar é promissor com inteligência artificial, robótica e blockchain, que garantem rastreabilidade e eficiência. A digitalização e o acesso à internet devem democratizar ainda mais o conhecimento e o acesso às tecnologias.
       </p>
     </section>
 
     <!-- Referências -->
     <section id="referencias" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-6">📚 Referências</h3>
-      <ul class="list-disc list-inside ml-6 text-gray-700 max-w-4xl space-y-2">
-        <li><a href="https://www.fao.org/family-farming" target="_blank" class="text-blue-600 underline">FAO - Agricultura Familiar</a></li>
-        <li><a href="https://www.embrapa.br/" target="_blank" class="text-blue-600 underline">Embrapa - Pesquisa Agropecuária</a></li>
-        <li><a href="https://www.agriculturafamiliar.gov.br/" target="_blank" class="text-blue-600 underline">Portal da Agricultura Familiar - Brasil</a></li>
-        <li><a href="https://www.canalrural.com.br/" target="_blank" class="text-blue-600 underline">Canal Rural - Notícias e Tecnologia</a></li>
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">📚 Referências</h3>
+      <ul class="list-disc list-inside ml-6 space-y-2 text-gray-700 max-w-4xl">
+        <li><a href="https://www.fao.org/family-farming/en/" target="_blank" class="text-blue-600 hover:underline">FAO - Family Farming</a></li>
+        <li><a href="https://www.embrapa.br/en/agriculture" target="_blank" class="text-blue-600 hover:underline">Embrapa - Agricultura Familiar</a></li>
+        <li><a href="https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/precision-agriculture" target="_blank" class="text-blue-600 hover:underline">Precision Agriculture - ScienceDirect</a></li>
+        <li><a href="https://vlibras.gov.br/" target="_blank" class="text-blue-600 hover:underline">VLibras - Acessibilidade</a></li>
       </ul>
     </section>
-<!-- Rodapé -->
-<footer class="mt-20 bg-blue-100 text-blue-900 text-center py-8 border-t border-blue-300">
-  <p class="text-lg font-semibold">Vitor José de Oliveira de Souza</p>
-  <p class="text-sm">Idade: 15 anos</p>
-  <p class="text-sm">Estudante apaixonado por tecnologia, inovação e desenvolvimento de soluções para o campo.</p>
-  <p class="text-sm mt-2 italic">Projeto educacional para demonstração do impacto da tecnologia na agricultura familiar.</p>
-</footer>
+
   </div>
 
-  <!-- Scripts para gráficos e scrollspy -->
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-blue-300 border-t border-blue-600 text-center py-4">
+    <p>© 2025 Vitor José — Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- Scripts -->
   <script>
-
-    // ScrollSpy para destacar menu lateral
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul li a');
-
-    function activateMenuAtCurrentSection() {
-      let scrollY = window.pageYOffset;
-
-      sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 80; // ajuste para topo fixo
-        const sectionId = current.getAttribute('id');
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('text-blue-600', 'font-bold');
-            if (link.getAttribute('href') === '#' + sectionId) {
-              link.classList.add('text-blue-600', 'font-bold');
-            }
-          });
-        }
-      });
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
     }
-    window.addEventListener('scroll', activateMenuAtCurrentSection);
-    window.addEventListener('load', activateMenuAtCurrentSection);
 
-    // Gráfico Linha - Produção Agrícola
+    // Leitura em voz alta
+    function lerTexto() {
+      const texto = document.body.innerText;
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        speechSynthesis.cancel();
+        speechSynthesis.speak(utterance);
+      } else {
+        alert('Seu navegador não suporta a síntese de voz.');
+      }
+    }
+
+    // Gráficos Chart.js
+
+    // Dados para Evolução da Produção Agrícola
     const ctxProd = document.getElementById('prodChart').getContext('2d');
     const prodChart = new Chart(ctxProd, {
       type: 'line',
       data: {
-        labels: ['1900', '1950', '1970', '1990', '2010', '2023'],
+        labels: ['1900', '1950', '1970', '1990', '2010', '2025'],
         datasets: [{
-          label: 'Produção (Índice)',
-          data: [10, 40, 65, 90, 120, 160],
+          label: 'Produção',
+          data: [10, 40, 70, 90, 130, 160],
           fill: false,
           borderColor: '#2563eb',
           backgroundColor: '#2563eb',
@@ -376,58 +381,53 @@
       },
       options: {
         responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#2563eb',
-              font: { size: 14, weight: 'bold' }
-            }
-          }
-        },
         scales: {
           y: {
             beginAtZero: true,
-            ticks: { color: '#444', font: { size: 12 } }
+            title: {display: true, text: 'Índice Relativo'}
           },
           x: {
-            ticks: { color: '#444', font: { size: 12 } }
+            title: {display: true, text: 'Ano'}
           }
+        },
+        plugins: {
+          legend: {display: true}
         }
       }
     });
 
-    // Gráfico Pizza - Impactos
+    // Dados para Impactos Positivos
     const ctxImpact = document.getElementById('impactChart').getContext('2d');
     const impactChart = new Chart(ctxImpact, {
       type: 'doughnut',
       data: {
-        labels: ['Produtividade', 'Renda', 'Saúde', 'Gestão', 'Sustentabilidade'],
+        labels: ['Aumento da produtividade', 'Redução do esforço físico', 'Melhor gestão', 'Acesso a mercados', 'Preservação ambiental'],
         datasets: [{
-          data: [30, 25, 15, 20, 10],
-          backgroundColor: ['#2563eb', '#1d4ed8', '#3b82f6', '#60a5fa', '#93c5fd'],
-          hoverOffset: 20,
+          label: 'Impactos',
+          data: [30, 20, 25, 15, 10],
+          backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: { position: 'bottom', labels: { color: '#2563eb', font: { size: 14 } } }
+          legend: {
+            position: 'bottom',
+          }
         }
       }
     });
 
-    // Gráfico Barras - Desafios
+    // Dados para Desafios
     const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
     const challengeChart = new Chart(ctxChallenge, {
       type: 'bar',
       data: {
-        labels: ['Acesso à Tecnologia', 'Capacitação', 'Sustentabilidade', 'Políticas Públicas'],
+        labels: ['Acesso limitado', 'Capacitação', 'Sustentabilidade', 'Políticas públicas'],
         datasets: [{
-          label: 'Índice de Dificuldade',
-          data: [80, 65, 50, 70],
-          backgroundColor: '#2563eb',
-          borderRadius: 6,
-          barPercentage: 0.6,
+          label: 'Nível de desafio',
+          data: [70, 60, 50, 40],
+          backgroundColor: '#2563eb'
         }]
       },
       options: {
@@ -436,59 +436,20 @@
           y: {
             beginAtZero: true,
             max: 100,
-            ticks: { color: '#444', font: { size: 12 } }
-          },
-          x: {
-            ticks: { color: '#444', font: { size: 14 } }
+            title: {display: true, text: 'Intensidade (%)'}
           }
         },
         plugins: {
-          legend: { display: false }
+          legend: {display: false}
         }
       }
     });
-    // Botão "Voltar ao Topo"
-const btnTopo = document.getElementById("btnTopo");
-
-window.onscroll = function () {
-  if (document.documentElement.scrollTop > 300) {
-    btnTopo.classList.remove("hidden");
-  } else {
-    btnTopo.classList.add("hidden");
-  }
-};
-
-btnTopo.onclick = function () {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
-// Alternância de modo escuro
-function toggleDarkMode() {
-  document.documentElement.classList.toggle('dark');
-  document.body.classList.toggle('bg-gray-900');
-  document.body.classList.toggle('text-white');
-}
-
-// Leitura em voz alta da seção introdutória
-function lerTexto() {
-  const texto = document.querySelector("#intro")?.innerText || "Texto não encontrado.";
-  const sintese = window.speechSynthesis;
-  const voz = new SpeechSynthesisUtterance(texto);
-  voz.lang = "pt-BR";
-  sintese.cancel(); // parar qualquer leitura anterior
-  sintese.speak(voz);
-}
-
   </script>
-  <!-- Botão Voltar ao Topo -->
-<button id="btnTopo" title="Voltar ao Topo"
-  class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50">
-  ⬆️
-</button>
-<!-- Plugin VLibras - Libras oficial do Governo Brasileiro -->
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
 
+  <!-- VLibras plugin -->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
 </body>
 </html>
