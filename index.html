@@ -33,6 +33,18 @@
     @keyframes fadeIn {
       to {opacity: 1;}
     }
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotate360 1s linear forwards;
+}
 
   </style>
 </head>
@@ -430,6 +442,30 @@
       }
     });
   </script>
+<script>
+  // Seleciona todos os títulos <h4> dos tópicos para animar
+  const headings = document.querySelectorAll('article h4');
+
+  headings.forEach(heading => {
+    heading.style.display = 'inline-block'; // Para que o transform funcione corretamente
+
+    heading.addEventListener('mouseenter', () => {
+      // Remove a classe se já tiver (para reiniciar a animação)
+      heading.classList.remove('rotate-animation');
+
+      // Força reflow para reiniciar a animação
+      void heading.offsetWidth;
+
+      // Adiciona a classe que faz a rotação
+      heading.classList.add('rotate-animation');
+    });
+
+    // Opcional: remove a classe ao terminar a animação para permitir repetir
+    heading.addEventListener('animationend', () => {
+      heading.classList.remove('rotate-animation');
+    });
+  });
+</script>
 
 </body>
 </html>    
