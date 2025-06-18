@@ -4,14 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <style>
-    /* Scrollbar custom */
     ::-webkit-scrollbar {
       width: 8px;
     }
@@ -23,8 +18,6 @@
       border-radius: 20px;
       border: 3px solid #f1f1f1;
     }
-
-    /* Smooth fade-in */
     .fade-in {
       animation: fadeIn 1.2s ease forwards;
       opacity: 0;
@@ -32,8 +25,6 @@
     @keyframes fadeIn {
       to {opacity: 1;}
     }
-
-    /* Hover effect on historical cards */
     #historico article {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
@@ -42,9 +33,7 @@
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
     }
-
-    /* Dark mode styles */
-    .dark body {
+    .dark {
       background-color: #121212;
       color: #e0e0e0;
     }
@@ -66,22 +55,13 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
-
-  <!-- Botões de Acessibilidade -->
   <div class="fixed top-4 right-4 flex flex-col gap-3 z-50">
-    <!-- Modo Escuro -->
-    <button onclick="toggleDarkMode()"
-      class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition">
-      🌓 Modo Escuro
-    </button>
-
-    <!-- Leitura em Voz Alta -->
-    <button onclick="lerTexto()"
-      class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition">
-      🔊 Ler em voz alta
-    </button>
-
-    <!-- Plugin VLibras -->
+    <button
+      aria-label="Alternar modo escuro"
+      onclick="toggleDarkMode()"
+      class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-gray-700 transition"
+      title="Modo escuro"
+    >🌓</button>
     <div vw class="enabled">
       <div vw-access-button class="active"></div>
       <div vw-plugin-wrapper>
@@ -89,8 +69,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Navigation Sidebar -->
   <nav class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6 overflow-auto">
     <h1 class="text-3xl font-extrabold mb-10 text-blue-700">AgriTech</h1>
     <ul class="space-y-4 text-lg font-medium">
@@ -107,11 +85,7 @@
       <li><a href="#referencias" class="hover:text-blue-600 transition-colors duration-300">Referências</a></li>
     </ul>
   </nav>
-
-  <!-- Main Content Wrapper -->
   <div class="md:ml-64 px-6 md:px-16 py-10 max-w-7xl mx-auto">
-
-    <!-- Introdução -->
     <section id="intro" class="mb-16 fade-in">
       <h2 class="text-4xl font-bold text-blue-700 mb-4">📜 A Evolução da Tecnologia na Agricultura Familiar</h2>
       <p class="text-lg text-gray-700 max-w-4xl">
@@ -122,51 +96,34 @@
         Navegue pelas seções para entender como cada fase tecnológica moldou o presente e futuro da agricultura familiar.
       </p>
     </section>
-
-    <!-- Histórico Completo -->
     <section id="historico" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌾 Histórico Detalhado</h3>
-
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
-          🌱 Início da Agricultura e Ferramentas Manuais
-        </h4>
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🌱 Início da Agricultura e Ferramentas Manuais</h4>
         <p class="text-gray-700 leading-relaxed">
           A agricultura começou há cerca de 10 mil anos, quando as primeiras civilizações surgiram. Os agricultores utilizavam ferramentas manuais simples, como enxadas, foices e arados puxados por animais. O conhecimento era passado oralmente entre gerações, formando a base da agricultura familiar, cujo principal objetivo era garantir a subsistência da família.
         </p>
       </article>
-
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
-          ⚙️ Revolução Industrial (século XVIII – XIX)
-        </h4>
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">⚙️ Revolução Industrial (século XVIII – XIX)</h4>
         <p class="text-gray-700 leading-relaxed">
           A Revolução Industrial trouxe máquinas a vapor e os primeiros tratores agrícolas. Embora essas tecnologias tenham começado a modernizar a agricultura, elas demoraram a alcançar as pequenas propriedades familiares, especialmente em países em desenvolvimento. Por isso, os agricultores familiares mantiveram por muito tempo métodos tradicionais.
         </p>
       </article>
-
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
-          🚜 Mecanização Agrícola (século XX)
-        </h4>
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🚜 Mecanização Agrícola (século XX)</h4>
         <p class="text-gray-700 leading-relaxed">
           Após a Segunda Guerra Mundial, houve uma grande disseminação da mecanização agrícola, com tratores, plantadeiras e colheitadeiras acessíveis a um número maior de agricultores. Essa mecanização reduziu o esforço físico, aumentou a produtividade e melhorou a qualidade de vida no campo, mesmo entre famílias que trabalhavam em pequenos lotes.
         </p>
       </article>
-
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
-          🧪 Revolução Verde (décadas de 1950–1970)
-        </h4>
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🧪 Revolução Verde (décadas de 1950–1970)</h4>
         <p class="text-gray-700 leading-relaxed">
           A Revolução Verde introduziu fertilizantes químicos, pesticidas, sementes melhoradas e técnicas modernas de irrigação. Embora tenha elevado drasticamente a produção, os altos custos limitaram o acesso dos pequenos agricultores, que muitas vezes dependiam de políticas públicas e cooperativas para se beneficiarem dessas inovações.
         </p>
       </article>
-
       <article class="mb-10 bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">
-          💻 Agricultura Digital e de Precisão (final do século XX – hoje)
-        </h4>
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">💻 Agricultura Digital e de Precisão (final do século XX – hoje)</h4>
         <p class="text-gray-700 leading-relaxed mb-4">
           A tecnologia digital transformou a agricultura familiar, trazendo internet, sensores, GPS, drones e inteligência artificial para o campo. Agricultores familiares contam hoje com:
         </p>
@@ -178,35 +135,25 @@
         </ul>
       </article>
     </section>
-
-    <!-- Gráficos -->
     <section id="graficos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-6">📊 Gráficos Interativos</h3>
-
       <div class="grid md:grid-cols-2 gap-10">
-
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h4 class="text-xl font-semibold mb-4">Evolução da Produção Agrícola (Índice Relativo)</h4>
           <canvas id="prodChart" style="max-height: 350px;"></canvas>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md">
           <h4 class="text-xl font-semibold mb-4">Impactos Positivos na Agricultura Familiar</h4>
           <canvas id="impactChart" style="max-height: 350px;"></canvas>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md md:col-span-2">
           <h4 class="text-xl font-semibold mb-4">Principais Desafios para a Agricultura Familiar</h4>
           <canvas id="challengeChart" style="max-height: 350px;"></canvas>
         </div>
-
       </div>
     </section>
-
-    <!-- Impactos detalhados -->
     <section id="impactos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🤝 Impactos da Tecnologia na Agricultura Familiar</h3>
-
       <ul class="list-disc list-inside ml-6 space-y-4 text-gray-800 max-w-4xl">
         <li><strong>Aumento da produtividade e da renda:</strong> Com máquinas e técnicas modernas, pequenos agricultores conseguem produzir mais e melhor.</li>
         <li><strong>Redução do esforço físico:</strong> A mecanização diminuiu o desgaste físico, ajudando na saúde dos agricultores.</li>
@@ -215,238 +162,151 @@
         <li><strong>Preservação ambiental:</strong> Tecnologias de precisão permitem uso racional de insumos e menor impacto ambiental.</li>
       </ul>
     </section>
-
-    <!-- Desafios -->
     <section id="desafios" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">⚠️ Desafios Enfrentados</h3>
       <div class="max-w-5xl space-y-6 text-gray-800">
-
         <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
           <h4 class="text-2xl font-semibold mb-2">1. Acesso limitado a tecnologia</h4>
-          <p>
-            Em muitas regiões rurais, a infraestrutura precária e o custo dos equipamentos dificultam o acesso a tecnologias avançadas.
-          </p>
+          <p>Em muitas regiões rurais, a infraestrutura precária e o custo dos equipamentos dificultam o acesso a tecnologias avançadas.</p>
         </article>
-
         <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
           <h4 class="text-2xl font-semibold mb-2">2. Capacitação e conhecimento técnico</h4>
-          <p>
-            A falta de treinamento adequado impede que muitos agricultores usem o potencial completo das tecnologias disponíveis.
-          </p>
+          <p>A falta de treinamento adequado impede que muitos agricultores usem o potencial completo das tecnologias disponíveis.</p>
         </article>
-
         <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
           <h4 class="text-2xl font-semibold mb-2">3. Sustentabilidade econômica e ambiental</h4>
-          <p>
-            É preciso balancear o aumento da produção com práticas que preservem o solo, a água e a biodiversidade local.
-          </p>
+          <p>É preciso balancear o aumento da produção com práticas que preservem o solo, a água e a biodiversidade local.</p>
         </article>
-
         <article class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
           <h4 class="text-2xl font-semibold mb-2">4. Políticas públicas e apoio financeiro</h4>
-          <p>
-            A ausência ou ineficiência de políticas que apoiem a pequena agricultura limita investimentos em inovação e expansão.
-          </p>
+          <p>A ausência ou ineficiência de políticas que apoiem a pequena agricultura limita investimentos em inovação e expansão.</p>
         </article>
-
       </div>
     </section>
-
-    <!-- Fatos Importantes -->
     <section id="fatos" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">📌 Fatos Importantes</h3>
       <div class="grid md:grid-cols-3 gap-8">
-
         <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
           <h4 class="text-xl font-bold mb-2 text-blue-700">35% da produção mundial</h4>
           <p>A agricultura familiar é responsável por aproximadamente 35% da produção mundial de alimentos, sendo fundamental para a segurança alimentar.</p>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-          <h4 class="text-xl font-bold mb-2 text-blue-700">80% dos agricultores</h4>
-          <p>Mais de 80% dos agricultores no mundo são familiares, mostrando a importância desse modelo para a economia rural.</p>
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Mais de 500 milhões</h4>
+          <p>Existem mais de 500 milhões de unidades familiares agrícolas no mundo, distribuídas principalmente em países em desenvolvimento.</p>
         </div>
-
         <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-          <h4 class="text-xl font-bold mb-2 text-blue-700">Tecnologia móvel</h4>
-          <p>Mais de 70% dos agricultores familiares usam smartphones para acessar informações técnicas e de mercado.</p>
+          <h4 class="text-xl font-bold mb-2 text-blue-700">65% da mão de obra agrícola</h4>
+          <p>A agricultura familiar emprega cerca de 65% da mão de obra agrícola global, sendo a base das comunidades rurais.</p>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-          <h4 class="text-xl font-bold mb-2 text-blue-700">Redução do trabalho manual</h4>
-          <p>O uso de máquinas modernas reduziu em 50% o trabalho manual em pequenas propriedades nos últimos 30 anos.</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-          <h4 class="text-xl font-bold mb-2 text-blue-700">Agricultura sustentável</h4>
-          <p>Tecnologias de agricultura de precisão têm potencial para reduzir o uso de fertilizantes em até 30% sem perda de produtividade.</p>
-        </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-          <h4 class="text-xl font-bold mb-2 text-blue-700">Conectividade no campo</h4>
-          <p>Projetos de conectividade rural têm alcançado mais de 40 milhões de pessoas, facilitando a difusão tecnológica.</p>
-        </div>
-
       </div>
     </section>
-
-    <!-- Agricultura Orgânica -->
     <section id="organica" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌿 Inovações em Agricultura Orgânica</h3>
-      <p class="text-gray-700 max-w-4xl">
-        A agricultura orgânica cresce com técnicas que dispensam agrotóxicos, priorizando o equilíbrio ecológico. Novas tecnologias permitem monitorar solo, pragas e umidade com sensores naturais, facilitando práticas sustentáveis para pequenos agricultores familiares.
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌿 Agricultura Orgânica e Sustentabilidade</h3>
+      <p class="max-w-5xl text-gray-800 mb-4">
+        A agricultura familiar é protagonista na produção orgânica, que busca reduzir o uso de insumos químicos e respeitar o equilíbrio ambiental. Técnicas como compostagem, rotação de culturas e controle biológico fortalecem a sustentabilidade e a qualidade dos alimentos.
       </p>
     </section>
-
-    <!-- Drones e Sensores -->
     <section id="drones" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🚁 Uso de Drones e Sensores Avançados</h3>
-      <p class="text-gray-700 max-w-4xl">
-        Drones equipados com câmeras multiespectrais ajudam no monitoramento da saúde das plantas, permitindo ações rápidas contra doenças e pragas. Sensores no solo medem umidade, temperatura e nutrientes, otimizando a irrigação e o uso de fertilizantes.
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🚁 Uso de Drones e Sensores Remotos</h3>
+      <p class="max-w-5xl text-gray-800 mb-4">
+        Drones equipados com câmeras e sensores permitem monitorar o estado das plantações em tempo real, detectando pragas, doenças e falhas no solo. Isso facilita decisões rápidas e mais eficientes para os agricultores familiares.
       </p>
     </section>
-
-    <!-- Mudanças Climáticas -->
     <section id="clima" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌍 Mudanças Climáticas e Adaptação</h3>
-      <p class="text-gray-700 max-w-4xl">
-        Tecnologias ajudam agricultores familiares a se adaptarem às mudanças climáticas, como variedades resistentes à seca e softwares de previsão climática que auxiliam no planejamento agrícola.
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌍 Mudanças Climáticas e Agricultura Familiar</h3>
+      <p class="max-w-5xl text-gray-800 mb-4">
+        As mudanças climáticas apresentam desafios crescentes, como secas e eventos extremos. A adoção de tecnologias resistentes e adaptativas é essencial para a resiliência dos agricultores familiares frente a essas ameaças.
       </p>
     </section>
-
-    <!-- Futuro da Agricultura -->
     <section id="futuro" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🔮 Perspectivas Futuras</h3>
-      <p class="text-gray-700 max-w-4xl">
-        O futuro da agricultura familiar é promissor com inteligência artificial, robótica e blockchain, que garantem rastreabilidade e eficiência. A digitalização e o acesso à internet devem democratizar ainda mais o conhecimento e o acesso às tecnologias.
+      <p class="max-w-5xl text-gray-800 mb-4">
+        O futuro da agricultura familiar passa pela integração cada vez maior de tecnologias digitais, o fortalecimento das redes de cooperação e a valorização dos saberes tradicionais, criando sistemas agrícolas mais justos, produtivos e sustentáveis.
       </p>
     </section>
-
-    <!-- Referências -->
     <section id="referencias" class="mb-20 fade-in">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">📚 Referências</h3>
-      <ul class="list-disc list-inside ml-6 space-y-2 text-gray-700 max-w-4xl">
-        <li><a href="https://www.fao.org/family-farming/en/" target="_blank" class="text-blue-600 hover:underline">FAO - Family Farming</a></li>
-        <li><a href="https://www.embrapa.br/en/agriculture" target="_blank" class="text-blue-600 hover:underline">Embrapa - Agricultura Familiar</a></li>
-        <li><a href="https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/precision-agriculture" target="_blank" class="text-blue-600 hover:underline">Precision Agriculture - ScienceDirect</a></li>
-        <li><a href="https://vlibras.gov.br/" target="_blank" class="text-blue-600 hover:underline">VLibras - Acessibilidade</a></li>
+      <ul class="list-disc list-inside ml-6 space-y-2 text-gray-700 max-w-5xl">
+        <li><a href="https://www.fao.org/family-farming/overview/pt/" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">FAO - Agricultura Familiar</a></li>
+        <li><a href="https://www.embrapa.br/agricultura-familiar" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Embrapa - Agricultura Familiar no Brasil</a></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S0308521X19302872" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Estudo sobre Tecnologia e Agricultura Familiar</a></li>
       </ul>
     </section>
-
   </div>
-
-  <!-- Footer -->
   <footer class="bg-blue-900 text-blue-300 border-t border-blue-600 text-center py-4">
     <p>© 2025 Vitor José — Todos os direitos reservados.</p>
   </footer>
-
-  <!-- Scripts -->
   <script>
-    // Dark mode toggle
     function toggleDarkMode() {
       document.documentElement.classList.toggle('dark');
     }
-
-    // Leitura em voz alta
-    function lerTexto() {
-      const texto = document.body.innerText;
-      if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR';
-        speechSynthesis.cancel();
-        speechSynthesis.speak(utterance);
-      } else {
-        alert('Seu navegador não suporta a síntese de voz.');
-      }
-    }
-
-    // Gráficos Chart.js
-
-    // Dados para Evolução da Produção Agrícola
-    const ctxProd = document.getElementById('prodChart').getContext('2d');
-    const prodChart = new Chart(ctxProd, {
-      type: 'line',
-      data: {
-        labels: ['1900', '1950', '1970', '1990', '2010', '2025'],
-        datasets: [{
-          label: 'Produção',
-          data: [10, 40, 70, 90, 130, 160],
-          fill: false,
-          borderColor: '#2563eb',
-          backgroundColor: '#2563eb',
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {display: true, text: 'Índice Relativo'}
+    const ctxProd = document.getElementById('prodChart')?.getContext('2d');
+    if (ctxProd) {
+      new Chart(ctxProd, {
+        type: 'line',
+        data: {
+          labels: ['1900', '1950', '1970', '1990', '2010', '2025'],
+          datasets: [{
+            label: 'Produção',
+            data: [10, 40, 70, 90, 130, 160],
+            fill: false,
+            borderColor: '#2563eb',
+            backgroundColor: '#2563eb',
+            tension: 0.3,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {beginAtZero: true, title: {display: true, text: 'Índice Relativo'}},
+            x: {title: {display: true, text: 'Ano'}}
           },
-          x: {
-            title: {display: true, text: 'Ano'}
-          }
+          plugins: {legend: {display: true}}
+        }
+      });
+    }
+    const ctxImpact = document.getElementById('impactChart')?.getContext('2d');
+    if (ctxImpact) {
+      new Chart(ctxImpact, {
+        type: 'doughnut',
+        data: {
+          labels: ['Aumento da produtividade', 'Redução do esforço físico', 'Melhor gestão', 'Acesso a mercados', 'Preservação ambiental'],
+          datasets: [{
+            label: 'Impactos',
+            data: [30, 20, 25, 15, 10],
+            backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
+          }]
         },
-        plugins: {
-          legend: {display: true}
+        options: {
+          responsive: true,
+          plugins: {legend: {position: 'bottom'}}
         }
-      }
-    });
-
-    // Dados para Impactos Positivos
-    const ctxImpact = document.getElementById('impactChart').getContext('2d');
-    const impactChart = new Chart(ctxImpact, {
-      type: 'doughnut',
-      data: {
-        labels: ['Aumento da produtividade', 'Redução do esforço físico', 'Melhor gestão', 'Acesso a mercados', 'Preservação ambiental'],
-        datasets: [{
-          label: 'Impactos',
-          data: [30, 20, 25, 15, 10],
-          backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'bottom',
-          }
-        }
-      }
-    });
-
-    // Dados para Desafios
-    const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
-    const challengeChart = new Chart(ctxChallenge, {
-      type: 'bar',
-      data: {
-        labels: ['Acesso limitado', 'Capacitação', 'Sustentabilidade', 'Políticas públicas'],
-        datasets: [{
-          label: 'Nível de desafio',
-          data: [70, 60, 50, 40],
-          backgroundColor: '#2563eb'
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            title: {display: true, text: 'Intensidade (%)'}
-          }
+      });
+    }
+    const ctxChallenge = document.getElementById('challengeChart')?.getContext('2d');
+    if (ctxChallenge) {
+      new Chart(ctxChallenge, {
+        type: 'bar',
+        data: {
+          labels: ['Acesso limitado', 'Capacitação', 'Sustentabilidade', 'Políticas públicas'],
+          datasets: [{
+            label: 'Nível de desafio',
+            data: [70, 60, 50, 40],
+            backgroundColor: '#2563eb'
+          }]
         },
-        plugins: {
-          legend: {display: false}
+        options: {
+          responsive: true,
+          scales: {
+            y: {beginAtZero: true, max: 100, title: {display: true, text: 'Intensidade (%)'}}
+          },
+          plugins: {legend: {display: false}}
         }
-      }
-    });
+      });
+    }
   </script>
-
-  <!-- VLibras plugin -->
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');

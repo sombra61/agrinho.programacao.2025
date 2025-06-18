@@ -1,147 +1,263 @@
-
-{
-  box-sizing: border-box;
+/* Reset básico */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* Estilização geral do corpo */
+/* Corpo e tipografia */
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f9fafb;
-  color: #1f2937;
-  font-family: 'Inter', sans-serif;
+  color: #111827;
   line-height: 1.6;
+  scroll-behavior: smooth;
+  padding-left: 280px; /* espaço para nav fixo */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Navegação lateral */
+/* Nav lateral fixa */
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgb(0 0 0 / 0.1);
+  z-index: 100;
 }
 
 nav h1 {
-  color: #1d4ed8;
-  font-size: 1.875rem;
+  font-size: 2.25rem;
   font-weight: 800;
-  margin-bottom: 2rem;
+  color: #2563eb;
+  margin-bottom: 2.5rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 nav ul li a {
-  color: #1f2937;
-  transition: color 0.3s ease;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #374151;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover,
-nav ul li a.text-blue-600 {
-  color: #2563eb;
-  font-weight: bold;
-}
-
-/* Seções */
-section {
-  margin-bottom: 5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-/* Títulos principais e subtítulos */
-section h2, section h3, section h4 {
+nav ul li a.active {
   color: #2563eb;
   font-weight: 700;
 }
 
-/* Artigos dentro dos cards históricos */
-article {
-  background-color: #ffffff;
+/* Conteúdo principal */
+main {
+  max-width: 900px;
+  margin: 2rem auto 4rem auto;
+  padding: 0 1rem;
+}
+
+/* Seções */
+section {
+  margin-bottom: 4rem;
+}
+
+h2, h3, h4 {
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #4b5563;
+}
+
+p.italic {
+  font-style: italic;
+  color: #6b7280;
+}
+
+/* Listas */
+ul {
+  list-style: disc inside;
+  margin-left: 1.25rem;
+  color: #4b5563;
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 1.5rem;
+}
+
+.facts-grid > div {
+  background-color: #fff;
   padding: 1.5rem;
   border-radius: 0.75rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+  text-align: center;
+  transition: box-shadow 0.3s;
 }
 
-article:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
-  cursor: pointer;
+.facts-grid > div:hover {
+  box-shadow: 0 10px 20px rgb(37 99 235 / 0.25);
 }
 
-/* Lista de tópicos */
-ul {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-  padding-left: 1rem;
-}
-
-ul li {
+.facts-grid h4 {
+  color: #2563eb;
   margin-bottom: 0.5rem;
 }
 
-/* Gráficos */
-canvas {
-  max-width: 100%;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 0.5rem;
+/* Botões acessibilidade */
+.accessibility-buttons {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 200;
+}
+
+.accessibility-buttons button {
+  background-color: #2563eb;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.accessibility-buttons button:hover {
+  background-color: #1d4ed8;
 }
 
 /* Rodapé */
 footer {
-  background-color: #e0f2fe;
-  color: #1e40af;
-  padding: 2rem;
+  background-color: #bfdbfe;
   text-align: center;
+  padding: 2rem 1rem;
+  color: #1e40af;
+  font-weight: 600;
   border-top: 1px solid #93c5fd;
-}
-
-footer p {
-  margin-bottom: 0.25rem;
 }
 
 footer p.italic {
   font-style: italic;
+  font-weight: 400;
   margin-top: 0.5rem;
+  color: #3b82f6;
 }
 
-/* Botão "Voltar ao Topo" */
+/* Botão voltar topo */
 #btnTopo {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
   background-color: #2563eb;
   color: white;
-  padding: 0.75rem;
+  border: none;
+  padding: 0.75rem 1rem;
   border-radius: 9999px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  transition: background-color 0.3s ease;
-  z-index: 999;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgb(37 99 235 / 0.5);
+  display: none;
+  font-size: 1.25rem;
+  z-index: 150;
+  transition: background-color 0.3s;
 }
 
 #btnTopo:hover {
   background-color: #1e40af;
 }
 
-/* Scrollbar customizado */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #2563eb;
-  border-radius: 20px;
-  border: 3px solid #f1f1f1;
-}
-
 /* Animações */
 .fade-in {
   opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
   to {
     opacity: 1;
+    transform: none;
   }
+}
+
+/* Gráficos Container */
+.charts-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .charts-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Modo escuro */
+body.dark-mode {
+  background-color: #1f2937;
+  color: #d1d5db;
+}
+
+body.dark-mode nav {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+body.dark-mode nav h1,
+body.dark-mode nav ul li a {
+  color: #93c5fd;
+}
+
+body.dark-mode footer {
+  background-color: #111827;
+  color: #93c5fd;
+}
+
+body.dark-mode .facts-grid > div {
+  background-color: #374151;
+  box-shadow: 0 4px 6px rgb(255 255 255 / 0.1);
+}
+
+body.dark-mode .accessibility-buttons button {
+  background-color: #2563eb;
+  color: #d1d5db;
+}
+
+body.dark-mode #btnTopo {
+  background-color: #3b82f6;
+  color: #1e40af;
 }
