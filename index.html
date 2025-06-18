@@ -10,39 +10,8 @@
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <style>
-    /* Scrollbar custom */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #2563eb;
-      border-radius: 20px;
-      border: 3px solid #f1f1f1;
-    }
-
-    /* Smooth fade-in */
-    .fade-in {
-      animation: fadeIn 1.2s ease forwards;
-      opacity: 0;
-    }
-    @keyframes fadeIn {
-      to {opacity: 1;}
-    }
-
-    /* Animação leve ao passar o mouse nos cards históricos */
-    #historico article {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    #historico article:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
-    }
-  </style>
+  <!-- Link para CSS externo -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
 
@@ -301,123 +270,8 @@
 
   </div>
 
-  <!-- Scripts para gráficos e scrollspy -->
-  <script>
-    // ScrollSpy para destacar menu lateral
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul li a');
+  <!-- Script externo -->
+  <script src="scripts.js"></script>
 
-    function activateMenuAtCurrentSection() {
-      let scrollY = window.pageYOffset;
-
-      sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 80; // ajuste para topo fixo
-        const sectionId = current.getAttribute('id');
-
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('text-blue-600', 'font-bold');
-            if (link.getAttribute('href') === '#' + sectionId) {
-              link.classList.add('text-blue-600', 'font-bold');
-            }
-          });
-        }
-      });
-    }
-    window.addEventListener('scroll', activateMenuAtCurrentSection);
-    window.addEventListener('load', activateMenuAtCurrentSection);
-
-    // Gráfico Linha - Produção Agrícola
-    const ctxProd = document.getElementById('prodChart').getContext('2d');
-    const prodChart = new Chart(ctxProd, {
-      type: 'line',
-      data: {
-        labels: ['1900', '1950', '1970', '1990', '2010', '2023'],
-        datasets: [{
-          label: 'Produção (Índice)',
-          data: [10, 40, 65, 90, 120, 160],
-          fill: false,
-          borderColor: '#2563eb',
-          backgroundColor: '#2563eb',
-          tension: 0.3,
-          pointRadius: 5,
-          pointHoverRadius: 7,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: '#2563eb',
-              font: { size: 14, weight: 'bold' }
-            }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: { color: '#444', font: { size: 12 } }
-          },
-          x: {
-            ticks: { color: '#444', font: { size: 12 } }
-          }
-        }
-      }
-    });
-
-    // Gráfico Pizza - Impactos
-    const ctxImpact = document.getElementById('impactChart').getContext('2d');
-    const impactChart = new Chart(ctxImpact, {
-      type: 'doughnut',
-      data: {
-        labels: ['Produtividade', 'Renda', 'Saúde', 'Gestão', 'Sustentabilidade'],
-        datasets: [{
-          data: [30, 25, 15, 20, 10],
-          backgroundColor: ['#2563eb', '#1d4ed8', '#3b82f6', '#60a5fa', '#93c5fd'],
-          hoverOffset: 20,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'bottom', labels: { color: '#2563eb', font: { size: 14 } } }
-        }
-      }
-    });
-
-    // Gráfico Barras - Desafios
-    const ctxChallenge = document.getElementById('challengeChart').getContext('2d');
-    const challengeChart = new Chart(ctxChallenge, {
-      type: 'bar',
-      data: {
-        labels: ['Acesso à Tecnologia', 'Capacitação', 'Sustentabilidade', 'Políticas Públicas'],
-        datasets: [{
-          label: 'Índice de Dificuldade',
-          data: [80, 65, 50, 70],
-          backgroundColor: '#2563eb',
-          borderRadius: 6,
-          barPercentage: 0.6,
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            max: 100,
-            ticks: { color: '#444', font: { size: 12 } }
-          },
-          x: {
-            ticks: { color: '#444', font: { size: 14 } }
-          }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
-  </script>
 </body>
 </html>
