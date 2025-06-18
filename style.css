@@ -1,0 +1,147 @@
+
+{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilização geral do corpo */
+body {
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Navegação lateral */
+nav {
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+nav h1 {
+  color: #1d4ed8;
+  font-size: 1.875rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+nav ul li a {
+  color: #1f2937;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.text-blue-600 {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+/* Seções */
+section {
+  margin-bottom: 5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Títulos principais e subtítulos */
+section h2, section h3, section h4 {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* Artigos dentro dos cards históricos */
+article {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+  cursor: pointer;
+}
+
+/* Lista de tópicos */
+ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Gráficos */
+canvas {
+  max-width: 100%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Rodapé */
+footer {
+  background-color: #e0f2fe;
+  color: #1e40af;
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid #93c5fd;
+}
+
+footer p {
+  margin-bottom: 0.25rem;
+}
+
+footer p.italic {
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Botão "Voltar ao Topo" */
+#btnTopo {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+  z-index: 999;
+}
+
+#btnTopo:hover {
+  background-color: #1e40af;
+}
+
+/* Scrollbar customizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2563eb;
+  border-radius: 20px;
+  border: 3px solid #f1f1f1;
+}
+
+/* Animações */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

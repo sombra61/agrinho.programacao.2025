@@ -45,6 +45,28 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
+  <!-- Botões de Acessibilidade -->
+<div class="fixed top-4 right-4 flex flex-col gap-3 z-50">
+  <!-- Modo Escuro -->
+  <button onclick="toggleDarkMode()"
+    class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition">
+    🌓 Modo Escuro
+  </button>
+
+  <!-- Leitura em Voz Alta -->
+  <button onclick="lerTexto()"
+    class="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition">
+    🔊 Ler em voz alta
+  </button>
+
+  <!-- Plugin VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+</div>
 
   <!-- Navigation Sidebar -->
   <nav class="fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6 overflow-auto">
@@ -309,6 +331,7 @@
 
   <!-- Scripts para gráficos e scrollspy -->
   <script>
+
     // ScrollSpy para destacar menu lateral
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav ul li a');
@@ -438,12 +461,34 @@ window.onscroll = function () {
 btnTopo.onclick = function () {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
+// Alternância de modo escuro
+function toggleDarkMode() {
+  document.documentElement.classList.toggle('dark');
+  document.body.classList.toggle('bg-gray-900');
+  document.body.classList.toggle('text-white');
+}
+
+// Leitura em voz alta da seção introdutória
+function lerTexto() {
+  const texto = document.querySelector("#intro")?.innerText || "Texto não encontrado.";
+  const sintese = window.speechSynthesis;
+  const voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = "pt-BR";
+  sintese.cancel(); // parar qualquer leitura anterior
+  sintese.speak(voz);
+}
+
   </script>
   <!-- Botão Voltar ao Topo -->
 <button id="btnTopo" title="Voltar ao Topo"
   class="hidden fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50">
   ⬆️
 </button>
+<!-- Plugin VLibras - Libras oficial do Governo Brasileiro -->
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
 
 </body>
 </html>
