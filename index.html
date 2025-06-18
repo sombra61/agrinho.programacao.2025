@@ -1,344 +1,103 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evolução da Tecnologia na Agricultura Familiar - Painel Interativo</title>
+  <title>Reserva Paraná - Agricultura Sustentável e Tecnologia</title>
+  <meta name="description" content="Informações completas sobre agricultura, técnicas sustentáveis, culturas e tecnologias na região de Reserva Paraná." />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script>
-    // Configuração do modo dark no Tailwind via script
-    tailwind.config = {
-      darkMode: 'class',
-    };
-  </script>
-
-  <style>
-    /* Scrollbar customizada */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
-    ::-webkit-scrollbar-thumb {
-      background-color: #2563eb;
-      border-radius: 20px;
-      border: 3px solid #f1f1f1;
-    }
-
-    /* Animação de fade-in */
-    .fade-in { animation: fadeIn 1.2s ease forwards; opacity: 0; }
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    /* Melhor tamanho responsivo dos gráficos */
-    canvas {
-      width: 100% !important;
-      max-width: 900px;
-      height: 450px !important;
-      margin: 0 auto;
-      display: block;
-    }
-    @media (max-width: 768px) {
-      canvas {
-        height: 320px !important;
-        max-width: 100%;
-      }
-    }
-  </style>
+  <!-- Link para o CSS externo -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed dark:bg-gray-900 dark:text-gray-100 transition-colors duration-500">
-
-  <!-- Cabeçalho fixo -->
-  <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-md z-50">
-    <div class="max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between h-16">
-      <h1 class="text-2xl font-extrabold text-blue-700 dark:text-blue-400">AgriTech</h1>
-      <div class="flex items-center gap-4">
-        <button id="toggleDark" aria-label="Alternar modo escuro/claro" class="bg-blue-600 dark:bg-blue-400 text-white px-3 py-1 rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors">
-          Modo Dark
-        </button>
-        <button id="menuToggle" class="md:hidden text-gray-700 dark:text-gray-300" aria-label="Alternar menu mobile">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
-          </svg>
-        </button>
-      </div>
-    </div>
-    <nav id="mobileMenu" class="md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-md hidden">
-      <ul class="flex flex-col p-4 space-y-2 text-lg font-medium">
-        <li><a href="#intro" class="hover:text-blue-600 dark:hover:text-blue-400">Introdução</a></li>
-        <li><a href="#historico" class="hover:text-blue-600 dark:hover:text-blue-400">Histórico</a></li>
-        <li><a href="#graficos" class="hover:text-blue-600 dark:hover:text-blue-400">Gráficos</a></li>
-        <li><a href="#impactos" class="hover:text-blue-600 dark:hover:text-blue-400">Impactos</a></li>
-        <li><a href="#desafios" class="hover:text-blue-600 dark:hover:text-blue-400">Desafios</a></li>
-        <li><a href="#fatos" class="hover:text-blue-600 dark:hover:text-blue-400">Fatos Importantes</a></li>
-        <li><a href="#referencias" class="hover:text-blue-600 dark:hover:text-blue-400">Referências</a></li>
+<body>
+  <header>
+    <h1>Reserva - PR 🌱</h1>
+    <nav>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+        <li><a href="#tecnologia">Tecnologia</a></li>
+        <li><a href="#culturas">Culturas Locais</a></li>
+        <li><a href="#grafico">Gráfico</a></li>
+        <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Sidebar para desktop -->
-  <nav class="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white border-r border-gray-200 shadow-lg hidden md:flex flex-col p-6 overflow-auto dark:bg-gray-900 dark:border-gray-700">
-    <ul class="space-y-4 text-lg font-medium">
-      <li><a href="#intro" class="hover:text-blue-600 dark:hover:text-blue-400">Introdução</a></li>
-      <li><a href="#historico" class="hover:text-blue-600 dark:hover:text-blue-400">Histórico</a></li>
-      <li><a href="#graficos" class="hover:text-blue-600 dark:hover:text-blue-400">Gráficos</a></li>
-      <li><a href="#impactos" class="hover:text-blue-600 dark:hover:text-blue-400">Impactos</a></li>
-      <li><a href="#desafios" class="hover:text-blue-600 dark:hover:text-blue-400">Desafios</a></li>
-      <li><a href="#fatos" class="hover:text-blue-600 dark:hover:text-blue-400">Fatos</a></li>
-      <li><a href="#referencias" class="hover:text-blue-600 dark:hover:text-blue-400">Referências</a></li>
-    </ul>
-  </nav>
-
-  <!-- Conteúdo principal -->
-  <main class="md:ml-64 px-6 md:px-16 pt-20 pb-24 max-w-7xl mx-auto">
-
-    <!-- Introdução -->
-    <section id="intro" class="mb-16 fade-in">
-      <h2 class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-4">📜 A Evolução da Tecnologia na Agricultura Familiar</h2>
-      <p class="text-lg text-gray-700 dark:text-gray-300 max-w-4xl">
-        A agricultura familiar é a espinha dorsal da alimentação de muitos países. Vamos explorar juntos, de forma leve e direta, cada etapa da evolução tecnológica que transformou o campo — da enxada aos drones!
-      </p>
-      <p class="mt-4 italic text-gray-600 dark:text-gray-400 max-w-3xl">
-        Use o menu ao lado ou no topo para navegar pelas seções e compreender como cada período impactou os pequenos produtores.
-      </p>
+  <main>
+    <!-- Seção: Sobre a Cidade -->
+    <section id="sobre">
+      <h2>🌾 Sobre Reserva - PR</h2>
+      <p>Reserva é um município localizado no Paraná, reconhecido por sua forte ligação com o campo. A agricultura familiar é um dos pilares da economia local.</p>
+      <p>A cidade vem se destacando por práticas que unem tradição e inovação tecnológica.</p>
     </section>
 
-    <!-- Histórico -->
-    <section id="historico" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌾 Histórico Detalhado</h3>
-
-      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">🌱 Começo com Ferramentas Manuais</h4>
-        <p>
-          Há cerca de 10 000 anos, as primeiras comunidades plantavam alimentos com instrumentos simples como enxadas e foices. Nesse tempo, o conhecimento era passado de geração em geração — ali nasceu o jeitinho familiar de plantar.
-        </p>
-      </article>
-
-      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">⚙️ Revolução Industrial (séc. XVIII‑XIX)</h4>
-        <p>
-          Com a máquina a vapor e os primeiros tratores, a produção deu um salto — embora isso tenha sido mais sentido nas grandes propriedades. Nas pequenas, ainda se usava muito a tração animal e o esforço manual.
-        </p>
-      </article>
-
-      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">🌾 Revolução Verde (1950‑1980)</h4>
-        <p>
-          Entraram na cena sementes híbridas, fertilizantes, pesticidas e irrigação mecanizada — a produtividade cresceu muito. Porém, isso também trouxe custos maiores e a dependência de insumos industriais.
-        </p>
-      </article>
-
-      <article class="mb-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
-        <h4 class="text-2xl font-bold mb-2">📡 Era Digital (2000 em diante)</h4>
-        <p>
-          Com a chegada de sensores, GPS, drones e softwares, os pequenos agricultores começaram a usar tecnologia de ponta para aumentar sua produtividade e sustentabilidade, muitas vezes com smartphones e aplicativos.
-        </p>
-      </article>
+    <!-- Seção: Sustentabilidade -->
+    <section id="sustentabilidade">
+      <h2>🌍 Sustentabilidade na Agricultura</h2>
+      <ul>
+        <li>Uso racional da água</li>
+        <li>Rotação de culturas</li>
+        <li>Compostagem e adubos orgânicos</li>
+        <li>Preservação de matas ciliares</li>
+      </ul>
+      <p>Essas práticas garantem a longevidade do solo e protegem o meio ambiente.</p>
     </section>
 
-    <!-- Gráficos -->
-    <section id="graficos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📊 Gráficos Interativos</h3>
-
-      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Produtividade Agrícola (2000–2020)</h4>
-        <canvas id="produtividadeChart" aria-label="Gráfico de linha mostrando a produtividade agrícola entre 2000 e 2020" role="img"></canvas>
-      </article>
-
-      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Adoção de Tecnologias (%)</h4>
-        <canvas id="tecnologiaChart" aria-label="Gráfico de barras mostrando a adoção de diferentes tecnologias na agricultura familiar" role="img"></canvas>
-      </article>
-
-      <article class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h4 class="text-xl font-semibold mb-4">Impacto Econômico (em milhões R$)</h4>
-        <canvas id="economicoChart" aria-label="Gráfico de barras mostrando o impacto econômico da tecnologia na agricultura familiar" role="img"></canvas>
-      </article>
-    </section>
-
-    <!-- Impactos -->
-    <section id="impactos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">🌟 Impactos Positivos</h3>
-      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li>Maior eficiência na produção e menos desperdício.</li>
-        <li>Facilidade no acesso a informações técnicas.</li>
-        <li>Melhoria da qualidade de vida do agricultor.</li>
-        <li>Redução do impacto ambiental com técnicas precisas.</li>
+    <!-- Seção: Tecnologias no Campo -->
+    <section id="tecnologia">
+      <h2>💡 Tecnologias Aplicadas</h2>
+      <ul>
+        <li>Uso de drones para monitoramento das lavouras</li>
+        <li>Sensores de umidade e clima</li>
+        <li>Aplicativos de gestão rural</li>
+        <li>Mecanização com tratores inteligentes</li>
       </ul>
     </section>
 
-    <!-- Desafios -->
-    <section id="desafios" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">⚠️ Desafios a Superar</h3>
-      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li>Baixo acesso à internet em áreas rurais remotas.</li>
-        <li>Custo inicial elevado para aquisição de equipamentos.</li>
-        <li>Necessidade de capacitação para uso das novas tecnologias.</li>
-        <li>Riscos de dependência tecnológica e perda do conhecimento tradicional.</li>
-      </ul>
+    <!-- Seção: Culturas Locais -->
+    <section id="culturas">
+      <h2>🌽 Principais Culturas</h2>
+      <article>
+        <h3>Milho</h3>
+        <p>Base da alimentação e importante na rotação de culturas. Utilizado para consumo humano, animal e industrial.</p>
+      </article>
+      <article>
+        <h3>Soja</h3>
+        <p>Alta produtividade, usada na alimentação e exportação.</p>
+      </article>
+      <article>
+        <h3>Feijão</h3>
+        <p>Presente na mesa do brasileiro, o feijão é produzido com técnicas de baixo impacto ambiental.</p>
+      </article>
     </section>
 
-    <!-- Fatos importantes -->
-    <section id="fatos" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📌 Fatos Importantes</h3>
-      <ol class="list-decimal list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li>70% dos alimentos do mundo vêm da agricultura familiar.</li>
-        <li>85% das propriedades rurais no Brasil são de agricultura familiar.</li>
-        <li>Tecnologias digitais aumentam a produtividade em até 30%.</li>
-      </ol>
+    <!-- Seção: Gráfico -->
+    <section id="grafico">
+      <h2>📈 Evolução da Produção Agrícola</h2>
+      <canvas id="graficoProducao" width="400" height="200"></canvas>
     </section>
 
-    <!-- Referências -->
-    <section id="referencias" class="mb-20 fade-in">
-      <h3 class="text-3xl font-semibold text-blue-600 dark:text-blue-400 mb-8">📚 Referências</h3>
-      <ul class="list-disc list-inside space-y-2 max-w-4xl text-gray-700 dark:text-gray-300">
-        <li><a href="https://www.fao.org/family-farming/overview/en/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">FAO - Family Farming Overview</a></li>
-        <li><a href="https://www.embrapa.br/" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">Embrapa - Empresa Brasileira de Pesquisa Agropecuária</a></li>
-        <li><a href="https://www.ifad.org/en/family-farming" target="_blank" class="text-blue-600 hover:underline dark:text-blue-400">IFAD - Family Farming</a></li>
-      </ul>
-    </section>
+    <!-- Seção: Contato -->
+    <section id="contato">
+      <h2>📬 Fale Conosco</h2>
+      <form id="formContato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
 
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
   </main>
 
-  <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 text-center p-6 text-gray-500 dark:text-gray-400">
-    &copy; 2025 AgriTech. Todos os direitos reservados.
+  <footer>
+    <p>&copy; 2025 - Projeto Agrinho Reserva - Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script>
-    // Toggle modo dark
-    const toggleDarkBtn = document.getElementById('toggleDark');
-    toggleDarkBtn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      if(document.documentElement.classList.contains('dark')) {
-        toggleDarkBtn.textContent = 'Modo Light';
-      } else {
-        toggleDarkBtn.textContent = 'Modo Dark';
-      }
-    });
-
-    // Toggle menu mobile
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
-
-  <script>
-    // Dados dos gráficos
-    const produtividadeCtx = document.getElementById('produtividadeChart').getContext('2d');
-    const produtividadeChart = new Chart(produtividadeCtx, {
-      type: 'line',
-      data: {
-        labels: [
-          '2000', '2002', '2004', '2006', '2008',
-          '2010', '2012', '2014', '2016', '2018', '2020'
-        ],
-        datasets: [{
-          label: 'Produtividade (ton/ha)',
-          data: [1.2, 1.5, 1.7, 1.9, 2.0, 2.3, 2.6, 3.0, 3.3, 3.7, 4.0],
-          borderColor: '#2563eb',
-          backgroundColor: 'rgba(37, 99, 235, 0.3)',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { labels: { color: '#1e3a8a' } },
-          tooltip: { mode: 'index', intersect: false }
-        },
-        scales: {
-          x: { ticks: { color: '#1e40af' } },
-          y: {
-            beginAtZero: true,
-            ticks: { color: '#1e40af' }
-          }
-        }
-      }
-    });
-
-    const tecnologiaCtx = document.getElementById('tecnologiaChart').getContext('2d');
-    const tecnologiaChart = new Chart(tecnologiaCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Sementes Híbridas', 'Fertilizantes', 'Irrigação', 'Drones', 'Apps Mobile'],
-        datasets: [{
-          label: 'Adoção (%)',
-          data: [70, 60, 40, 25, 35],
-          backgroundColor: [
-            '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe'
-          ],
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: true }
-        },
-        scales: {
-          x: { ticks: { color: '#1e40af' } },
-          y: {
-            beginAtZero: true,
-            max: 100,
-            ticks: { color: '#1e40af', stepSize: 20 }
-          }
-        }
-      }
-    });
-
-    const economicoCtx = document.getElementById('economicoChart').getContext('2d');
-    const economicoChart = new Chart(economicoCtx, {
-      type: 'bar',
-      data: {
-        labels: ['2000', '2005', '2010', '2015', '2020'],
-        datasets: [{
-          label: 'Impacto Econômico (milhões R$)',
-          data: [500, 750, 1100, 1600, 2100],
-          backgroundColor: '#2563eb',
-          borderRadius: 6
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: true }
-        },
-        scales: {
-          x: { ticks: { color: '#1e40af' } },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: '#1e40af',
-              callback: function(value) {
-                return value + ' M';
-              }
-            }
-          }
-        }
-      }
-    });
-  </script>
-<!-- VLibras Plugin -->
-<div vw class="enabled">
-  <div vw-access-button class="active"></div>
-  <div vw-plugin-wrapper>
-    <div class="vw-plugin-top-wrapper"></div>
-  </div>
-</div>
-
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-</script>
-
+  <!-- Link para o JavaScript externo -->
+  <script src="script.js"></script>
 </body>
 </html>
