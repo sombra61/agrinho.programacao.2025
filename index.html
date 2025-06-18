@@ -100,7 +100,6 @@
   #darkModeToggle.active {
     color: #facc15;
   }
-  /* Menu ativo com scroll */
   section {
     scroll-margin-top: 5rem;
   }
@@ -121,7 +120,6 @@
       <li><a href="#clima">Mudanças Climáticas</a></li>
       <li><a href="#futuro">Perspectivas Futuras</a></li>
       <li><a href="#cases">Cases de Sucesso</a></li>
-      <li><a href="#interacoes">Interações</a></li>
       <li><a href="#referencias">Referências</a></li>
     </ul>
   </nav>
@@ -256,9 +254,6 @@
     <section id="drones" class="mb-20">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">🚁 Uso de Drones e Sensores Remotos</h3>
       <p class="max-w-5xl mb-4">Drones equipados com câmeras e sensores permitem monitorar o estado das plantações em tempo real, detectando pragas, doenças e falhas no solo. Isso facilita decisões rápidas e mais eficientes para os agricultores familiares.</p>
-      <video controls autoplay muted loop class="max-w-3xl rounded-lg shadow-lg" style="width:100%; max-height:300px; object-fit:cover;">
-        <source src="https://cdn.pixabay.com/vimeo/570401866/drone-farm-10786.mp4" type="video/mp4" />
-      </video>
     </section>
 
     <section id="clima" class="mb-20">
@@ -307,14 +302,6 @@
       </article>
     </section>
 
-    <section id="interacoes" class="mb-20">
-      <h3 class="text-3xl font-semibold text-blue-600 mb-8">💬 Vídeo Educativo sobre Agricultura Familiar e Tecnologia</h3>
-      <p class="max-w-4xl mb-6">Assista a este vídeo para entender melhor como a tecnologia está transformando a agricultura familiar.</p>
-      <div class="max-w-4xl mx-auto">
-        <iframe width="100%" height="315" src="https://www.youtube.com/embed/gkd4HQE-3yI" title="Tecnologia na Agricultura Familiar - Canal Embrapa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </section>
-
     <section id="referencias" class="mb-20">
       <h3 class="text-3xl font-semibold text-blue-600 mb-8">📚 Referências</h3>
       <ul class="list-disc list-inside ml-6 space-y-2 max-w-5xl">
@@ -333,20 +320,23 @@
   <script>
     const darkModeToggle = document.getElementById('darkModeToggle');
     const htmlRoot = document.documentElement;
+
     function updateToggleState() {
       const isDark = htmlRoot.classList.contains('dark');
       darkModeToggle.textContent = isDark ? '☀️' : '🌙';
       darkModeToggle.setAttribute('aria-checked', isDark);
-      if(isDark) darkModeToggle.classList.add('active');
+      if (isDark) darkModeToggle.classList.add('active');
       else darkModeToggle.classList.remove('active');
     }
+
     darkModeToggle.addEventListener('click', () => {
       htmlRoot.classList.toggle('dark');
       updateToggleState();
-      prodChart && prodChart.update();
-      impactChart && impactChart.update();
-      challengeChart && challengeChart.update();
+      prodChart.update();
+      impactChart.update();
+      challengeChart.update();
     });
+
     updateToggleState();
 
     const menuLinks = document.querySelectorAll('#menu a');
@@ -373,22 +363,29 @@
           label: 'Produção',
           data: [10, 40, 70, 90, 130, 160],
           fill: false,
-          borderColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
-          backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim(),
+          borderColor: getComputedStyle(htmlRoot).getPropertyValue('--link-color').trim(),
+          backgroundColor: getComputedStyle(htmlRoot).getPropertyValue('--link-color').trim(),
           tension: 0.3,
           pointRadius: 5,
-          pointHoverRadius: 7,
+          pointHoverRadius: 7
         }]
       },
       options: {
         responsive: true,
         interaction: { mode: 'nearest', intersect: false },
         scales: {
-          y: {beginAtZero: true, title: {display: true, text: 'Índice Relativo', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}},
-          x: {title: {display: true, text: 'Ano', color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}, ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
+          y: {
+            beginAtZero: true,
+            title: { display: true, text: 'Índice Relativo', color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() },
+            ticks: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() }
+          },
+          x: {
+            title: { display: true, text: 'Ano', color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() },
+            ticks: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() }
+          }
         },
         plugins: {
-          legend: {display: true, labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}}
+          legend: { display: true, labels: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() } }
         }
       }
     });
@@ -408,7 +405,7 @@
         plugins: {
           legend: {
             position: 'bottom',
-            labels: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+            labels: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() }
           }
         }
       }
@@ -421,7 +418,7 @@
         datasets: [{
           label: 'Nível de desafio',
           data: [70, 60, 50, 40],
-          backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--link-color').trim()
+          backgroundColor: getComputedStyle(htmlRoot).getPropertyValue('--link-color').trim()
         }]
       },
       options: {
@@ -433,15 +430,13 @@
             title: {
               display: true,
               text: 'Intensidade (%)',
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+              color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim()
             },
-            ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
+            ticks: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() }
           },
-          x: {
-            ticks: {color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()}
-          }
+          x: { ticks: { color: getComputedStyle(htmlRoot).getPropertyValue('--text-color').trim() } }
         },
-        plugins: { legend: {display: false} }
+        plugins: { legend: { display: false } }
       }
     });
   </script>
