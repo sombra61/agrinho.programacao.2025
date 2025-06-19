@@ -68,10 +68,21 @@
     background-color: var(--footer-bg);
     color: var(--footer-text);
     border-top: 1px solid var(--nav-border);
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
+    padding: 2rem 2rem 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
     user-select: none;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
     transition: background-color 0.4s, color 0.4s;
+  }
+  footer span {
+    display: block;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--link-color);
   }
   section article, section > div {
     background-color: var(--card-bg);
@@ -114,9 +125,6 @@
   .fade-in.visible {
     opacity: 1;
     transform: none;
-  }
-  footer p {
-    margin: 0.25rem 0;
   }
 </style>
 </head>
@@ -266,15 +274,14 @@
       </div>
     </section>
 
-    <!-- Rodapé -->
     <footer>
-      <p>Sou Vitor José de Oliveira de Souza, aluno da professora Regiane, no colégio Helena.</p>
-      <p>Tenho 15 anos, sou programador Java e aprendiz de HTML e CSS.</p>
+      <p>Desenvolvido por <strong>Vitor José de Oliveira de Souza</strong>, aluno da professora Regiane no Colégio Helena.</p>
+      <p>Tenho 15 anos, sou programador Java e aprendiz dedicado de HTML e CSS.</p>
+      <span>Obrigado por visitar! 🚀</span>
     </footer>
   </main>
 
 <script>
-  // Modo escuro toggle
   const btnDarkMode = document.getElementById('darkModeToggle');
   const htmlEl = document.documentElement;
 
@@ -298,7 +305,6 @@
     setDarkMode(!htmlEl.classList.contains('dark'));
   });
 
-  // Inicializar modo escuro de acordo com preferência salva ou sistema
   (function initDarkMode() {
     const saved = localStorage.getItem('darkMode');
     if (saved === 'enabled') {
@@ -306,13 +312,11 @@
     } else if (saved === 'disabled') {
       setDarkMode(false);
     } else {
-      // Usa a preferência do sistema se nada salvo
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       setDarkMode(prefersDark);
     }
   })();
 
-  // Destacar link ativo no menu ao rolar
   const sections = document.querySelectorAll('main section');
   const menuLinks = document.querySelectorAll('nav ul li a');
 
@@ -325,7 +329,6 @@
   activateMenuLink();
   window.addEventListener('scroll', activateMenuLink);
 
-  // Animar fade-in
   const faders = document.querySelectorAll('.fade-in');
   const appearOptions = {
     threshold: 0.2,
@@ -344,7 +347,6 @@
     appearOnScroll.observe(fader);
   });
 
-  // Configuração dos gráficos Chart.js
   const prodCtx = document.getElementById('prodChart').getContext('2d');
   const prodChart = new Chart(prodCtx, {
     type: 'line',
@@ -409,12 +411,10 @@
   });
 </script>
 
-<!-- Mensagem oculta para curiosos -->
 <!--
-  Seja bem-vindo, explorador do código! 🕵️‍♂️
-  Vitor José criou este painel com muito esforço e dedicação.
-  Se você está lendo isso, parabéns! Você tem olhos de programador.
-  Que a curiosidade te leve longe. 🚀
+  Olá, curioso do código! 👀
+  O Vitor José mandou muito bem aqui, e se você chegou até essa mensagem oculta,
+  sabe que programação é mais que código: é arte e paixão, e é isso.
 -->
 
 </body>
