@@ -7,6 +7,17 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-bg);
+    border-radius: 20px;
+    border: 3px solid var(--scrollbar-track-bg);
+  }
   :root {
     --bg-color: #f9fafb;
     --text-color: #111827;
@@ -38,8 +49,6 @@
     color: var(--text-color);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: background-color 0.4s, color 0.4s;
-    margin: 0;
-    padding: 0;
   }
   nav {
     background-color: var(--nav-bg);
@@ -49,57 +58,29 @@
   nav ul li a {
     color: var(--text-color);
     transition: color 0.3s;
-    text-decoration: none;
-    position: relative;
   }
   nav ul li a.active,
   nav ul li a:hover {
     color: var(--link-color);
     font-weight: 700;
-    text-decoration: underline;
-  }
-  nav ul li a[data-tooltip]:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--nav-bg);
-    color: var(--text-color);
-    border: 1px solid var(--nav-border);
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.3rem;
-    white-space: nowrap;
-    font-size: 0.8rem;
-    z-index: 10;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
   footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
     border-top: 1px solid var(--nav-border);
-    transition: background-color 0.4s, color 0.4s, border-color 0.4s;
-    user-select: none;
     padding: 1rem 2rem;
-    text-align: center;
+    font-size: 0.9rem;
+    user-select: none;
+    transition: background-color 0.4s, color 0.4s;
   }
   section article, section > div {
     background-color: var(--card-bg);
     box-shadow: 0 4px 10px var(--card-shadow);
     border-radius: 0.5rem;
-    transition: box-shadow 0.3s, background-color 0.4s, transform 0.3s;
-    color: var(--text-color);
-    opacity: 0;
-    transform: translateY(20px);
-    animation-fill-mode: forwards;
-  }
-  section article.visible, section > div.visible {
-    opacity: 1;
-    transform: translateY(0);
+    transition: box-shadow 0.3s, background-color 0.4s;
   }
   section article:hover, section > div:hover {
     box-shadow: 0 8px 20px var(--card-shadow);
-    transform: translateY(-5px);
   }
   #darkModeToggle {
     position: fixed;
@@ -125,396 +106,316 @@
   section {
     scroll-margin-top: 5rem;
   }
-  body, section, article, p, ul, li, h1, h2, h3, h4, h5, h6, a {
-    color: var(--text-color);
-    background-color: transparent;
-    transition: color 0.4s, background-color 0.4s;
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
-  ul, li {
-    color: var(--text-color);
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
   }
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-  a:hover, a:focus {
-    text-decoration: underline;
-  }
-  .italic, .text-gray-600 {
-    color: var(--text-color);
-  }
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--scrollbar-track-bg);
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb-bg);
-    border-radius: 20px;
-    border: 3px solid var(--scrollbar-track-bg);
-  }
-  #backToTop {
-    position: fixed;
-    right: 1rem;
-    bottom: 2.5rem;
-    background-color: var(--nav-bg);
-    border: 1px solid var(--nav-border);
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    color: var(--link-color);
-    cursor: pointer;
-    z-index: 9999;
-    transition: background 0.3s, border-color 0.3s, color 0.3s;
-  }
-  #backToTop:hover {
-    background-color: var(--link-color);
-    color: var(--nav-bg);
-  }
-  #menuToggle {
-    display: none;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 10000;
-    background: var(--nav-bg);
-    border: 1px solid var(--nav-border);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-    color: var(--link-color);
-  }
-  #menuToggle svg {
-    width: 24px;
-    height: 24px;
-  }
-  @media (max-width: 767px) {
-    nav {
-      position: fixed;
-      top: 0;
-      left: -280px;
-      height: 100vh;
-      width: 280px;
-      padding: 2rem 1.5rem;
-      overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-      transition: left 0.3s ease;
-      z-index: 9998;
-      background-color: var(--nav-bg);
-      border-right: 1px solid var(--nav-border);
-    }
-    nav.open {
-      left: 0;
-    }
-    main {
-      margin-left: 0 !important;
-      padding-top: 4rem;
-    }
-    #menuToggle {
-      display: flex;
-    }
-  }
-  #menuSearch {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid var(--nav-border);
-    border-radius: 0.4rem;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    outline-offset: 2px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  #menuSearch::placeholder {
-    color: var(--text-color);
-    opacity: 0.6;
+  footer p {
+    margin: 0.25rem 0;
   }
 </style>
 </head>
 <body>
-  <button id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebarMenu" type="button">
-    <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="18" x2="21" y2="18" />
-    </svg>
-  </button>
-
-  <nav id="sidebarMenu" role="navigation" aria-label="Menu principal" class="hidden md:flex flex-col fixed top-0 left-0 h-full w-64 p-6 overflow-auto border-r shadow-md">
-    <h1 class="text-3xl font-extrabold mb-10 text-blue-700 select-none cursor-default" tabindex="-1">AgriTech</h1>
-    <input type="search" id="menuSearch" placeholder="Buscar no menu..." aria-label="Buscar no menu" />
-    <ul id="menu" class="space-y-4 text-lg font-medium">
-      <li><a href="#intro" data-tooltip="Introdução">Introdução</a></li>
-      <li><a href="#historico" data-tooltip="Histórico detalhado">Histórico</a></li>
-      <li><a href="#graficos" data-tooltip="Gráficos interativos">Gráficos</a></li>
-      <li><a href="#impactos" data-tooltip="Impactos positivos">Impactos</a></li>
-      <li><a href="#desafios" data-tooltip="Desafios enfrentados">Desafios</a></li>
-      <li><a href="#fatos" data-tooltip="Fatos importantes">Fatos Importantes</a></li>
-      <li><a href="#organica" data-tooltip="Agricultura orgânica">Agricultura Orgânica</a></li>
-      <li><a href="#drones" data-tooltip="Drones e sensores">Drones e Sensores</a></li>
-      <li><a href="#clima" data-tooltip="Mudanças climáticas">Mudanças Climáticas</a></li>
-      <li><a href="#futuro" data-tooltip="Perspectivas futuras">Perspectivas Futuras</a></li>
-      <li><a href="#cases" data-tooltip="Cases de sucesso">Cases de Sucesso</a></li>
-      <li><a href="#referencias" data-tooltip="Referências">Referências</a></li>
+  <nav class="fixed top-0 left-0 h-full w-64 p-6 overflow-auto border-r shadow-md hidden md:flex flex-col" aria-label="Menu de navegação principal">
+    <h1 class="text-3xl font-extrabold mb-10 text-blue-700 select-none cursor-default">AgriTech</h1>
+    <ul class="space-y-4 text-lg font-medium" id="menu">
+      <li><a href="#intro">Introdução</a></li>
+      <li><a href="#historico">Histórico</a></li>
+      <li><a href="#graficos">Gráficos</a></li>
+      <li><a href="#impactos">Impactos</a></li>
+      <li><a href="#desafios">Desafios</a></li>
+      <li><a href="#fatos">Fatos Importantes</a></li>
+      <li><a href="#organica">Agricultura Orgânica</a></li>
+      <li><a href="#drones">Drones e Sensores</a></li>
+      <li><a href="#clima">Mudanças Climáticas</a></li>
+      <li><a href="#futuro">Perspectivas Futuras</a></li>
+      <li><a href="#cases">Cases de Sucesso</a></li>
+      <li><a href="#referencias">Referências</a></li>
     </ul>
   </nav>
 
-  <button id="darkModeToggle" aria-label="Alternar modo escuro" title="Alternar modo escuro" role="switch" aria-checked="false" type="button">🌙</button>
+  <button id="darkModeToggle" aria-label="Alternar modo escuro" title="Alternar modo escuro" role="switch" aria-checked="false">🌙</button>
 
-  <main class="md:ml-64 px-6 md:px-16 py-10 max-w-7xl mx-auto" tabindex="0">
-    <!-- Exemplo simplificado de seções, preencha com seu conteúdo real -->
-    <section id="intro" class="mb-8">
-      <h2 class="text-2xl font-bold mb-3">Introdução</h2>
-      <article>
-        <p>Texto introdutório da agricultura familiar e sua evolução tecnológica.</p>
+  <main class="md:ml-64 px-6 md:px-16 py-10 max-w-7xl mx-auto">
+    <section id="intro" class="mb-16 fade-in">
+      <h2 class="text-4xl font-bold text-blue-700 mb-4 select-text">📜 A Evolução da Tecnologia na Agricultura Familiar</h2>
+      <p class="text-lg max-w-4xl leading-relaxed">Desde as primeiras ferramentas manuais até as modernas tecnologias digitais, a agricultura familiar tem passado por uma verdadeira revolução. Este painel interativo explora a história, os avanços tecnológicos, os impactos e os desafios enfrentados por agricultores familiares ao redor do mundo.</p>
+      <p class="mt-4 italic max-w-3xl text-gray-600 dark:text-gray-400">Navegue pelas seções para entender como cada fase tecnológica moldou o presente e futuro da agricultura familiar.</p>
+    </section>
+
+    <section id="historico" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌾 Histórico Detalhado</h3>
+      <article class="mb-10 p-6">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🌱 Início da Agricultura e Ferramentas Manuais</h4>
+        <p class="leading-relaxed">A agricultura começou há cerca de 10 mil anos, quando as primeiras civilizações surgiram. Os agricultores utilizavam ferramentas manuais simples, como enxadas, foices e arados puxados por animais. O conhecimento era passado oralmente entre gerações, formando a base da agricultura familiar, cujo principal objetivo era garantir a subsistência da família.</p>
+      </article>
+      <article class="mb-10 p-6">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">⚙️ Revolução Industrial (século XVIII – XIX)</h4>
+        <p class="leading-relaxed">A Revolução Industrial trouxe máquinas a vapor e os primeiros tratores agrícolas. Embora essas tecnologias tenham começado a modernizar a agricultura, elas demoraram a alcançar as pequenas propriedades familiares, especialmente em países em desenvolvimento. Por isso, os agricultores familiares mantiveram por muito tempo métodos tradicionais.</p>
+      </article>
+      <article class="mb-10 p-6">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🚜 Mecanização Agrícola (século XX)</h4>
+        <p class="leading-relaxed">Após a Segunda Guerra Mundial, houve uma grande disseminação da mecanização agrícola, com tratores, plantadeiras e colheitadeiras acessíveis a um número maior de agricultores. Essa mecanização reduziu o esforço físico, aumentou a produtividade e melhorou a qualidade de vida no campo, mesmo entre famílias que trabalhavam em pequenos lotes.</p>
+      </article>
+      <article class="mb-10 p-6">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">🧪 Revolução Verde (décadas de 1950–1970)</h4>
+        <p class="leading-relaxed">A Revolução Verde introduziu fertilizantes químicos, pesticidas, sementes melhoradas e técnicas modernas de irrigação. Embora tenha elevado drasticamente a produção, os altos custos limitaram o acesso dos pequenos agricultores, que muitas vezes dependiam de políticas públicas e cooperativas para se beneficiarem dessas inovações.</p>
+      </article>
+      <article class="mb-10 p-6">
+        <h4 class="text-2xl font-bold mb-2 flex items-center gap-3">💻 Agricultura Digital e de Precisão (final do século XX – hoje)</h4>
+        <p class="leading-relaxed mb-4">A tecnologia digital transformou a agricultura familiar, trazendo internet, sensores, GPS, drones e inteligência artificial para o campo. Agricultores familiares contam hoje com:</p>
+        <ul class="list-disc list-inside ml-6 space-y-1">
+          <li>Aplicativos móveis para cálculo de adubação, previsão do clima e registro de dados;</li>
+          <li>Sensores e drones para monitoramento da lavoura;</li>
+          <li>Máquinas equipadas com GPS para plantio e colheita otimizados;</li>
+          <li>Assistência técnica remota e plataformas online de comercialização.</li>
+        </ul>
       </article>
     </section>
-    <section id="historico" class="mb-8">
-      <h2 class="text-2xl font-bold mb-3">Histórico</h2>
-      <article>
-        <p>Histórico detalhado da tecnologia na agricultura.</p>
-      </article>
-    </section>
-    <section id="graficos" class="mb-8">
-      <h2 class="text-2xl font-bold mb-3">Gráficos</h2>
-      <div>
-        <canvas id="prodChart" aria-label="Gráfico de produção agrícola" role="img"></canvas>
+
+    <section id="graficos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-6">📊 Gráficos Interativos</h3>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="p-6">
+          <h4 class="text-xl font-semibold mb-4">Evolução da Produção Agrícola (Índice Relativo)</h4>
+          <canvas id="prodChart" style="max-height: 350px;"></canvas>
+        </div>
+        <div class="p-6">
+          <h4 class="text-xl font-semibold mb-4">Impactos Positivos na Agricultura Familiar</h4>
+          <canvas id="impactChart" style="max-height: 350px;"></canvas>
+        </div>
+        <div class="p-6 md:col-span-2">
+          <h4 class="text-xl font-semibold mb-4">Principais Desafios para a Agricultura Familiar</h4>
+          <canvas id="challengeChart" style="max-height: 350px;"></canvas>
+        </div>
       </div>
     </section>
-    <section id="impactos" class="mb-8">
-      <h2 class="text-2xl font-bold mb-3">Impactos</h2>
-      <div>
-        <canvas id="impactChart" aria-label="Gráfico de impactos positivos" role="img"></canvas>
+
+    <section id="impactos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🤝 Impactos da Tecnologia na Agricultura Familiar</h3>
+      <ul class="list-disc list-inside ml-6 space-y-4 max-w-4xl">
+        <li><strong>Aumento da produtividade e da renda:</strong> Com máquinas e técnicas modernas, pequenos agricultores conseguem produzir mais e melhor.</li>
+        <li><strong>Redução do esforço físico:</strong> A mecanização diminuiu o desgaste físico, ajudando na saúde dos agricultores.</li>
+        <li><strong>Melhor gestão e tomada de decisão:</strong> Informações em tempo real ajudam a planejar plantios, colheitas e vendas.</li>
+        <li><strong>Acesso a mercados e crédito:</strong> Plataformas digitais aproximam o produtor do consumidor e facilitam financiamentos.</li>
+        <li><strong>Preservação ambiental:</strong> Tecnologias de precisão permitem uso racional de insumos e menor impacto ambiental.</li>
+      </ul>
+    </section>
+
+    <section id="desafios" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">⚠️ Desafios Enfrentados</h3>
+      <div class="space-y-6 max-w-5xl">
+        <article class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">1. Acesso limitado a tecnologia</h4>
+          <p>Em muitas regiões rurais, a infraestrutura precária e o custo dos equipamentos dificultam o acesso a tecnologias avançadas.</p>
+        </article>
+        <article class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">2. Capacitação e conhecimento técnico</h4>
+          <p>A falta de treinamento adequado impede que muitos agricultores usem o potencial completo das tecnologias disponíveis.</p>
+        </article>
+        <article class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">3. Sustentabilidade econômica e ambiental</h4>
+          <p>É preciso balancear o aumento da produção com práticas que preservem o solo, a água e a biodiversidade local.</p>
+        </article>
+        <article class="p-6">
+          <h4 class="text-2xl font-semibold mb-2">4. Políticas públicas e apoio financeiro</h4>
+          <p>A ausência ou ineficiência de políticas que apoiem a pequena agricultura limita investimentos em inovação e expansão.</p>
+        </article>
       </div>
     </section>
-    <section id="desafios" class="mb-8">
-      <h2 class="text-2xl font-bold mb-3">Desafios</h2>
-      <div>
-        <canvas id="challengeChart" aria-label="Gráfico de desafios enfrentados" role="img"></canvas>
+
+    <section id="fatos" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">📌 Fatos Importantes</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 text-center">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">35% da produção mundial</h4>
+          <p>A agricultura familiar é responsável por aproximadamente 35% da produção mundial de alimentos, sendo fundamental para a segurança alimentar.</p>
+        </div>
+        <div class="p-6 text-center">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">Mais de 500 milhões</h4>
+          <p>Existem mais de 500 milhões de unidades familiares agrícolas no mundo, distribuídas principalmente em países em desenvolvimento.</p>
+        </div>
+        <div class="p-6 text-center">
+          <h4 class="text-xl font-bold mb-2 text-blue-700">65% da mão de obra agrícola</h4>
+          <p>A agricultura familiar emprega cerca de 65% da mão de obra agrícola global, sendo a base das comunidades rurais.</p>
+        </div>
       </div>
     </section>
-    <!-- Continue com outras seções do seu conteúdo -->
+
+    <section id="organica" class="mb-20 fade-in">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-8">🌿 Agricultura Orgânica e Sustentabilidade</h3>
+      <p class="max-w-5xl mb-4">A agricultura familiar é protagonista na produção orgânica, que busca reduzir o uso de insumos químicos e respeitar o equilíbrio ambiental. Técnicas como compostagem, rotação de culturas e controle biológico fortalecem a sustentabilidade e a qualidade dos alimentos.</p>
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl">
+        <div class="p-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md">
+          <h4 class="font-semibold mb-2 text-green-700 dark:text-green-400">Compostagem</h4>
+          <p>Transformação de resíduos orgânicos em fertilizante natural, promovendo a saúde do solo e reduzindo resíduos.</p>
+        </div>
+        <div class="p-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md">
+          <h4 class="font-semibold mb-2 text-green-700 dark:text-green-400">Rotação de culturas</h4>
+          <p>Alternância de culturas para manter a fertilidade do solo e controlar pragas sem uso intensivo de químicos.</p>
+        </div>
+        <div class="p-6 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-md">
+          <h4 class="font-semibold mb-2 text-green-700 dark:text-green-400">Controle biológico</h4>
+          <p>Uso de inimigos naturais para combater pragas, diminuindo a dependência de pesticidas químicos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>Sou Vitor José de Oliveira de Souza, aluno da professora Regiane, no colégio Helena.</p>
+      <p>Tenho 15 anos, sou programador Java e aprendiz de HTML e CSS.</p>
+    </footer>
   </main>
 
-  <button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo" type="button">⬆️</button>
-
-  <footer role="contentinfo" tabindex="0">
-    <p>© 2025 AgriTech - Desenvolvido por Vitor José</p>
-    <p>Contato: <a href="mailto:vitor@email.com" class="underline">vitor@email.com</a></p>
-    <p>
-      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="underline mr-4">Twitter</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="underline">LinkedIn</a>
-    </p>
-  </footer>
-
 <script>
-  function debounce(func, wait = 20, immediate = true) {
-    let timeout;
-    return function() {
-      const context = this, args = arguments;
-      const later = function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if(callNow) func.apply(context, args);
-    };
-  }
+  // Modo escuro toggle
+  const btnDarkMode = document.getElementById('darkModeToggle');
+  const htmlEl = document.documentElement;
 
-  const toggle = document.getElementById('darkModeToggle');
-  const backToTop = document.getElementById('backToTop');
-  const menuToggle = document.getElementById('menuToggle');
-  const sidebarMenu = document.getElementById('sidebarMenu');
-  const menuLinks = document.querySelectorAll('#menu a');
-  const menuSearch = document.getElementById('menuSearch');
-
-  function initDarkMode() {
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      toggle.textContent = '☀️';
-      toggle.setAttribute('aria-checked', 'true');
-      toggle.classList.add('active');
+  function setDarkMode(enabled) {
+    if (enabled) {
+      htmlEl.classList.add('dark');
+      btnDarkMode.textContent = '☀️';
+      btnDarkMode.setAttribute('aria-checked', 'true');
+      btnDarkMode.classList.add('active');
+      localStorage.setItem('darkMode', 'enabled');
     } else {
-      document.documentElement.classList.remove('dark');
-      toggle.textContent = '🌙';
-      toggle.setAttribute('aria-checked', 'false');
-      toggle.classList.remove('active');
+      htmlEl.classList.remove('dark');
+      btnDarkMode.textContent = '🌙';
+      btnDarkMode.setAttribute('aria-checked', 'false');
+      btnDarkMode.classList.remove('active');
+      localStorage.setItem('darkMode', 'disabled');
     }
   }
-  initDarkMode();
 
-  toggle.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    toggle.setAttribute('aria-checked', isDark);
-    toggle.textContent = isDark ? '☀️' : '🌙';
-    toggle.classList.toggle('active', isDark);
-    localStorage.setItem('darkMode', isDark);
+  btnDarkMode.addEventListener('click', () => {
+    setDarkMode(!htmlEl.classList.contains('dark'));
   });
 
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  window.addEventListener('scroll', debounce(() => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = 'flex';
-      backToTop.style.opacity = '1';
+  // Inicializar modo escuro de acordo com preferência salva ou sistema
+  (function initDarkMode() {
+    const saved = localStorage.getItem('darkMode');
+    if (saved === 'enabled') {
+      setDarkMode(true);
+    } else if (saved === 'disabled') {
+      setDarkMode(false);
     } else {
-      backToTop.style.opacity = '0';
-      setTimeout(() => backToTop.style.display = 'none', 300);
+      // Usa a preferência do sistema se nada salvo
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
     }
+  })();
 
-    let current = '';
-    const scrollPos = window.scrollY + 90;
-    document.querySelectorAll('main section[id]').forEach(section => {
-      if (scrollPos >= section.offsetTop) {
-        current = section.getAttribute('id');
-      }
-    });
-    menuLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  }, 100));
+  // Destacar link ativo no menu ao rolar
+  const sections = document.querySelectorAll('main section');
+  const menuLinks = document.querySelectorAll('nav ul li a');
 
-  menuToggle.addEventListener('click', () => {
-    const isOpen = sidebarMenu.classList.toggle('open');
-    menuToggle.setAttribute('aria-expanded', isOpen);
+  function activateMenuLink() {
+    let index = sections.length;
+    while(--index && window.scrollY + 60 < sections[index].offsetTop) {}
+    menuLinks.forEach(link => link.classList.remove('active'));
+    if(menuLinks[index]) menuLinks[index].classList.add('active');
+  }
+  activateMenuLink();
+  window.addEventListener('scroll', activateMenuLink);
+
+  // Animar fade-in
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      appearOnScroll.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
   });
 
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth < 768) {
-        sidebarMenu.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', false);
+  // Configuração dos gráficos Chart.js
+  const prodCtx = document.getElementById('prodChart').getContext('2d');
+  const prodChart = new Chart(prodCtx, {
+    type: 'line',
+    data: {
+      labels: ['1950', '1970', '1990', '2010', '2025'],
+      datasets: [{
+        label: 'Produção',
+        data: [20, 40, 60, 80, 100],
+        backgroundColor: 'rgba(37, 99, 235, 0.4)',
+        borderColor: 'rgba(37, 99, 235, 1)',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true }
       }
-    });
+    }
   });
 
-  menuSearch.addEventListener('input', () => {
-    const filter = menuSearch.value.toLowerCase();
-    menuLinks.forEach(link => {
-      const text = link.textContent.toLowerCase();
-      link.parentElement.style.display = text.includes(filter) ? '' : 'none';
-    });
+  const impactCtx = document.getElementById('impactChart').getContext('2d');
+  const impactChart = new Chart(impactCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Produtividade', 'Renda', 'Esforço Físico', 'Gestão', 'Mercado'],
+      datasets: [{
+        label: 'Impacto Positivo (%)',
+        data: [80, 75, 60, 85, 70],
+        backgroundColor: 'rgba(59, 130, 246, 0.7)'
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true, max: 100 }
+      }
+    }
   });
 
-  // Animação fade-in para seções/artigos ao entrar na viewport
-  function revealOnScroll() {
-    const elements = document.querySelectorAll('section article, section > div');
-    const windowBottom = window.innerHeight + window.scrollY;
-
-    elements.forEach(el => {
-      const elementTop = el.offsetTop + el.offsetHeight / 4;
-      if (windowBottom > elementTop) {
-        el.classList.add('visible');
-      }
-    });
-  }
-  window.addEventListener('scroll', debounce(revealOnScroll, 50));
-  window.addEventListener('load', revealOnScroll);
-
-  // Gráficos Chart.js
-  function getTextColor() {
-    return getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
-  }
-  const ctxProd = document.getElementById('prodChart')?.getContext('2d');
-  if(ctxProd){
-    new Chart(ctxProd, {
-      type: 'line',
-      data: {
-        labels: ['2000', '2005', '2010', '2015', '2020', '2025'],
-        datasets: [{
-          label: 'Produtividade (ton/ha)',
-          data: [2.3, 2.8, 3.5, 4.1, 5.0, 5.5],
-          borderColor: 'rgba(37, 99, 235, 0.8)',
-          backgroundColor: 'rgba(37, 99, 235, 0.2)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 4,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: getTextColor()
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: { color: getTextColor() }
-          },
-          y: {
-            ticks: { color: getTextColor() },
-            beginAtZero: true
-          }
-        }
-      }
-    });
-  }
-  const ctxImpact = document.getElementById('impactChart')?.getContext('2d');
-  if(ctxImpact){
-    new Chart(ctxImpact, {
-      type: 'bar',
-      data: {
-        labels: ['Produtividade', 'Renda', 'Saúde', 'Gestão', 'Mercado'],
-        datasets: [{
-          label: 'Impactos positivos (%)',
-          data: [80, 70, 60, 75, 50],
-          backgroundColor: 'rgba(59, 130, 246, 0.7)',
-          borderRadius: 5
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { ticks: { color: getTextColor() } },
-          y: { ticks: { color: getTextColor() }, beginAtZero: true, max: 100 }
-        }
-      }
-    });
-  }
-  const ctxChallenge = document.getElementById('challengeChart')?.getContext('2d');
-  if(ctxChallenge){
-    new Chart(ctxChallenge, {
-      type: 'pie',
-      data: {
-        labels: ['Crédito', 'Infraestrutura', 'Tecnologia', 'Capacitação', 'Mercado'],
-        datasets: [{
-          label: 'Desafios (%)',
-          data: [25, 20, 20, 15, 20],
-          backgroundColor: ['#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            labels: {
-              color: getTextColor()
-            }
-          }
-        }
-      }
-    });
-  }
+  const challengeCtx = document.getElementById('challengeChart').getContext('2d');
+  const challengeChart = new Chart(challengeCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Acesso', 'Capacitação', 'Sustentabilidade', 'Políticas'],
+      datasets: [{
+        label: 'Desafios (%)',
+        data: [30, 25, 20, 25],
+        backgroundColor: [
+          'rgba(244, 63, 94, 0.7)',
+          'rgba(251, 191, 36, 0.7)',
+          'rgba(34, 197, 94, 0.7)',
+          'rgba(59, 130, 246, 0.7)'
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: '60%'
+    }
+  });
 </script>
+
+<!-- Mensagem oculta para curiosos -->
+<!--
+  Seja bem-vindo, explorador do código! 🕵️‍♂️
+  Vitor José criou este painel com muito esforço e dedicação.
+  Se você está lendo isso, parabéns! Você tem olhos de programador.
+  Que a curiosidade te leve longe. 🚀
+-->
+
 </body>
 </html>
