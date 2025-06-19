@@ -240,7 +240,7 @@
 </style>
 </head>
 <body>
-  <button id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebarMenu">
+  <button id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebarMenu" type="button">
     <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <line x1="3" y1="12" x2="21" y2="12" />
       <line x1="3" y1="6" x2="21" y2="6" />
@@ -248,10 +248,10 @@
     </svg>
   </button>
 
-  <nav class="hidden md:flex flex-col fixed top-0 left-0 h-full w-64 p-6 overflow-auto border-r shadow-md" role="navigation" aria-label="Menu principal" id="sidebarMenu">
+  <nav id="sidebarMenu" role="navigation" aria-label="Menu principal" class="hidden md:flex flex-col fixed top-0 left-0 h-full w-64 p-6 overflow-auto border-r shadow-md">
     <h1 class="text-3xl font-extrabold mb-10 text-blue-700 select-none cursor-default" tabindex="-1">AgriTech</h1>
     <input type="search" id="menuSearch" placeholder="Buscar no menu..." aria-label="Buscar no menu" />
-    <ul class="space-y-4 text-lg font-medium" id="menu">
+    <ul id="menu" class="space-y-4 text-lg font-medium">
       <li><a href="#intro" data-tooltip="Introdução">Introdução</a></li>
       <li><a href="#historico" data-tooltip="Histórico detalhado">Histórico</a></li>
       <li><a href="#graficos" data-tooltip="Gráficos interativos">Gráficos</a></li>
@@ -270,8 +270,38 @@
   <button id="darkModeToggle" aria-label="Alternar modo escuro" title="Alternar modo escuro" role="switch" aria-checked="false" type="button">🌙</button>
 
   <main class="md:ml-64 px-6 md:px-16 py-10 max-w-7xl mx-auto" tabindex="0">
-    <!-- (seções iguais ao exemplo anterior, não vou repetir para não alongar) -->
-    <!-- Copie as seções anteriores exatamente igual -->
+    <!-- Exemplo simplificado de seções, preencha com seu conteúdo real -->
+    <section id="intro" class="mb-8">
+      <h2 class="text-2xl font-bold mb-3">Introdução</h2>
+      <article>
+        <p>Texto introdutório da agricultura familiar e sua evolução tecnológica.</p>
+      </article>
+    </section>
+    <section id="historico" class="mb-8">
+      <h2 class="text-2xl font-bold mb-3">Histórico</h2>
+      <article>
+        <p>Histórico detalhado da tecnologia na agricultura.</p>
+      </article>
+    </section>
+    <section id="graficos" class="mb-8">
+      <h2 class="text-2xl font-bold mb-3">Gráficos</h2>
+      <div>
+        <canvas id="prodChart" aria-label="Gráfico de produção agrícola" role="img"></canvas>
+      </div>
+    </section>
+    <section id="impactos" class="mb-8">
+      <h2 class="text-2xl font-bold mb-3">Impactos</h2>
+      <div>
+        <canvas id="impactChart" aria-label="Gráfico de impactos positivos" role="img"></canvas>
+      </div>
+    </section>
+    <section id="desafios" class="mb-8">
+      <h2 class="text-2xl font-bold mb-3">Desafios</h2>
+      <div>
+        <canvas id="challengeChart" aria-label="Gráfico de desafios enfrentados" role="img"></canvas>
+      </div>
+    </section>
+    <!-- Continue com outras seções do seu conteúdo -->
   </main>
 
   <button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo" type="button">⬆️</button>
@@ -286,16 +316,15 @@
   </footer>
 
 <script>
-  // Helpers para debounce
   function debounce(func, wait = 20, immediate = true) {
     let timeout;
     return function() {
-      let context = this, args = arguments;
-      let later = function() {
+      const context = this, args = arguments;
+      const later = function() {
         timeout = null;
         if (!immediate) func.apply(context, args);
       };
-      let callNow = immediate && !timeout;
+      const callNow = immediate && !timeout;
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
       if(callNow) func.apply(context, args);
@@ -309,10 +338,9 @@
   const menuLinks = document.querySelectorAll('#menu a');
   const menuSearch = document.getElementById('menuSearch');
 
-  // Inicializa modo escuro conforme localStorage
-  function initDarkMode(){
+  function initDarkMode() {
     const isDark = localStorage.getItem('darkMode') === 'true';
-    if(isDark){
+    if (isDark) {
       document.documentElement.classList.add('dark');
       toggle.textContent = '☀️';
       toggle.setAttribute('aria-checked', 'true');
@@ -327,8 +355,7 @@
   initDarkMode();
 
   toggle.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    const isDark = document.documentElement.classList.contains('dark');
+    const isDark = document.documentElement.classList.toggle('dark');
     toggle.setAttribute('aria-checked', isDark);
     toggle.textContent = isDark ? '☀️' : '🌙';
     toggle.classList.toggle('active', isDark);
@@ -336,11 +363,11 @@
   });
 
   backToTop.addEventListener('click', () => {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   window.addEventListener('scroll', debounce(() => {
-    if(window.scrollY > 300) {
+    if (window.scrollY > 300) {
       backToTop.style.display = 'flex';
       backToTop.style.opacity = '1';
     } else {
@@ -348,39 +375,35 @@
       setTimeout(() => backToTop.style.display = 'none', 300);
     }
 
-    // Atualizar link ativo no menu
     let current = '';
-    const scrollPos = window.scrollY + 90; // um pouco para compensar topo fixo
+    const scrollPos = window.scrollY + 90;
     document.querySelectorAll('main section[id]').forEach(section => {
-      if(scrollPos >= section.offsetTop) {
+      if (scrollPos >= section.offsetTop) {
         current = section.getAttribute('id');
       }
     });
     menuLinks.forEach(link => {
       link.classList.remove('active');
-      if(link.getAttribute('href') === '#' + current) {
+      if (link.getAttribute('href') === '#' + current) {
         link.classList.add('active');
       }
     });
   }, 100));
 
-  // Menu hamburguer mobile acessível
   menuToggle.addEventListener('click', () => {
     const isOpen = sidebarMenu.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', isOpen);
   });
 
-  // Fechar menu no mobile ao clicar em link
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if(window.innerWidth < 768){
+      if (window.innerWidth < 768) {
         sidebarMenu.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', false);
       }
     });
   });
 
-  // Busca dinâmica no menu
   menuSearch.addEventListener('input', () => {
     const filter = menuSearch.value.toLowerCase();
     menuLinks.forEach(link => {
@@ -389,31 +412,34 @@
     });
   });
 
-  // Animação fade-in das seções e artigos
-  function revealSections() {
-    const reveals = document.querySelectorAll('section article, section > div');
-    const windowHeight = window.innerHeight;
-    reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if(top < windowHeight - 100){
+  // Animação fade-in para seções/artigos ao entrar na viewport
+  function revealOnScroll() {
+    const elements = document.querySelectorAll('section article, section > div');
+    const windowBottom = window.innerHeight + window.scrollY;
+
+    elements.forEach(el => {
+      const elementTop = el.offsetTop + el.offsetHeight / 4;
+      if (windowBottom > elementTop) {
         el.classList.add('visible');
       }
     });
   }
-  window.addEventListener('scroll', debounce(revealSections, 50));
-  window.addEventListener('load', revealSections);
+  window.addEventListener('scroll', debounce(revealOnScroll, 50));
+  window.addEventListener('load', revealOnScroll);
 
-  // Configuração Chart.js — mantendo o código dos gráficos conforme já tinha
-
+  // Gráficos Chart.js
+  function getTextColor() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim();
+  }
   const ctxProd = document.getElementById('prodChart')?.getContext('2d');
   if(ctxProd){
     new Chart(ctxProd, {
       type: 'line',
       data: {
-        labels: ['1980', '1990', '2000', '2010', '2020', '2025'],
+        labels: ['2000', '2005', '2010', '2015', '2020', '2025'],
         datasets: [{
-          label: 'Produção agrícola',
-          data: [30, 45, 55, 70, 90, 100],
+          label: 'Produtividade (ton/ha)',
+          data: [2.3, 2.8, 3.5, 4.1, 5.0, 5.5],
           borderColor: 'rgba(37, 99, 235, 0.8)',
           backgroundColor: 'rgba(37, 99, 235, 0.2)',
           fill: true,
@@ -426,23 +452,22 @@
         plugins: {
           legend: {
             labels: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+              color: getTextColor()
             }
           }
         },
         scales: {
           x: {
-            ticks: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim() }
+            ticks: { color: getTextColor() }
           },
           y: {
-            ticks: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim() },
+            ticks: { color: getTextColor() },
             beginAtZero: true
           }
         }
       }
     });
   }
-
   const ctxImpact = document.getElementById('impactChart')?.getContext('2d');
   if(ctxImpact){
     new Chart(ctxImpact, {
@@ -460,13 +485,12 @@
         responsive: true,
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim() } },
-          y: { ticks: { color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim() }, beginAtZero: true, max: 100 }
+          x: { ticks: { color: getTextColor() } },
+          y: { ticks: { color: getTextColor() }, beginAtZero: true, max: 100 }
         }
       }
     });
   }
-
   const ctxChallenge = document.getElementById('challengeChart')?.getContext('2d');
   if(ctxChallenge){
     new Chart(ctxChallenge, {
@@ -484,7 +508,7 @@
         plugins: {
           legend: {
             labels: {
-              color: getComputedStyle(document.documentElement).getPropertyValue('--text-color').trim()
+              color: getTextColor()
             }
           }
         }
