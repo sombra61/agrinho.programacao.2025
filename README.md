@@ -1,6 +1,6 @@
 https://agrinho-programacao-2025-qgd8.vercel.app/
 
-Olá! Meu nome é Vitor José de Oliveira de Souza, sou estudante do Colégio Helena, em Reserva - Paraná. Com muito orgulho, apresento este projeto desenvolvido para o Agrinho, unindo meu interesse pela tecnologia com o desejo de compartilhar conhecimento sobre o agronegócio.
+Olá! Meu nome é Vitor José de Oliveira de Souza, sou estudante do Colégio Helena, em Reserva - Paraná. Com muito orgulho, apresento este projeto desenvolvido para o Agrinho, com apoio de minha professora de programação Regiane, unindo meu interesse pela tecnologia com o desejo de compartilhar conhecimento sobre o agronegócio.
 
 A proposta deste site é mostrar, de forma didática e interativa, como a tecnologia influenciou a evolução da agricultura familiar ao longo do tempo. Para isso, utilizei HTML, CSS e JavaScript, aplicando o que venho aprendendo como programador iniciante, com o apoio da minha professora de programação.
 
